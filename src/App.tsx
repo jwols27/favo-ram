@@ -1,8 +1,10 @@
+import './App.css';
+
 const App = () => {
     return (
-        <>
-            <div>FAVO-Ram</div>
-        </>
+        <div className={'center-box'}>
+            <p className={'secondary'}>FAVO-Ram</p>
+        </div>
     );
 };
 
