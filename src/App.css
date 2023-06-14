@@ -4,10 +4,57 @@
     height: 100vh;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     background: var(--primary);
+}
+
+.center-box * {
+    margin-top: 12px;
+    margin-bottom: 12px;
 }
 
 .secondary {
     color: var(--secondary);
     font-size: 48px;
+}
+
+.my-table th {
+    vertical-align: middle;
+}
+
+.my-table th:first-child {
+    text-align: center;
+}
+
+.table-image {
+    max-height: 100px;
+    max-width: 100px;
+    overflow: hidden;
+}
+
+.table-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: none;
+    color: red;
+    object-position: 50% -180px;
+}
+
+tr th {
+    padding: 12px;
+    background-color: var(--secondary-50);
+}
+
+tr:nth-child(even) th {
+    background-color: var(--secondary-75);
+}
+
+tr:first-child th {
+    background-color: var(--secondary) !important;
+    font-weight: bold;
+    padding: 12px !important;
+}
+
+tr:first-child th, tr:last-child th {
+    border-bottom: black solid 2px;
 }
