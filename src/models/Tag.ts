@@ -1,3 +1,5 @@
-import { Character } from './Character';
+import { BaseModel } from './BaseModel';
 
-export type Tag = Omit<Character, 'image'> & {};
+export type Tag = BaseModel & {
+    desc?: string;
+};

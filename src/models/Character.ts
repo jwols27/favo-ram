@@ -1,9 +1,8 @@
 import { Origin } from './Origin';
 import { Tag } from './Tag';
+import { BaseModel } from './BaseModel';
 
-export type Character = {
-    id: number;
-    name: string;
+export type Character = BaseModel & {
     desc?: string;
     image?: string;
     origin?: string | Origin;

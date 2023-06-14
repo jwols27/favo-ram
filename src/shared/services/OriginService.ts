@@ -1,11 +1,10 @@
 import { api } from './api';
-import { Character } from '../../models';
+import { Origin } from '../../models';
 
-const route = 'characters';
+const route = 'origins';
 
 const getAll = async () => {
-    const defaultError =
-        'Something went wrong when trying to get all characters.';
+    const defaultError = 'Something went wrong when trying to get all origins.';
 
     try {
         const { data } = await api.get(route);
@@ -22,8 +21,7 @@ const getAll = async () => {
 };
 
 const getById = async (id: number) => {
-    const defaultError =
-        'Something went wrong when trying to get this character.';
+    const defaultError = 'Something went wrong when trying to get this origin.';
 
     try {
         const { data } = await api.get(`${route}/${id}`);
@@ -39,9 +37,9 @@ const getById = async (id: number) => {
     }
 };
 
-const create = async (body: Omit<Character, 'id'>) => {
+const create = async (body: Omit<Origin, 'id'>) => {
     const defaultError =
-        'Something went wrong when trying to create a new character.';
+        'Something went wrong when trying to create a new origin.';
 
     try {
         const { data } = await api.post(route, body);
@@ -57,9 +55,9 @@ const create = async (body: Omit<Character, 'id'>) => {
     }
 };
 
-const updateById = async (body: Omit<Character, 'id'>) => {
+const updateById = async (body: Omit<Origin, 'id'>) => {
     const defaultError =
-        'Something went wrong when trying to update this character.';
+        'Something went wrong when trying to update this origin.';
 
     console.log(body);
     return new Error(defaultError);
@@ -67,13 +65,13 @@ const updateById = async (body: Omit<Character, 'id'>) => {
 
 const deleteById = async (id: number) => {
     const defaultError =
-        'Something went wrong when trying to delete this character.';
+        'Something went wrong when trying to delete this origin.';
 
-    console.log(`Character ${id} was not deleted`);
+    console.log(`Origin ${id} was not deleted`);
     return new Error(defaultError);
 };
 
-export const CharacterService = {
+export const OriginService = {
     getAll,
     getById,
     create,

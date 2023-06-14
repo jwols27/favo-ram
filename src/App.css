@@ -1,7 +1,7 @@
 .center-box {
     flex: 1;
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 100px);
     align-items: center;
     justify-content: center;
     flex-direction: column;
@@ -17,6 +17,25 @@
     color: var(--secondary);
     font-size: 48px;
 }
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: var(--tertiary);
+}
+
+.navbar * {
+    color: var(--secondary);
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.navbar a.active {
+    color: red;
+}
+
 
 .my-table th {
     vertical-align: middle;
@@ -49,12 +68,12 @@ tr:nth-child(even) th {
     background-color: var(--secondary-75);
 }
 
-tr:first-child th {
+thead th {
     background-color: var(--secondary) !important;
     font-weight: bold;
     padding: 12px !important;
 }
 
-tr:first-child th, tr:last-child th {
+thead th, tbody tr:last-child th {
     border-bottom: black solid 2px;
 }
