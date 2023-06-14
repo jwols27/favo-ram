@@ -3,6 +3,10 @@ import { Tag } from '../models';
 import { TagService } from '../shared/services/TagService';
 
 const TagsView = () => {
+    React.useEffect(() => {
+        document.title = 'FAVO-Ram | Tags';
+    }, []);
+
     const [tagList, setTagList] = React.useState<Tag[]>([]);
     const loadList = () => {
         TagService.getAll().then((res) => {

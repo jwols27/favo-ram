@@ -26,15 +26,35 @@
     background-color: var(--tertiary);
 }
 
-.navbar * {
-    color: var(--secondary);
-    padding-left: 16px;
-    padding-right: 16px;
+.navbar > *:hover {
+    background-color: var(--tertiary-light);
+    color: var(--secondary) !important;
 }
 
-.navbar a.active {
-    color: red;
+.navbar > *:active {
+    opacity: 1 !important;
 }
+
+.navbar > a {
+    padding: 16px;
+    margin: 0 4px 0 4px;
+    color: var(--secondary);
+    transition: background-color 0.5s ease;
+    border-radius: 30px;
+}
+
+.navbar > a > * {
+    padding-right: 4px;
+    padding-left: 4px;
+    vertical-align: middle;
+}
+
+.navbar a.active * {
+    color: var(--primary-light);
+    font-weight: 500;
+}
+
+
 
 
 .my-table th {

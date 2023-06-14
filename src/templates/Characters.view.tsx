@@ -3,6 +3,10 @@ import { Character } from '../models';
 import { CharacterService } from '../shared/services/CharacterService';
 
 const CharactersView = () => {
+    React.useEffect(() => {
+        document.title = 'FAVO-Ram | Characters';
+    }, []);
+
     const [characterList, setCharacterList] = React.useState<Character[]>([]);
     const loadList = () => {
         CharacterService.getAll().then((res) => {

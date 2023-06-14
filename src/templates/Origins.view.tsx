@@ -3,6 +3,10 @@ import { Origin } from '../models';
 import { OriginService } from '../shared/services/OriginService';
 
 const OriginsView = () => {
+    React.useEffect(() => {
+        document.title = 'FAVO-Ram | Origins';
+    }, []);
+
     const [originList, setOriginList] = React.useState<Origin[]>([]);
 
     const loadList = () => {

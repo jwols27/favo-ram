@@ -1,21 +1,20 @@
 import React from 'react';
 
 import './App.css';
-import { NavLink } from 'react-router-dom';
+import { CNavbar } from './components';
 
 interface IAppProps {
     children: React.ReactNode;
 }
 
 const App = ({ children }: IAppProps) => {
+    const path = location.pathname.split('/')[1];
+
+    React.useEffect(() => window.scrollTo(0, 0), [path]);
+
     return (
         <div>
-            <div className={'navbar'}>
-                <NavLink to={''}>Home</NavLink>
-                <NavLink to={'characters'}>Characters</NavLink>
-                <NavLink to={'origins'}>Origins</NavLink>
-                <NavLink to={'tags'}>Tags</NavLink>
-            </div>
+            <CNavbar />
             {children}
         </div>
     );

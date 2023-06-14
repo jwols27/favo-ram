@@ -1,9 +1,19 @@
 :root {
+
+    --primary-25: rgba(100, 149, 237, 0.25);
+    --primary-50: rgba(100, 149, 237, 0.50);
+    --primary-75: rgba(100, 149, 237, 0.75);
     --primary: #6495ed;
-    --secondary: #faf0e6;
+    --primary-light: #8cb1f5;
+    --secondary-25: rgba(250, 240, 230, 0.25);
     --secondary-50: rgba(250, 240, 230, 0.5);
     --secondary-75: rgba(250, 240, 230, 0.75);
+    --secondary: #faf0e6;
+    --tertiary-25: rgba(121, 66, 166, 0.25);
+    --tertiary-50: rgba(121, 66, 166, 0.50);
+    --tertiary-75: rgba(121, 66, 166, 0.75);
     --tertiary: #7942a6;
+    --tertiary-light: #9b61c9;
 }
 
 
@@ -29,6 +39,10 @@ table, caption, tbody, tfoot, thead, tr, th, td {
 /* remember to define focus styles! */
 :focus {
     outline: 0;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
