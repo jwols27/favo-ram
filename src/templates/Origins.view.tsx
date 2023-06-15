@@ -1,6 +1,10 @@
 import React from 'react';
 import { Origin } from '../models';
 import { OriginService } from '../shared/services/OriginService';
+import { CTable } from '../components';
+
+const header: string[] = ['ID', 'Name', 'Image'];
+const columns: string[] = ['id', 'name', 'image'];
 
 const OriginsView = () => {
     React.useEffect(() => {
@@ -22,28 +26,11 @@ const OriginsView = () => {
     return (
         <div className={'center-box'}>
             <button onClick={loadList}>Teste</button>
-            <table className={'my-table'}>
-                <thead>
-                    <tr>
-                        <th>id</th>
-                        <th>name</th>
-                        <th>image</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {originList.map((origin) => (
-                        <tr key={origin.id}>
-                            <th>{origin.id}</th>
-                            <th>{origin.name}</th>
-                            <th>
-                                <div className={'table-image'}>
-                                    <img src={origin.image} alt={origin.name} />
-                                </div>
-                            </th>
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
+            <CTable
+                headerTitles={header}
+                columnFields={columns}
+                objects={originList}
+            />
         </div>
     );
 };

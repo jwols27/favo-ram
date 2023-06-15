@@ -1,5 +1,4 @@
 import React from 'react';
-import { Home } from '@mui/icons-material';
 
 const HomeView = () => {
     React.useEffect(() => {
@@ -8,8 +7,7 @@ const HomeView = () => {
 
     return (
         <div className={'center-box'}>
-            <p className={'secondary'}>FAVO-Ram</p>
-            <Home color={'error'} />
+            <h1 className={'color-2'}>FAVO-Ram</h1>
         </div>
     );
 };

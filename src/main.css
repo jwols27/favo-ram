@@ -1,28 +1,27 @@
 :root {
+    --primary: #A7B570;
+    --primary-light: #d4e0a6;
+    --primary-dark: #616931;
 
-    --primary-25: rgba(100, 149, 237, 0.25);
-    --primary-50: rgba(100, 149, 237, 0.50);
-    --primary-75: rgba(100, 149, 237, 0.75);
-    --primary: #6495ed;
-    --primary-light: #8cb1f5;
-    --secondary-25: rgba(250, 240, 230, 0.25);
-    --secondary-50: rgba(250, 240, 230, 0.5);
-    --secondary-75: rgba(250, 240, 230, 0.75);
-    --secondary: #faf0e6;
-    --tertiary-25: rgba(121, 66, 166, 0.25);
-    --tertiary-50: rgba(121, 66, 166, 0.50);
-    --tertiary-75: rgba(121, 66, 166, 0.75);
-    --tertiary: #7942a6;
-    --tertiary-light: #9b61c9;
+    --secondary: #B76A9E;
+    --secondary-light: #e39ecb;
+    --secondary-lighter: #f1b9e4;
+    --secondary-dark: #8d3e8d;
+
+    --tertiary: #F1EBE4;
+    --tertiary-dark: #ded5cc;
+    --tertiary-darker: #aba092;
+
+    --quarternary: #2D2828;
+    --quarternary-light: #5B4A3E;
+
 }
-
-
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
 del, dfn, em, font, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
+small, strike, strong, tt, var,
 dl, dt, dd, ol, ul, li,
 fieldset, form, label, legend,
 table, caption, tbody, tfoot, thead, tr, th, td {
@@ -36,7 +35,7 @@ table, caption, tbody, tfoot, thead, tr, th, td {
     font-family: Ubuntu, cursive;
     vertical-align: baseline;
 }
-/* remember to define focus styles! */
+
 :focus {
     outline: 0;
 }
@@ -47,12 +46,13 @@ a {
 
 body {
     line-height: 1;
-    color: black;
-    background: white;
+    color: var(--quarternary);
+    background: var(--tertiary-dark);
 }
 ol, ul {
     list-style: none;
 }
+
 /* tables still need 'cellspacing="0"' in the markup */
 table {
     border-collapse: separate;

@@ -1,0 +1,44 @@
+tr th {
+    padding: 12px;
+    background-color: var(--secondary-lighter);
+}
+
+tr:nth-child(even) th {
+    background-color: var(--secondary-light);
+}
+
+thead th {
+    background-color: var(--secondary) !important;
+    font-weight: 500;
+    padding: 12px !important;
+    color: var(--tertiary);
+}
+
+thead th, tbody tr:last-child th {
+    border-bottom: black solid 2px;
+}
+
+.my-table th {
+    vertical-align: middle;
+}
+
+.my-table th:first-child {
+    text-align: center;
+}
+
+.table-image {
+    max-height: 100px;
+    max-width: 100px;
+    overflow: hidden;
+    padding: 0;
+    line-height: 0;
+}
+
+.table-image img {
+    height: 100%;
+    width: 100%;
+    object-fit: none;
+    color: red;
+    object-position: 50% -180px;
+}
+

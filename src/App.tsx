@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './App.css';
-import { CNavbar } from './components';
+import { CNavbar, CFooter } from './components';
 
 interface IAppProps {
     children: React.ReactNode;
@@ -15,7 +15,8 @@ const App = ({ children }: IAppProps) => {
     return (
         <div>
             <CNavbar />
-            {children}
+            <div id={'content'}> {children} </div>
+            <CFooter />
         </div>
     );
 };
