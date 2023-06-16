@@ -1,8 +1,14 @@
 #content {
-    min-height: calc(90vh - 200px);
+    min-height: calc(100vh - 300px);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#character-crud {
+    width: 100%;
+    height: 100%;
+    padding: 24px 36px 0 ;
 }
 
 .color-1 { color: var(--primary) }
@@ -21,14 +27,13 @@
 .color-4 { color: var(--quarternary) }
 .color-4-light { color: var(--quarternary-light) }
 
-
 h1, h2, h3, h4, h5, h6 { font-weight: 500 }
-h1 { font-size: 4.5rem }
-h2 { font-size: 4rem }
-h3 { font-size: 3rem }
-h4 { font-size: 2rem }
-h5 { font-size: 1.5rem }
-h6 { font-size: 1rem }
+h1 { font-size: 3.00rem }
+h2 { font-size: 2.00rem }
+h3 { font-size: 1.50rem }
+h4 { font-size: 1.25rem }
+h5 { font-size: 1.00rem }
+h6 { font-size: 0.85rem }
 
 small { font-size: 0.85rem; font-weight: 400; }
 
@@ -52,34 +57,32 @@ q::after { content: close-quote }
 
 @media only screen and (min-width: 600px) {
     .grid-crud-container {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-auto-flow: column;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-auto-flow: row;
+    }
+
+    .grid-crud-container > div:first-child {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .responsive-align {
+        align-items: center;
     }
 }
 
 @media only screen and (min-width: 768px) {
     .grid-crud-container {
-        grid-auto-rows: 1fr;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-auto-flow: row;
     }
+
+    .responsive-align {
+        align-items: start;
+    }
+
 }
 
-.crud-form {
-    display: flex;
-    flex-direction: column;
-}
-
-.crud-form * {
-    padding: 8px 4px 8px 4px;
-}
-
-.crud-form input, select {
-    margin-top: 12px;
-}
-
-.crud-form button {
-    margin-top: 24px;
-}
 
 
 

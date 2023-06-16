@@ -1,6 +1,7 @@
 import React from 'react';
 
 import './App.css';
+import './styles/crud.styles.css';
 import { CNavbar, CFooter } from './components';
 
 interface IAppProps {

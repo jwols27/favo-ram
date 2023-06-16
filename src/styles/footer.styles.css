@@ -1,11 +1,9 @@
 footer {
     background-color: var(--primary-dark);
-    padding: 48px 48px 24px 48px;
-    margin-top: 36px;
+    padding: 50px 50px 25px 50px;
+    margin-top: 50px;
     color: var(--primary-light);
-    width: 100%;
     min-height: 75px;
-    position: fixed;
     left: 0;
     bottom: 0;
 }

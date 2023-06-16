@@ -27,6 +27,7 @@ const OriginsView = () => {
         <div className={'center-box'}>
             <button onClick={loadList}>Teste</button>
             <CTable
+                tableName={'Origins'}
                 headerTitles={header}
                 columnFields={columns}
                 objects={originList}

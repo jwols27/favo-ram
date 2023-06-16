@@ -1,43 +1,78 @@
-tr th {
+.table-container {
+    box-shadow:0 0 6px var(--secondary);
+    border-radius: 16px;
+    min-width: 90%;
+}
+
+.jpl-table {
+    width: 100%;
+}
+
+.jpl-table tr th {
     padding: 12px;
     background-color: var(--secondary-lighter);
 }
 
-tr:nth-child(even) th {
-    background-color: var(--secondary-light);
+.jpl-table tr:not(:last-child) th {
+    border-bottom: 1px solid var(--secondary-light);
 }
 
-thead th {
-    background-color: var(--secondary) !important;
-    font-weight: 500;
-    padding: 12px !important;
-    color: var(--tertiary);
-}
-
-thead th, tbody tr:last-child th {
-    border-bottom: black solid 2px;
-}
-
-.my-table th {
+.jpl-table th {
     vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.my-table th:first-child {
+.jpl-table th:first-child, th:last-child {
     text-align: center;
 }
 
+.jpl-table thead th, tbody:first-child {
+    background-color: var(--secondary-light) !important;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: .95rem;
+}
+
+/*.jpl-table thead th {*/
+/*    border-bottom: var(--secondary-dark) solid 3px;*/
+/*}*/
+
+.jpl-table > caption {
+    border-radius: 16px 16px 0 0;
+    padding: 16px 12px 12px 12px ;
+    background-color: var(--secondary) !important;
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--tertiary);
+}
+
+/* special padding and border radius at top and bottom */
+.jpl-table tbody > tr:last-child th {
+    padding-bottom: 16px;
+}
+
+.jpl-table tbody > tr:last-child > th:first-child {
+    border-radius: 0 0 0 16px;
+}
+
+.jpl-table tbody > tr:last-child > th:last-child {
+    border-radius: 0 0 16px 0;
+}
+/* . */
+
 .table-image {
-    max-height: 100px;
-    max-width: 100px;
+    height: 100px;
+    width: 100px;
     overflow: hidden;
     padding: 0;
-    line-height: 0;
 }
 
 .table-image img {
-    height: 100%;
-    width: 100%;
+    height: 100px;
+    width: 100px;
     object-fit: none;
+    border-radius: 50%;
     color: red;
     object-position: 50% -180px;
 }

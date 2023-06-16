@@ -26,6 +26,7 @@ const TagsView = () => {
         <div className={'center-box'}>
             <button onClick={loadList}>Teste</button>
             <CTable
+                tableName={'Tags'}
                 headerTitles={header}
                 columnFields={columns}
                 objects={tagList}
