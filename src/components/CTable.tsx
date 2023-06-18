@@ -4,33 +4,39 @@ import '../styles/table.styles.css';
 
 type GenericObject = { id: number; [key: string]: any };
 
+export type ColumnSettings = {
+    header: string;
+    field: string;
+    width?: string;
+};
+
 interface ITableProps {
     tableName: string;
-    headerTitles: string[];
-    columnFields: string[];
+    settings: ColumnSettings[];
     objects: GenericObject[];
-
-    imagePlaceholder?: string;
 }
 
 export const CTable = ({
     tableName,
-    headerTitles,
-    columnFields,
+    settings,
     objects,
-    imagePlaceholder = 'name',
     ...props
 }: ITableProps & React.HTMLProps<HTMLTableElement>) => {
-    // React.useEffect(() => {}, [columnFields])
-
     return (
         <div className={'table-container'}>
             <table className={'jpl-table'} title={tableName} {...props}>
                 <caption>{tableName}</caption>
+                <colgroup>
+                    {settings.map(({ header, width = 'auto' }) => (
+                        <col key={header} style={{ width }} />
+                    ))}
+                </colgroup>
                 <thead>
                     <tr>
-                        {headerTitles.map((title) => (
-                            <th key={title}>{title}</th>
+                        {settings.map(({ header }) => (
+                            <th key={header} id={header}>
+                                {header}
+                            </th>
                         ))}
                     </tr>
                 </thead>
@@ -38,36 +44,30 @@ export const CTable = ({
                     {objects.length ? (
                         objects.map((object) => (
                             <tr key={object.id}>
-                                {columnFields.map((column) => {
-                                    if (column === 'image')
-                                        return (
-                                            <th
-                                                key={column}
-                                                className={'table-image'}
-                                            >
-                                                <img
-                                                    src={object['image']}
-                                                    alt={
-                                                        object[imagePlaceholder]
-                                                            ? object[
-                                                                  imagePlaceholder
-                                                              ]
-                                                            : ''
-                                                    }
-                                                />
-                                            </th>
-                                        );
+                                {settings.map(({ field }) => {
                                     return (
-                                        <th key={column}>{object[column]}</th>
+                                        <td key={field} id={field}>
+                                            {field === 'image' &&
+                                            object['image'] ? (
+                                                <div className={'table-image'}>
+                                                    <img
+                                                        src={object['image']}
+                                                        alt={''}
+                                                    />
+                                                </div>
+                                            ) : (
+                                                object[field]
+                                            )}
+                                        </td>
                                     );
                                 })}
                             </tr>
                         ))
                     ) : (
                         <tr>
-                            <th colSpan={columnFields.length}>
+                            <td colSpan={objects.length}>
                                 Nenhum item encontrado.
-                            </th>
+                            </td>
                         </tr>
                     )}
                 </tbody>

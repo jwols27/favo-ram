@@ -8,23 +8,19 @@
     width: 100%;
 }
 
-.jpl-table tr th {
+.jpl-table tr th, .jpl-table tr td {
     padding: 12px;
     background-color: var(--secondary-lighter);
 }
 
-.jpl-table tr:not(:last-child) th {
+.jpl-table tr:not(:last-child) td {
     border-bottom: 1px solid var(--secondary-light);
 }
 
-.jpl-table th {
+.jpl-table th, .jpl-table td {
     vertical-align: middle;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.jpl-table th:first-child, th:last-child {
-    text-align: center;
 }
 
 .jpl-table thead th, tbody:first-child {
@@ -33,10 +29,6 @@
     font-weight: 500;
     font-size: .95rem;
 }
-
-/*.jpl-table thead th {*/
-/*    border-bottom: var(--secondary-dark) solid 3px;*/
-/*}*/
 
 .jpl-table > caption {
     border-radius: 16px 16px 0 0;
@@ -47,33 +39,39 @@
     color: var(--tertiary);
 }
 
+/* styles for specific columns */
+.jpl-table #id  {
+    text-align: center;
+}
+/* . */
+
 /* special padding and border radius at top and bottom */
-.jpl-table tbody > tr:last-child th {
+.jpl-table tbody > tr:last-child td {
     padding-bottom: 16px;
 }
 
-.jpl-table tbody > tr:last-child > th:first-child {
+.jpl-table tbody > tr:last-child > td:first-child {
     border-radius: 0 0 0 16px;
 }
 
-.jpl-table tbody > tr:last-child > th:last-child {
+.jpl-table tbody > tr:last-child > td:last-child {
     border-radius: 0 0 16px 0;
 }
 /* . */
 
 .table-image {
-    height: 100px;
-    width: 100px;
+    height: 50px;
+    width: 50px;
+    margin: -6px auto -6px auto;
     overflow: hidden;
-    padding: 0;
+    border-radius: 50%;
 }
 
 .table-image img {
-    height: 100px;
-    width: 100px;
-    object-fit: none;
-    border-radius: 50%;
-    color: red;
-    object-position: 50% -180px;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: 50% 17px;
+    scale: 12;
 }
 

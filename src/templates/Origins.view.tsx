@@ -1,10 +1,24 @@
 import React from 'react';
 import { Origin } from '../models';
 import { OriginService } from '../shared/services/OriginService';
-import { CTable } from '../components';
+import { ColumnSettings, CTable } from '../components';
 
-const header: string[] = ['ID', 'Name', 'Image'];
-const columns: string[] = ['id', 'name', 'image'];
+const settings: ColumnSettings[] = [
+    {
+        header: 'id',
+        field: 'id',
+        width: '50px',
+    },
+    {
+        header: 'Name',
+        field: 'name',
+    },
+    {
+        header: 'Image',
+        field: 'image',
+        width: '74px',
+    },
+];
 
 const OriginsView = () => {
     React.useEffect(() => {
@@ -24,15 +38,11 @@ const OriginsView = () => {
     React.useEffect(loadList, []);
 
     return (
-        <div className={'center-box'}>
-            <button onClick={loadList}>Teste</button>
-            <CTable
-                tableName={'Origins'}
-                headerTitles={header}
-                columnFields={columns}
-                objects={originList}
-            />
-        </div>
+        <CTable
+            tableName={'Origins'}
+            settings={settings}
+            objects={originList}
+        />
     );
 };
 

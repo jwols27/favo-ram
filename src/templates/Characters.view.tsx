@@ -1,14 +1,33 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Character } from '../models';
-import { CTable } from '../components';
+import { ColumnSettings, CTable } from '../components';
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest';
 import { Draw } from '@mui/icons-material';
 
-const header: string[] = ['ID', 'Name', 'Description', 'Image'];
-const columns: string[] = ['id', 'name', 'desc', 'image'];
+const settings: ColumnSettings[] = [
+    {
+        header: 'id',
+        field: 'id',
+        width: '50px',
+    },
+    {
+        header: 'Name',
+        field: 'name',
+        width: '175px',
+    },
+    {
+        header: 'Description',
+        field: 'desc',
+    },
+    {
+        header: 'Image',
+        field: 'image',
+        width: '74px',
+    },
+];
 
 const CharactersView = () => {
     React.useEffect(() => {
@@ -42,16 +61,13 @@ const CharactersView = () => {
                 <div className={'center-box'}>
                     <CTable
                         tableName={'Characters'}
-                        headerTitles={header}
-                        columnFields={columns}
+                        settings={settings}
                         objects={characterState.characters}
                     />
                 </div>
                 <div className={'center-box responsive-align'}>
-                    <div className={'crud-title'}>
-                        <h3 className={'color-2-dark crud-title'}>
-                            Create a character
-                        </h3>
+                    <div className={'crud-title color-2-dark'}>
+                        <h3>Create a character</h3>
                         <Draw />
                     </div>
                     <form

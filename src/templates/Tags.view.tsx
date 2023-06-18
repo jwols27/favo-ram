@@ -1,10 +1,24 @@
 import React from 'react';
 import { Tag } from '../models';
 import { TagService } from '../shared/services/TagService';
-import { CTable } from '../components';
+import { ColumnSettings, CTable } from '../components';
 
-const header: string[] = ['ID', 'Name', 'Description'];
-const columns: string[] = ['id', 'name', 'desc'];
+const settings: ColumnSettings[] = [
+    {
+        header: 'id',
+        field: 'id',
+        width: '50px',
+    },
+    {
+        header: 'Name',
+        field: 'name',
+        width: '175px',
+    },
+    {
+        header: 'Description',
+        field: 'desc',
+    },
+];
 
 const TagsView = () => {
     React.useEffect(() => {
@@ -22,17 +36,7 @@ const TagsView = () => {
 
     React.useEffect(loadList, []);
 
-    return (
-        <div className={'center-box'}>
-            <button onClick={loadList}>Teste</button>
-            <CTable
-                tableName={'Tags'}
-                headerTitles={header}
-                columnFields={columns}
-                objects={tagList}
-            />
-        </div>
-    );
+    return <CTable tableName={'Tags'} settings={settings} objects={tagList} />;
 };
 
 export default TagsView;

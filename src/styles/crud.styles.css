@@ -5,10 +5,13 @@
     width: 90%;
 }
 
-.crud-title {
+.crud-title > *:first-child {
     display: inline;
-    text-align: center;
-    vertical-align: center;
+    margin-right: 4px;
+}
+
+.crud-title > * {
+    vertical-align: middle;
 }
 
 .crud-form input, select, textarea {
