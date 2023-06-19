@@ -1,11 +1,15 @@
 import React from 'react';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { Character } from '../models';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { Character, CharacterSchema } from '../models';
 import { ColumnSettings, CTable } from '../components';
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest';
 import { Draw } from '@mui/icons-material';
+import TagRequest from '../shared/requests/TagRequest';
+import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
+import { CharacterService } from '../shared/services/CharacterService';
+import { CSelect } from '../components/CSelect';
 
 const settings: ColumnSettings[] = [
     {
@@ -34,25 +38,33 @@ const CharactersView = () => {
         document.title = 'FAVO-Ram | Characters';
     }, []);
 
-    const characterState = useAppSelector((state) => state.characters);
-    const originState = useAppSelector((state) => state.origins);
+    const characterState = useAppSelector(
+        (state) => state.characters.characters,
+    );
+    const originState = useAppSelector((state) => state.origins.origins);
+    const tagState = useAppSelector((state) => state.tags.tags);
 
+    const resolver = useYupValidationResolver(CharacterSchema);
     const {
         register,
+        control,
         handleSubmit,
         formState: { errors },
-    } = useForm<Omit<Character, 'id'>>();
-    const onSubmit: SubmitHandler<Omit<Character, 'id'>> = (data) => {
+    } = useForm({ resolver });
+    const onSubmit: SubmitHandler<Omit<Character, 'id'>> = async (data) => {
         console.log(data);
+        await CharacterService.create(data);
+        refreshTables();
     };
 
-    const loadList = () => {
+    const refreshTables = () => {
         CharacterRequest();
+        OriginRequest();
+        TagRequest();
     };
 
     React.useEffect(() => {
-        loadList();
-        OriginRequest();
+        refreshTables();
     }, []);
 
     return (
@@ -62,7 +74,7 @@ const CharactersView = () => {
                     <CTable
                         tableName={'Characters'}
                         settings={settings}
-                        objects={characterState.characters}
+                        objects={characterState}
                     />
                 </div>
                 <div className={'center-box responsive-align'}>
@@ -74,10 +86,7 @@ const CharactersView = () => {
                         className={'crud-form'}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <input
-                            placeholder={'Name'}
-                            {...register('name', { required: true })}
-                        />
+                        <input placeholder={'Name'} {...register('name')} />
                         {errors.name && <span>This field is required</span>}
 
                         <textarea
@@ -86,29 +95,38 @@ const CharactersView = () => {
                             {...register('desc')}
                         />
 
-                        <select
-                            defaultValue={''}
-                            {...register('origin', { required: true })}
-                        >
-                            <option
-                                value=""
-                                disabled
-                                style={{ display: 'none' }}
-                            >
-                                Origin
-                            </option>
-                            {originState.origins.map((origin) => (
-                                <option key={origin.id} value={origin.id}>
-                                    {origin.name}
-                                </option>
-                            ))}
-                        </select>
+                        <Controller
+                            control={control}
+                            defaultValue={originState.map((c) => c.id)}
+                            name="origin"
+                            render={({ field }) => (
+                                <CSelect
+                                    options={originState}
+                                    objectName={'Origin'}
+                                    field={field}
+                                />
+                            )}
+                        />
                         {errors.origin && <span>This field is required</span>}
 
                         <input
                             placeholder={'Image URL'}
                             type={'url'}
                             {...register('image')}
+                        />
+
+                        <Controller
+                            control={control}
+                            defaultValue={tagState.map((c) => c.id)}
+                            name="tags"
+                            render={({ field }) => (
+                                <CSelect
+                                    options={tagState}
+                                    objectName={'Tag'}
+                                    field={field}
+                                    multi
+                                />
+                            )}
                         />
 
                         <button type="submit">Submit</button>

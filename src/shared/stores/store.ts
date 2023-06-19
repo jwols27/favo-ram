@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { characterReducer } from './character.slice';
 import { originReducer } from './origin.slice';
+import { tagReducer } from './tag.slice';
 
 export const store = configureStore({
     reducer: {
         characters: characterReducer,
         origins: originReducer,
+        tags: tagReducer,
     },
 });
 

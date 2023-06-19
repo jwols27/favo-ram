@@ -1,8 +1,7 @@
 import React from 'react';
 
 import '../styles/table.styles.css';
-
-type GenericObject = { id: number; [key: string]: any };
+import GenericObject from '../models/GenericObject';
 
 export type ColumnSettings = {
     header: string;

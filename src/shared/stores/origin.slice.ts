@@ -26,7 +26,6 @@ export const originSlice = createSlice({
     },
 });
 
-// Action creators are generated for each case reducer function
 export const { pushOrigins, setOrigins, combineOrigins, clearOrigins } =
     originSlice.actions;
 

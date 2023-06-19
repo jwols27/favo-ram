@@ -14,7 +14,7 @@
     vertical-align: middle;
 }
 
-.crud-form input, select, textarea {
+.crud-form input, textarea {
     resize: vertical;
     margin-top: 12px;
     border-radius: 12px;
@@ -22,23 +22,9 @@
     border: 1px solid var(--tertiary-darker);
 }
 
-.crud-form ::placeholder, .crud-form select { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.crud-form ::placeholder {
     color: var(--quarternary);
     font-size: .9rem;
-}
-
-.crud-form select {
-    appearance: none;
-    background-image: var(--dropdown);
-    background-repeat: no-repeat;
-    background-size: 18px;
-    background-color: var(--secondary-light);
-    border: 1px solid var(--secondary);
-    fill: red;
-    background-position: calc(100% - 12px) 50%;
-}
-
-.crud-form ::placeholder {
     opacity: .75;
 }
 
