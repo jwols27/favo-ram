@@ -18,15 +18,6 @@
     border: 0 solid transparent;
 }
 
-.custom-select__menu {
-    margin-top: 2px;
-    background-color: var(--tertiary);
-    position: absolute;
-    top: 100%;
-    left: 0;
-    width: 100%;
-}
-
 .custom-select__multi-value {
     border: 1px solid var(--secondary-dark);
     padding: 8px;
@@ -43,12 +34,33 @@
     color: white;
 }
 
+.custom-select__menu {
+    margin-top: 2px;
+    background-color: var(--tertiary);
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    border-radius: 12px;
+}
 
 .custom-select__option {
     padding: 12px 12px;
     transition: background-color 0.1s ease, color 0.1s ease;
 }
 
+.custom-select__option:not(:last-child) {
+    border-bottom: 1px solid var(--tertiary-dark);
+}
+
 .custom-select__option:hover {
     background-color: var(--secondary-lighter);
+}
+
+.select-error {
+    border: 1px solid var(--error) !important;
+}
+
+.select-error .custom-select__control {
+    color: var(--error-dark) !important;
 }

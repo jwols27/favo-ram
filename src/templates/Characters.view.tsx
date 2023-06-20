@@ -1,15 +1,17 @@
 import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Character, CharacterSchema } from '../models';
-import { ColumnSettings, CTable } from '../components';
-import { useAppSelector } from '../shared/hooks/store.hooks';
-import CharacterRequest from '../shared/requests/CharacterRequest';
-import OriginRequest from '../shared/requests/OriginRequest';
 import { Draw } from '@mui/icons-material';
-import TagRequest from '../shared/requests/TagRequest';
+
+import { Character, CharacterSchema } from '../models';
+
+import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import { CharacterService } from '../shared/services/CharacterService';
-import { CSelect } from '../components/CSelect';
+import CharacterRequest from '../shared/requests/CharacterRequest';
+import OriginRequest from '../shared/requests/OriginRequest';
+import TagRequest from '../shared/requests/TagRequest';
+
+import { ColumnSettings, CTable, CSelect } from '../components';
 
 const settings: ColumnSettings[] = [
     {
@@ -50,22 +52,25 @@ const CharactersView = () => {
         control,
         handleSubmit,
         formState: { errors },
-    } = useForm({ resolver });
-    const onSubmit: SubmitHandler<Omit<Character, 'id'>> = async (data) => {
-        console.log(data);
-        await CharacterService.create(data);
-        refreshTables();
-    };
+    } = useForm({ resolver, mode: 'onSubmit' });
 
     const refreshTables = () => {
         CharacterRequest();
         OriginRequest();
         TagRequest();
     };
+    const onSubmit: SubmitHandler<Omit<Character, 'id'>> = async (data) => {
+        console.log(data);
+        await CharacterService.create(data);
+        refreshTables();
+    };
 
     React.useEffect(() => {
         refreshTables();
     }, []);
+
+    const nameError = errors.name;
+    const originError = errors.origin;
 
     return (
         <div id={'character-crud'}>
@@ -86,8 +91,14 @@ const CharactersView = () => {
                         className={'crud-form'}
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <input placeholder={'Name'} {...register('name')} />
-                        {errors.name && <span>This field is required</span>}
+                        <input
+                            className={nameError && 'crud-error'}
+                            placeholder={'Name'}
+                            {...register('name')}
+                        />
+                        {nameError?.message && (
+                            <span>{nameError.message.toString()}</span>
+                        )}
 
                         <textarea
                             cols={16}
@@ -97,17 +108,19 @@ const CharactersView = () => {
 
                         <Controller
                             control={control}
-                            defaultValue={originState.map((c) => c.id)}
                             name="origin"
                             render={({ field }) => (
                                 <CSelect
                                     options={originState}
                                     objectName={'Origin'}
                                     field={field}
+                                    error={!!originError}
                                 />
                             )}
                         />
-                        {errors.origin && <span>This field is required</span>}
+                        {originError?.message && (
+                            <span>{originError.message.toString()}</span>
+                        )}
 
                         <input
                             placeholder={'Image URL'}
@@ -117,7 +130,7 @@ const CharactersView = () => {
 
                         <Controller
                             control={control}
-                            defaultValue={tagState.map((c) => c.id)}
+                            defaultValue={[]}
                             name="tags"
                             render={({ field }) => (
                                 <CSelect

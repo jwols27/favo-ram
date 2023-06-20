@@ -15,6 +15,6 @@ export const CharacterSchema = object().shape({
     name: string().min(3).required(),
     desc: string(),
     image: string(),
-    origin: number().required(),
+    origin: number().required().typeError('This field is required'),
     tags: array().of(number()),
 });

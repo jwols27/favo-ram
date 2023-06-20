@@ -1,6 +1,14 @@
 import React from 'react';
-import { Tag } from '../models';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Draw } from '@mui/icons-material';
+
+import { Tag, TagSchema } from '../models';
+
+import { useAppSelector } from '../shared/hooks/store.hooks';
+import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import { TagService } from '../shared/services/TagService';
+import TagRequest from '../shared/requests/TagRequest';
+
 import { ColumnSettings, CTable } from '../components';
 
 const settings: ColumnSettings[] = [
@@ -25,18 +33,69 @@ const TagsView = () => {
         document.title = 'FAVO-Ram | Tags';
     }, []);
 
-    const [tagList, setTagList] = React.useState<Tag[]>([]);
-    const loadList = () => {
-        TagService.getAll().then((res) => {
-            if (res instanceof Error) return console.log(res.message);
-            console.log(res);
-            setTagList(res);
-        });
+    const tagState = useAppSelector((state) => state.tags.tags);
+
+    const resolver = useYupValidationResolver(TagSchema);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver, mode: 'onSubmit' });
+
+    const refreshTables = TagRequest;
+
+    const onSubmit: SubmitHandler<Omit<Tag, 'id'>> = async (data) => {
+        console.log(data);
+        await TagService.create(data);
+        refreshTables();
     };
 
-    React.useEffect(loadList, []);
+    React.useEffect(() => {
+        refreshTables();
+    }, []);
 
-    return <CTable tableName={'Tags'} settings={settings} objects={tagList} />;
+    const nameError = errors.name;
+
+    return (
+        <div id={'tag-crud'}>
+            <div className={'grid-crud-container'}>
+                <div className={'center-box'}>
+                    <CTable
+                        tableName={'Tags'}
+                        settings={settings}
+                        objects={tagState}
+                    />
+                </div>
+                <div className={'center-box responsive-align'}>
+                    <div className={'crud-title color-2-dark'}>
+                        <h3>Create a tag</h3>
+                        <Draw />
+                    </div>
+                    <form
+                        className={'crud-form'}
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <input
+                            className={nameError && 'crud-error'}
+                            placeholder={'Name'}
+                            {...register('name')}
+                        />
+                        {nameError?.message && (
+                            <span>{nameError.message.toString()}</span>
+                        )}
+
+                        <textarea
+                            cols={16}
+                            placeholder={'Description'}
+                            {...register('desc')}
+                        />
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    );
 };
 
 export default TagsView;

@@ -1,6 +1,14 @@
 import React from 'react';
-import { Origin } from '../models';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Draw } from '@mui/icons-material';
+
+import { Origin, OriginSchema } from '../models';
+
+import { useAppSelector } from '../shared/hooks/store.hooks';
+import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
+import OriginRequest from '../shared/requests/OriginRequest';
 import { OriginService } from '../shared/services/OriginService';
+
 import { ColumnSettings, CTable } from '../components';
 
 const settings: ColumnSettings[] = [
@@ -25,24 +33,68 @@ const OriginsView = () => {
         document.title = 'FAVO-Ram | Origins';
     }, []);
 
-    const [originList, setOriginList] = React.useState<Origin[]>([]);
+    const originState = useAppSelector((state) => state.origins.origins);
 
-    const loadList = () => {
-        OriginService.getAll().then((res) => {
-            if (res instanceof Error) return console.log(res.message);
-            console.log(res);
-            setOriginList(res);
-        });
+    const resolver = useYupValidationResolver(OriginSchema);
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm({ resolver, mode: 'onSubmit' });
+
+    const refreshTables = OriginRequest;
+
+    const onSubmit: SubmitHandler<Omit<Origin, 'id'>> = async (data) => {
+        console.log(data);
+        await OriginService.create(data);
+        refreshTables();
     };
 
-    React.useEffect(loadList, []);
+    React.useEffect(() => {
+        refreshTables();
+    }, []);
+
+    const nameError = errors.name;
 
     return (
-        <CTable
-            tableName={'Origins'}
-            settings={settings}
-            objects={originList}
-        />
+        <div id={'origin-crud'}>
+            <div className={'grid-crud-container'}>
+                <div className={'center-box'}>
+                    <CTable
+                        tableName={'Origins'}
+                        settings={settings}
+                        objects={originState}
+                    />
+                </div>
+                <div className={'center-box responsive-align'}>
+                    <div className={'crud-title color-2-dark'}>
+                        <h3>Create an origin</h3>
+                        <Draw />
+                    </div>
+                    <form
+                        className={'crud-form'}
+                        onSubmit={handleSubmit(onSubmit)}
+                    >
+                        <input
+                            className={nameError && 'crud-error'}
+                            placeholder={'Name'}
+                            {...register('name')}
+                        />
+                        {nameError?.message && (
+                            <span>{nameError.message.toString()}</span>
+                        )}
+
+                        <input
+                            placeholder={'Image URL'}
+                            type={'url'}
+                            {...register('image')}
+                        />
+
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     );
 };
 

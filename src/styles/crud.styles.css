@@ -42,3 +42,14 @@
     background-color: var(--secondary);
     border: 1px solid var(--secondary-dark);
 }
+
+.crud-form span {
+    font-size: .75rem;
+    padding: 4px 8px;
+    color: var(--quarternary-light);
+}
+
+.crud-error {
+    border: 1px solid var(--error) !important;
+    color: var(--error-dark) !important;
+}

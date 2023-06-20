@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom/client';
 
 import './main.css';
+import './styles/yupLocalization';
 import React from 'react';
 
 import { RouterProvider } from 'react-router-dom';

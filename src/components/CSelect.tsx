@@ -7,6 +7,7 @@ interface ISelectProps {
     objectName: string;
     field: any;
     multi?: boolean;
+    error?: boolean;
 }
 
 export const CSelect = ({
@@ -15,6 +16,7 @@ export const CSelect = ({
     objectName,
     field,
     multi,
+    error,
 }: ISelectProps) => {
     const handleChange = (selectedOption: any) => {
         if (multi) {
@@ -28,19 +30,20 @@ export const CSelect = ({
         }
     };
 
+    const handleValue = () => {
+        if (multi) return options.filter((c) => field.value.includes(c.id));
+        return options.find((c) => c.id === field.value);
+    };
+
     return (
         <Select
-            className={'custom-select-container'}
+            className={`custom-select-container ${error ? 'select-error' : ''}`}
             classNamePrefix={'custom-select'}
             placeholder={`${objectName}s`}
             ref={field.ref}
             getOptionValue={(option) => option.id.toString()}
             getOptionLabel={(option) => option[labelField]}
-            value={
-                multi
-                    ? options.filter((c) => field.value.includes(c.id))
-                    : options.find((c) => c.id === field.value)
-            }
+            value={handleValue()}
             onChange={handleChange}
             options={options}
             isMulti={multi}
