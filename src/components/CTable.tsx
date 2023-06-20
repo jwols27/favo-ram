@@ -7,6 +7,7 @@ export type ColumnSettings = {
     header: string;
     field: string;
     width?: string;
+    className?: string;
 };
 
 interface ITableProps {
@@ -43,9 +44,13 @@ export const CTable = ({
                     {objects.length ? (
                         objects.map((object) => (
                             <tr key={object.id}>
-                                {settings.map(({ field }) => {
+                                {settings.map(({ field, className }) => {
                                     return (
-                                        <td key={field} id={field}>
+                                        <td
+                                            key={field}
+                                            id={field}
+                                            className={className}
+                                        >
                                             {field === 'image' &&
                                             object['image'] ? (
                                                 <div className={'table-image'}>

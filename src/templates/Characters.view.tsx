@@ -20,18 +20,20 @@ const settings: ColumnSettings[] = [
         width: '50px',
     },
     {
+        header: '',
+        field: 'image',
+        width: '74px',
+        className: 'table-avatar',
+    },
+    {
         header: 'Name',
         field: 'name',
         width: '175px',
     },
+
     {
         header: 'Description',
         field: 'desc',
-    },
-    {
-        header: 'Image',
-        field: 'image',
-        width: '74px',
     },
 ];
 

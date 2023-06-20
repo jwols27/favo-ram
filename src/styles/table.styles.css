@@ -59,12 +59,13 @@
 }
 /* . */
 
+.table-avatar > .table-image { border-radius: 50% }
+
 .table-image {
     height: 50px;
     width: 50px;
     margin: -6px auto -6px auto;
     overflow: hidden;
-    border-radius: 50%;
 }
 
 .table-image img {

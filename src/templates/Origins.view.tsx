@@ -18,13 +18,13 @@ const settings: ColumnSettings[] = [
         width: '50px',
     },
     {
-        header: 'Name',
-        field: 'name',
-    },
-    {
-        header: 'Image',
+        header: '',
         field: 'image',
         width: '74px',
+    },
+    {
+        header: 'Name',
+        field: 'name',
     },
 ];
 
