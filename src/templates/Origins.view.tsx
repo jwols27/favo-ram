@@ -1,14 +1,14 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Draw } from '@mui/icons-material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
 
 import { Origin, OriginSchema } from '../models';
-
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
+
 import OriginRequest from '../shared/requests/OriginRequest';
 import { OriginService } from '../shared/services/OriginService';
-
 import { ColumnSettings, CTable } from '../components';
 
 const settings: ColumnSettings[] = [
@@ -69,7 +69,7 @@ const OriginsView = () => {
                 <div className={'center-box responsive-align'}>
                     <div className={'crud-title color-2-dark'}>
                         <h3>Create an origin</h3>
-                        <Draw />
+                        <FontAwesomeIcon icon={faPaintBrush} fontSize={24} />
                     </div>
                     <form
                         className={'crud-form'}

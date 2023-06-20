@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import './App.css';
 import './styles/crud.styles.css';
@@ -10,15 +11,20 @@ interface IAppProps {
 }
 
 const App = ({ children }: IAppProps) => {
-    const path = location.pathname.split('/')[1];
+    const location = useLocation();
 
-    React.useEffect(() => window.scrollTo(0, 0), [path]);
+    React.useEffect(() => window.scrollTo(0, 0), [location]);
 
     return (
         <div>
-            <CNavbar />
+            <div id={'navbar'}>
+                <CNavbar />
+            </div>
             <div id={'content'}> {children} </div>
-            <CFooter />
+            <div id={'footer'}>
+                {' '}
+                <CFooter />
+            </div>
         </div>
     );
 };

@@ -1,16 +1,16 @@
 import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { Draw } from '@mui/icons-material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
 
 import { Character, CharacterSchema } from '../models';
-
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import { CharacterService } from '../shared/services/CharacterService';
 import CharacterRequest from '../shared/requests/CharacterRequest';
+
 import OriginRequest from '../shared/requests/OriginRequest';
 import TagRequest from '../shared/requests/TagRequest';
-
 import { ColumnSettings, CTable, CSelect } from '../components';
 
 const settings: ColumnSettings[] = [
@@ -85,7 +85,7 @@ const CharactersView = () => {
                 <div className={'center-box responsive-align'}>
                     <div className={'crud-title color-2-dark'}>
                         <h3>Create a character</h3>
-                        <Draw />
+                        <FontAwesomeIcon icon={faPaintBrush} fontSize={24} />
                     </div>
                     <form
                         className={'crud-form'}

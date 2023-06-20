@@ -1,6 +1,7 @@
 import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { Draw } from '@mui/icons-material';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPaintBrush } from '@fortawesome/free-solid-svg-icons';
 
 import { Tag, TagSchema } from '../models';
 
@@ -69,7 +70,7 @@ const TagsView = () => {
                 <div className={'center-box responsive-align'}>
                     <div className={'crud-title color-2-dark'}>
                         <h3>Create a tag</h3>
-                        <Draw />
+                        <FontAwesomeIcon icon={faPaintBrush} fontSize={24} />
                     </div>
                     <form
                         className={'crud-form'}
