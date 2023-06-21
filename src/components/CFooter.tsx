@@ -1,3 +1,4 @@
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faSteam,
@@ -9,9 +10,31 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { CAnchor } from './CAnchor';
 import '../styles/footer.styles.css';
+import CEmoticon, { EmoticonJunoBop } from './CEmoticon';
 
 const possibleAvatars: string[] = [
     'https://cdn.discordapp.com/avatars/172660297788686336/00e1670a8a3f1c9a34bd353ccb55928f',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121088029067587684/collei_amazed.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121088028765593630/collei_me.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121088028480393308/collei_irritated.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121086072168919100/sapo.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085766785843363/reigen.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085766181851247/ram.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085765896650883/prefeito.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085765598842910/niko-nobg.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085765313642548/nagito.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085765015830658/mobu.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085764655124560/marcy_yeah.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085764248289310/louie.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085763971449063/ling_yao_01.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085757831000235/kaede.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085757495451678/jacko.jpg',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085757231222834/burg.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085756941807719/BMO.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085756560122018/basil-nobg.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085756270727290/basilico-nobg.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085755926786218/basil_22.png',
+    'https://cdn.discordapp.com/attachments/1121085199774654577/1121085755339591780/ai_poof.jpg',
 ];
 
 const github: string = 'https://github.com/jwols27';
@@ -21,23 +44,29 @@ const spotify: string = 'https://open.spotify.com/user/joaopedrow';
 const email: string = 'mailto:joaopedrowols@gmail.com?subject=Hello!"';
 
 export const CFooter = () => {
-    const avatar =
-        possibleAvatars[Math.floor(Math.random() * possibleAvatars.length)];
+    const avatar = React.useMemo(
+        () =>
+            possibleAvatars[Math.floor(Math.random() * possibleAvatars.length)],
+        [],
+    );
 
     return (
         <footer>
             <div className={'footer-grid'}>
                 <div className={'footer-grid-item item-1'}>
                     <h3>About</h3>
-                    <p>
+                    <span>
                         This website was made purely for fun. It shows my
                         favorite characters from all sorts of cartoons, shows,
                         movies, books, comics, anime, and manga.
-                    </p>
+                    </span>
+                    <CEmoticon>
+                        <EmoticonJunoBop />
+                    </CEmoticon>
                 </div>
                 <div className={'footer-grid-item item-2'}>
                     <h3>Hello world!</h3>
-                    <p>You can find me in any of these places:</p>
+                    <span>You can find me in any of these places:</span>
                     <div className={'socials'}>
                         <CAnchor href={github}>
                             <FontAwesomeIcon icon={faGithub} fontSize={36} />

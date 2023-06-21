@@ -37,3 +37,21 @@
     background-color: var(--primary);
     font-weight: 500;
 }
+
+@media only screen and (min-width: 0) {
+    .navbar-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4px;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .navbar-link {
+        display: initial;
+        gap: 0;
+        width: initial;
+    }
+}

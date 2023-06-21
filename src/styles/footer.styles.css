@@ -21,8 +21,8 @@ footer {
     color: var(--tertiary)
 }
 
-.footer-grid-item p {
-    line-height: 1.5;
+.footer-grid-item span {
+    line-height: 2;
     font-weight: 400;
 }
 
@@ -30,6 +30,7 @@ footer {
     width: 100px;
     height: 100px;
     margin-bottom: 12px;
+    background-color: var(--primary-light);
 }
 
 .item-1 {
@@ -50,7 +51,7 @@ footer {
 .socials {
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 18px;
     margin: 16px 0;
     color: var(--tertiary)
 }
