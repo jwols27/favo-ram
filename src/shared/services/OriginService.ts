@@ -55,20 +55,40 @@ const create = async (body: Omit<Origin, 'id'>) => {
     }
 };
 
-const updateById = async (body: Omit<Origin, 'id'>) => {
+const updateById = async (id: number, body: Partial<Origin>) => {
     const defaultError =
         'Something went wrong when trying to update this origin.';
 
-    console.log(body);
-    return new Error(defaultError);
+    try {
+        const { data } = await api.patch(`${route}/${id}`, body);
+
+        if (!data) return new Error(defaultError);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+        return new Error(
+            (error as { message: string }).message || defaultError,
+        );
+    }
 };
 
 const deleteById = async (id: number) => {
     const defaultError =
         'Something went wrong when trying to delete this origin.';
 
-    console.log(`Origin ${id} was not deleted`);
-    return new Error(defaultError);
+    try {
+        const { data } = await api.delete(`${route}/${id}`);
+
+        if (!data) return new Error(defaultError);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+        return new Error(
+            (error as { message: string }).message || defaultError,
+        );
+    }
 };
 
 export const OriginService = {

@@ -57,20 +57,40 @@ const create = async (body: Omit<Character, 'id'>) => {
     }
 };
 
-const updateById = async (body: Omit<Character, 'id'>) => {
+const updateById = async (id: number, body: Partial<Character>) => {
     const defaultError =
         'Something went wrong when trying to update this character.';
 
-    console.log(body);
-    return new Error(defaultError);
+    try {
+        const { data } = await api.patch(`${route}/${id}`, body);
+
+        if (!data) return new Error(defaultError);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+        return new Error(
+            (error as { message: string }).message || defaultError,
+        );
+    }
 };
 
 const deleteById = async (id: number) => {
     const defaultError =
         'Something went wrong when trying to delete this character.';
 
-    console.log(`Character ${id} was not deleted`);
-    return new Error(defaultError);
+    try {
+        const { data } = await api.delete(`${route}/${id}`);
+
+        if (!data) return new Error(defaultError);
+
+        return data;
+    } catch (error) {
+        console.log(error);
+        return new Error(
+            (error as { message: string }).message || defaultError,
+        );
+    }
 };
 
 export const CharacterService = {
