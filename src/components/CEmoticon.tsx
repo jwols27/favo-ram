@@ -1,4 +1,5 @@
 import React from 'react';
+
 import '../styles/emoticon.styles.css';
 import junoBop from '../shared/assets/junoBop.png';
 
@@ -13,7 +14,7 @@ const CEmoticon = ({ children }: IEmoticonProps) => {
 export const EmoticonJunoBop = () => {
     return (
         <div className="emoticon">
-            <img src={junoBop} alt="junoBop" />
+            <img src={junoBop} alt="junoBop" draggable={false} />
         </div>
     );
 };

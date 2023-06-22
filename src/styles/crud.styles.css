@@ -14,12 +14,20 @@
     vertical-align: middle;
 }
 
-.crud-form input, textarea {
+.crud-form input, .crud-form textarea {
     resize: vertical;
     margin-top: 12px;
     border-radius: 12px;
     padding: 16px 12px;
     border: 1px solid var(--tertiary-darker);
+}
+
+.crud-form input:hover:not(:focus), .crud-form textarea:hover:not(:focus) {
+    border-color: var(--quarternary);
+}
+
+.crud-form input:focus, .crud-form textarea:focus {
+    border-color: var(--quarternary-light);
 }
 
 .crud-form ::placeholder {
@@ -32,18 +40,43 @@
     border-bottom-right-radius: 0;
 }
 
-.crud-form button {
+.crud-button-container {
+    display: flex;
     margin-top: 24px;
-    padding: 12px 0;
-    border-radius: 50px;
-    color: var(--tertiary);
-    font-size: 1rem;
-    font-weight: 500;
-    background-color: var(--secondary);
-    border: 1px solid var(--secondary-dark);
+    gap: 6px;
 }
 
-.crud-form span {
+.submit-button, .cancel-button {
+    padding: 12px 0;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.submit-button {
+    color: var(--tertiary);
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary-dark);
+    width: 100%;
+}
+
+.cancel-button {
+    color: var(--quarternary-light);
+    background-color: var(--tertiary);
+    border: 1px solid var(--quarternary-light);
+    width: 30%;
+}
+
+.crud-form button:hover {
+    filter: brightness(1.05);
+    cursor: pointer;
+}
+
+.crud-form button:active {
+    transform: scale(.95);
+}
+
+.crud-error-message {
     font-size: .75rem;
     padding: 4px 8px;
     color: var(--quarternary-light);

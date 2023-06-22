@@ -11,7 +11,7 @@ export const characterSlice = createSlice({
     name: 'data',
     initialState,
     reducers: {
-        pushCharacters: (state, action: PayloadAction<Character>) => {
+        pushCharacter: (state, action: PayloadAction<Character>) => {
             state.characters.push(action.payload);
         },
         setCharacters: (state, action: PayloadAction<Character[]>) => {
@@ -23,14 +23,29 @@ export const characterSlice = createSlice({
         clearCharacters: (state) => {
             state.characters = [];
         },
+        setCharacterById: (state, action: PayloadAction<Character>) => {
+            state.characters.find((char, index) => {
+                if (char.id === action.payload.id) {
+                    state.characters[index] = action.payload;
+                    return true;
+                }
+            });
+        },
+        removeCharacterById: (state, action: PayloadAction<number>) => {
+            state.characters = state.characters.filter(
+                (char) => char.id !== action.payload,
+            );
+        },
     },
 });
 
 export const {
-    pushCharacters,
+    pushCharacter,
     setCharacters,
     combineCharacters,
     clearCharacters,
+    setCharacterById,
+    removeCharacterById,
 } = characterSlice.actions;
 
 export const characterReducer = characterSlice.reducer;

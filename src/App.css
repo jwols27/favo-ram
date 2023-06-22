@@ -51,6 +51,7 @@ q::after { content: close-quote }
 .avatar {
     border-radius: 50%;
     object-fit: cover;
+    user-select: none;
 }
 
 .grid-crud-container {

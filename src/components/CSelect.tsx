@@ -1,4 +1,5 @@
 import Select from 'react-select';
+
 import GenericObject from '../models/GenericObject';
 
 interface ISelectProps {
@@ -49,9 +50,15 @@ export const CSelect = ({
             isMulti={multi}
             unstyled
             styles={{
-                noOptionsMessage: (provided) => ({
-                    ...provided,
+                noOptionsMessage: (base) => ({
+                    ...base,
                     padding: '16px',
+                }),
+                dropdownIndicator: (base, state) => ({
+                    ...base,
+                    transform: state.selectProps.menuIsOpen
+                        ? 'rotate(180deg)'
+                        : undefined,
                 }),
             }}
             noOptionsMessage={() => `No ${objectName.toLowerCase()}s available`}

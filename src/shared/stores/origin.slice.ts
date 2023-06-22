@@ -11,7 +11,7 @@ export const originSlice = createSlice({
     name: 'data',
     initialState,
     reducers: {
-        pushOrigins: (state, action: PayloadAction<Origin>) => {
+        pushOrigin: (state, action: PayloadAction<Origin>) => {
             state.origins.push(action.payload);
         },
         setOrigins: (state, action: PayloadAction<Origin[]>) => {
@@ -23,10 +23,29 @@ export const originSlice = createSlice({
         clearOrigins: (state) => {
             state.origins = [];
         },
+        setOriginById: (state, action: PayloadAction<Origin>) => {
+            state.origins.find((ori, index) => {
+                if (ori.id === action.payload.id) {
+                    state.origins[index] = action.payload;
+                    return true;
+                }
+            });
+        },
+        removeOriginById: (state, action: PayloadAction<number>) => {
+            state.origins = state.origins.filter(
+                (ori) => ori.id !== action.payload,
+            );
+        },
     },
 });
 
-export const { pushOrigins, setOrigins, combineOrigins, clearOrigins } =
-    originSlice.actions;
+export const {
+    pushOrigin,
+    setOrigins,
+    combineOrigins,
+    clearOrigins,
+    setOriginById,
+    removeOriginById,
+} = originSlice.actions;
 
 export const originReducer = originSlice.reducer;

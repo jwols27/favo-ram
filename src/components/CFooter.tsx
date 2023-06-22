@@ -9,8 +9,8 @@ import {
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { CAnchor } from './CAnchor';
-import '../styles/footer.styles.css';
 import CEmoticon, { EmoticonJunoBop } from './CEmoticon';
+import '../styles/footer.styles.css';
 
 const possibleAvatars: string[] = [
     'https://cdn.discordapp.com/avatars/172660297788686336/00e1670a8a3f1c9a34bd353ccb55928f',
@@ -44,11 +44,13 @@ const spotify: string = 'https://open.spotify.com/user/joaopedrow';
 const email: string = 'mailto:joaopedrowols@gmail.com?subject=Hello!"';
 
 export const CFooter = () => {
-    const avatar = React.useMemo(
-        () =>
-            possibleAvatars[Math.floor(Math.random() * possibleAvatars.length)],
-        [],
+    const [avatar, setAvatar] = React.useState<number>(
+        Math.floor(Math.random() * possibleAvatars.length),
     );
+
+    const handleAvatar = () => {
+        setAvatar(Math.floor(Math.random() * possibleAvatars.length));
+    };
 
     return (
         <footer>
@@ -95,7 +97,14 @@ export const CFooter = () => {
                     </div>
                 </div>
                 <div className={'center-box item-3'}>
-                    <img className={'avatar'} src={avatar} alt={''} />
+                    <img
+                        className={'avatar'}
+                        src={possibleAvatars[avatar]}
+                        alt={''}
+                        onClick={handleAvatar}
+                        draggable={false}
+                        style={{ cursor: 'pointer' }}
+                    />
                     <h5>Made by JP, aka 'Wols', for fun!</h5>
                 </div>
             </div>

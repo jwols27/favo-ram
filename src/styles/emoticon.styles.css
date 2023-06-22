@@ -9,10 +9,12 @@
 .emoticon img {
     width: 100%;
     vertical-align: middle;
-    transition: all 1s ease-in-out;
+    transition: all .5s ease;
+    user-select: none;
 }
 
 .emoticon:hover img {
     transform: scale(5);
     margin-top: -100px;
+    transition-duration: 0.75s
 }
