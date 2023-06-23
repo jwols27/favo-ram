@@ -2,8 +2,8 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 import './App.css';
-import './styles/crud.styles.css';
-import './styles/select.styles.css';
+import './styles/crud.styles.scss';
+import './styles/select.styles.scss';
 import { CNavbar, CFooter } from './components';
 
 interface IAppProps {
@@ -22,7 +22,6 @@ const App = ({ children }: IAppProps) => {
             </div>
             <div id={'content'}> {children} </div>
             <div id={'footer'}>
-                {' '}
                 <CFooter />
             </div>
         </div>

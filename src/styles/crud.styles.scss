@@ -1,0 +1,91 @@
+.crud-form {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+
+    input,
+    textarea {
+        resize: vertical;
+        margin-top: 12px;
+        border-radius: 12px;
+        padding: 16px 12px;
+        border: 1px solid var(--tertiary-darker);
+
+        &:hover:not(:focus) {
+            border-color: var(--quarternary);
+        }
+
+        &:focus {
+            border-color: var(--quarternary-light);
+        }
+    }
+
+    ::placeholder {
+        color: var(--quarternary);
+        font-size: 0.9rem;
+        opacity: 0.75;
+    }
+
+    textarea {
+        border-bottom-right-radius: 0;
+    }
+
+    button {
+        &:hover {
+            filter: brightness(1.05);
+            cursor: pointer;
+        }
+        &:active {
+            transform: scale(0.95);
+        }
+    }
+}
+
+.crud-title {
+    > * {
+        vertical-align: middle;
+    }
+    > :first-child {
+        display: inline;
+        margin-right: 4px;
+    }
+}
+
+.crud-button-container {
+    display: flex;
+    margin-top: 24px;
+    gap: 6px;
+
+    .submit-button,
+    .cancel-button {
+        padding: 12px 0;
+        border-radius: 50px;
+        font-size: 1rem;
+        font-weight: 500;
+    }
+
+    .submit-button {
+        color: var(--tertiary);
+        background-color: var(--secondary);
+        border: 1px solid var(--secondary-dark);
+        width: 100%;
+    }
+
+    .cancel-button {
+        color: var(--quarternary-light);
+        background-color: var(--tertiary);
+        border: 1px solid var(--quarternary-light);
+        width: 30%;
+    }
+}
+
+.crud-error-message {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    color: var(--quarternary-light);
+}
+
+.crud-error {
+    border: 1px solid var(--error) !important;
+    color: var(--error-dark) !important;
+}

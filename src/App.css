@@ -58,13 +58,14 @@ q::after { content: close-quote }
     display: grid;
     width: 100%;
     height: 100%;
+    gap: 35px;
 }
 
 @media only screen and (min-width: 0) {
     .grid-crud-container {
         grid-template-columns: repeat(1, minmax(0, 1fr));
         grid-auto-flow: row;
-        gap: 35px;
+
     }
 
     .grid-crud-container > div:first-child {
@@ -81,7 +82,6 @@ q::after { content: close-quote }
     .grid-crud-container {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         grid-auto-flow: row;
-        gap: 10px;
     }
 
     .grid-crud-container > div:first-child {

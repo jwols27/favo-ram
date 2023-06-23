@@ -1,0 +1,95 @@
+.custom-select-container {
+    margin-top: 12px;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/*.custom-select-container:hover {*/
+/*    border: 1px solid var(--quarternary);*/
+/*    cursor: pointer;*/
+/*}*/
+
+/*.custom-select-container:active {*/
+/*    border: 1px solid var(--secondary-dark);*/
+/*}*/
+
+.custom-select {
+    &__control {
+        resize: vertical;
+        border-radius: 12px;
+        padding: 15px 12px;
+        border: 1px solid var(--secondary-dark);
+        color: var(--quarternary);
+        font-size: 0.9rem;
+        background-color: var(--secondary-light);
+        position: relative;
+
+        &:hover {
+            border: 1px solid var(--quarternary);
+            cursor: pointer;
+        }
+    }
+
+    &__indicators {
+        border: 0 solid transparent;
+    }
+
+    &__multi-value {
+        border: 1px solid var(--secondary-dark);
+        padding: 8px;
+        border-radius: 20px;
+        background-color: var(--secondary);
+        margin: 2px;
+
+        &__label {
+            color: white;
+        }
+        &__remove {
+            color: white;
+        }
+    }
+
+    &__menu {
+        margin-top: 2px;
+        background-color: var(--tertiary);
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        border-radius: 12px;
+        animation: fadeIn 0.25s ease-in-out;
+    }
+
+    &__option {
+        padding: 12px 12px;
+        transition: background-color 0.1s ease, color 0.1s ease;
+        border-bottom: 1px solid var(--tertiary-dark);
+
+        &:first-child {
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        &:last-child {
+            border-bottom-left-radius: 12px;
+            border-bottom-right-radius: 12px;
+            border-bottom: 0;
+        }
+        &:hover {
+            background-color: var(--secondary-lighter);
+        }
+    }
+}
+
+.select-error .custom-select__control {
+    color: var(--error-dark);
+    border: 1px solid var(--error);
+}

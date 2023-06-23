@@ -1,0 +1,100 @@
+.table-container {
+    box-shadow: 0 0 6px var(--secondary);
+    border-radius: 16px;
+    min-width: 90%;
+}
+
+.jpl-table {
+    width: 100%;
+
+    tr:not(:last-child) td {
+        border-bottom: 1px solid var(--secondary-light);
+    }
+
+    th,
+    td {
+        vertical-align: middle;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding: 12px;
+        background-color: var(--secondary-lighter);
+    }
+
+    thead th,
+    tbody:first-child {
+        background-color: var(--secondary-light) !important;
+        text-transform: uppercase;
+        font-weight: 500;
+        font-size: 0.95rem;
+    }
+
+    > caption {
+        border-radius: 16px 16px 0 0;
+        padding: 16px 12px 12px 12px;
+        background-color: var(--secondary) !important;
+        font-weight: 500;
+        font-size: 1.25rem;
+        color: var(--tertiary);
+    }
+
+    /* styles for specific columns */
+    #id,
+    #actions,
+    #not-found {
+        text-align: center;
+    }
+
+    /* special padding and border radius at top and bottom */
+    tbody > tr:last-child td {
+        padding-bottom: 16px;
+    }
+
+    tbody > tr:last-child > td:first-child {
+        border-radius: 0 0 0 16px;
+    }
+
+    tbody > tr:last-child > td:last-child {
+        border-radius: 0 0 16px 0;
+    }
+
+    /* image styles */
+    .table-avatar > .table-image {
+        border-radius: 50%;
+    }
+
+    .table-image {
+        height: 50px;
+        width: 50px;
+        margin: -6px auto -6px auto;
+        overflow: hidden;
+    }
+
+    .table-image img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 17px;
+        scale: 12;
+        user-select: none;
+    }
+
+    .table-actions {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+
+        &__item {
+            color: var(--secondary-darker);
+
+            &:hover {
+                filter: brightness(1.25);
+                cursor: pointer;
+            }
+
+            &:active {
+                transform: scale(0.95);
+            }
+        }
+    }
+}

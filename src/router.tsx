@@ -1,10 +1,13 @@
 import { createBrowserRouter, Outlet } from 'react-router-dom';
-import App from './App';
 import { RouteObject } from 'react-router/dist/lib/context';
+
+import App from './App';
 import HomeView from './templates/Home.view';
 import TagsView from './templates/Tags.view';
 import OriginsView from './templates/Origins.view';
 import CharactersView from './templates/Characters.view';
+import NotFoundView from './templates/NotFound.view';
+import EmporiumView from './templates/Emporium.view';
 
 const routerData: RouteObject[] = [
     //HOME
@@ -17,6 +20,11 @@ const routerData: RouteObject[] = [
         //         element: ,
         //     },
         // ]
+    },
+    //TAGS
+    {
+        path: 'emporium',
+        element: <EmporiumView />,
     },
     //CHARACTERS
     {
@@ -32,6 +40,12 @@ const routerData: RouteObject[] = [
     {
         path: 'tags',
         element: <TagsView />,
+    },
+
+    //TAGS
+    {
+        path: '*',
+        element: <NotFoundView />,
     },
 ];
 

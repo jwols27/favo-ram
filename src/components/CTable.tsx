@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import GenericObject from '../models/GenericObject';
-import '../styles/table.styles.css';
+import '../styles/table.styles.scss';
 
 export type ColumnSettings = {
     header: string;
@@ -29,7 +29,7 @@ export const CTable = ({
     ...props
 }: ITableProps & React.HTMLProps<HTMLTableElement>) => {
     const editable = React.useMemo(
-        () => editCallback || deleteCallback,
+        () => !!((editCallback || deleteCallback) && objects.length),
         [editCallback, deleteCallback],
     );
 
@@ -91,7 +91,10 @@ export const CTable = ({
                         ))
                     ) : (
                         <tr>
-                            <td colSpan={objects.length}>
+                            <td
+                                id={'not-found'}
+                                colSpan={settings.length + (editable ? 1 : 0)}
+                            >
                                 Nenhum item encontrado.
                             </td>
                         </tr>
@@ -117,7 +120,7 @@ export const CTableActions = ({
         <div className={'table-actions'}>
             {editCallback && (
                 <div
-                    className={'table-action-item'}
+                    className={'table-actions__item'}
                     onClick={() => editCallback(callbackId)}
                 >
                     <FontAwesomeIcon icon={faEdit} fontSize={32} />
@@ -125,7 +128,7 @@ export const CTableActions = ({
             )}
             {deleteCallback && (
                 <div
-                    className={'table-action-item'}
+                    className={'table-actions__item'}
                     onClick={() => deleteCallback(callbackId)}
                 >
                     <FontAwesomeIcon icon={faMinusCircle} fontSize={32} />

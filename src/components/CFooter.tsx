@@ -10,7 +10,7 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 import { CAnchor } from './CAnchor';
 import CEmoticon, { EmoticonJunoBop } from './CEmoticon';
-import '../styles/footer.styles.css';
+import '../styles/footer.styles.scss';
 
 const possibleAvatars: string[] = [
     'https://cdn.discordapp.com/avatars/172660297788686336/00e1670a8a3f1c9a34bd353ccb55928f',
@@ -48,9 +48,9 @@ export const CFooter = () => {
         Math.floor(Math.random() * possibleAvatars.length),
     );
 
-    const handleAvatar = () => {
+    const handleAvatar = React.useCallback(() => {
         setAvatar(Math.floor(Math.random() * possibleAvatars.length));
-    };
+    }, []);
 
     return (
         <footer>

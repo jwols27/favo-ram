@@ -1,0 +1,110 @@
+footer {
+    background-color: var(--primary-darker);
+    color: var(--primary-light);
+    margin-top: 50px;
+    min-height: 250px;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.footer-grid {
+    display: grid;
+    width: 100%;
+    gap: 35px;
+
+    .footer-grid-item {
+        h3 {
+            margin-bottom: 16px;
+            color: var(--tertiary);
+        }
+        span {
+            line-height: 2;
+            font-weight: 400;
+        }
+    }
+
+    .avatar {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 12px;
+        background-color: var(--primary-light);
+    }
+
+    .socials {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin: 16px 0;
+        color: var(--tertiary);
+
+        > a {
+            color: inherit;
+            transition: all 0.2s ease;
+            &:hover {
+                transform: scale(1.125);
+            }
+        }
+    }
+
+    .item-1,
+    .item-2 {
+        grid-column-start: initial;
+        grid-column-end: initial;
+    }
+
+    .item-3 {
+        text-align: center;
+        line-height: 1.5;
+    }
+}
+
+@media only screen and (min-width: 0) {
+    .footer-grid {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-auto-flow: row;
+        padding: 50px;
+
+        .footer-grid-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            text-align: center;
+            padding-right: 0;
+        }
+
+        .socials {
+            justify-content: center;
+        }
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .footer-grid {
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-auto-flow: row;
+        padding: 50px 10%;
+
+        .footer-grid-item {
+            display: initial;
+            text-align: initial;
+            padding-right: 32px;
+        }
+
+        .item-1 {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+
+        .item-2 {
+            grid-column-start: 3;
+            grid-column-end: 5;
+        }
+
+        .socials {
+            justify-content: start;
+        }
+    }
+}
