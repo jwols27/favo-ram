@@ -58,23 +58,33 @@ export const CTable = ({
                         objects.map((object) => (
                             <tr key={object.id}>
                                 {settings.map(({ field, className }) => {
-                                    return (
-                                        <td
-                                            key={field}
-                                            id={field}
-                                            className={className}
-                                        >
-                                            {field === 'image' &&
-                                            object['image'] ? (
-                                                <div className={'table-image'}>
+                                    if (field === 'image' && object['image']) {
+                                        let img = new Image();
+                                        img.src = object['image'] as string;
+                                        return (
+                                            <td key={field} id={field}>
+                                                <div
+                                                    className={`table-image ${className}`}
+                                                >
                                                     <img
+                                                        className={
+                                                            img.width /
+                                                                img.height <
+                                                            0.9
+                                                                ? 'tall'
+                                                                : 'wide'
+                                                        }
                                                         src={object['image']}
                                                         alt={''}
                                                     />
                                                 </div>
-                                            ) : (
-                                                object[field]
-                                            )}
+                                            </td>
+                                        );
+                                    }
+
+                                    return (
+                                        <td key={field} id={field}>
+                                            <span>{object[field]}</span>
                                         </td>
                                     );
                                 })}

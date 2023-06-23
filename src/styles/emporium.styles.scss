@@ -1,0 +1,56 @@
+#emporium {
+    .character-card {
+        border-radius: 8px;
+        padding: 16px 8px 8px;
+        background-color: var(--tertiary);
+        box-shadow: 0 0 6px var(--secondary-light);
+        line-height: 1.1;
+        &__image {
+            position: relative;
+            .blur {
+                width: 100%;
+                position: absolute;
+                bottom: 0;
+                top: 0;
+                box-shadow: inset 0 0 10px 10px var(--tertiary);
+            }
+            img {
+                display: block;
+                height: 250px;
+                width: 225px;
+                margin-bottom: 8px;
+                margin-left: auto;
+                margin-right: auto;
+
+                &.tall {
+                    object-fit: scale-down;
+                }
+
+                &.wide {
+                    object-fit: cover;
+                }
+            }
+        }
+
+        &__info {
+            display: flex;
+            align-items: center;
+        }
+
+        &__name {
+            display: block;
+            font-weight: 500;
+        }
+        &__origin-name {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--secondary-darker);
+        }
+        &__origin-image {
+            height: 50px;
+            width: 50px;
+            object-fit: scale-down;
+            margin-left: auto;
+        }
+    }
+}
