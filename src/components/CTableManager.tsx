@@ -22,8 +22,8 @@ export const CTableManager = ({
     onClear,
 }: ITableManagerProps) => {
     return (
-        <div className={'grid-crud-container'}>
-            <div className={'center-box'}>
+        <div className={'grid-crud-container shadow-box bg-color-3'}>
+            <div className={'center-box-top'}>
                 <CTable {...table} />
             </div>
             <div className={'center-box-col responsive-align'}>

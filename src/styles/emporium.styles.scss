@@ -1,33 +1,53 @@
 #emporium {
-    padding: 12px 16px;
-    display: inline-grid;
-    grid-auto-flow: column;
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-    gap: 16px;
-    justify-items: center; /* Center horizontally */
-    align-items: center;
+    padding: 24px 0;
+}
 
-    .emporium-grid-item {
-        display: flex;
+.emporium {
+    &-toolbar {
+        padding: 16px 32px;
+        border-radius: 8px;
+        box-shadow: 0 0 6px var(--secondary-light);
+        margin-bottom: 8px;
+    }
+
+    &-content {
+        &.shadow-box {
+            padding: 16px;
+            box-shadow: 0 0 6px var(--secondary-light);
+        }
+    }
+
+    &-grid {
+        padding: 12px 16px;
+        display: inline-grid;
+        grid-auto-flow: column;
+        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        gap: 16px;
+        justify-items: center;
         align-items: center;
-        justify-content: center;
-        height: 300px;
-        width: 240px;
+
+        &-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 300px;
+            width: 240px;
+        }
     }
 }
 
 .character-card {
-    border-radius: 8px;
-    padding: 16px 12px 8px;
-    background-color: var(--tertiary);
-    box-shadow: 0 0 6px var(--secondary-light);
-    line-height: 1;
-    transition: background-color 0.25s ease-in-out;
-    border: 1px solid transparent;
     position: relative;
+    padding: 16px 12px 8px;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    box-shadow: 0 0 6px var(--secondary-light);
+    background-color: var(--tertiary);
     height: 90%;
     width: 90%;
+    line-height: 1;
     font-size: 1rem;
+    transition: background-color 0.25s ease-in-out;
 
     &:hover {
         cursor: pointer;

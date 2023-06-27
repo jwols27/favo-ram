@@ -4,6 +4,7 @@ import { faEdit, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import GenericObject from '../models/GenericObject';
 import '../styles/table.styles.scss';
+import { useNavigate } from 'react-router-dom';
 
 export type ColumnSettings = {
     header: string;
@@ -14,6 +15,7 @@ export type ColumnSettings = {
 
 export interface ITableProps {
     tableName: string;
+    caption: string;
     settings: ColumnSettings[];
     objects: GenericObject[];
     editCallback?: (id: number) => void;
@@ -22,6 +24,7 @@ export interface ITableProps {
 
 export const CTable = ({
     tableName,
+    caption,
     settings,
     objects,
     editCallback,
@@ -33,10 +36,16 @@ export const CTable = ({
         [editCallback, deleteCallback],
     );
 
+    const navigate = useNavigate();
+    const goToRowPage = React.useCallback(
+        (id: number) => navigate(`/${tableName}/${id}`),
+        [tableName],
+    );
+
     return (
         <div className={'table-container'}>
-            <table className={'jpl-table'} title={tableName} {...props}>
-                <caption>{tableName}</caption>
+            <table className={'jpl-table'} title={caption} {...props}>
+                <caption>{caption}</caption>
                 <colgroup>
                     {settings.map(({ header, width = 'auto' }) => (
                         <col key={header} style={{ width }} />
@@ -62,7 +71,13 @@ export const CTable = ({
                                         let img = new Image();
                                         img.src = object['image'] as string;
                                         return (
-                                            <td key={field} id={field}>
+                                            <td
+                                                key={field}
+                                                id={field}
+                                                onClick={() =>
+                                                    goToRowPage(object.id)
+                                                }
+                                            >
                                                 <div
                                                     className={`table-image ${className}`}
                                                 >
@@ -83,7 +98,13 @@ export const CTable = ({
                                     }
 
                                     return (
-                                        <td key={field} id={field}>
+                                        <td
+                                            key={field}
+                                            id={field}
+                                            onClick={() =>
+                                                goToRowPage(object.id)
+                                            }
+                                        >
                                             <span>{object[field]}</span>
                                         </td>
                                     );

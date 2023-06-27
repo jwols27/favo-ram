@@ -7,6 +7,7 @@
     --secondary: #B76A9E;
     --secondary-light: #e39ecb;
     --secondary-lighter: #f1b9e4;
+    --secondary-subtle: #eecce5;
     --secondary-dark: #8d3e8d;
     --secondary-darker: #7c3373;
 
@@ -46,6 +47,7 @@ table, caption, tbody, tfoot, thead, tr, th, td, ::placeholder {
 
 a {
     text-decoration: none;
+    color: inherit;
 }
 
 body {

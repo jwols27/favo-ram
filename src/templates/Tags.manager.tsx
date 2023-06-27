@@ -27,7 +27,7 @@ const settings: ColumnSettings[] = [
     },
 ];
 
-const TagsView = () => {
+const TagsManager = () => {
     React.useEffect(() => {
         document.title = 'FAVO-Ram | Tags';
     }, []);
@@ -97,7 +97,8 @@ const TagsView = () => {
             <CTableManager
                 editOrCreate={'a tag'}
                 table={{
-                    tableName: 'Tags',
+                    tableName: 'tags',
+                    caption: 'Tags',
                     settings,
                     objects: tagState,
                     deleteCallback: onDelete,
@@ -126,4 +127,4 @@ const TagsView = () => {
     );
 };
 
-export default TagsView;
+export default TagsManager;

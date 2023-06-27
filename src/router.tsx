@@ -3,46 +3,85 @@ import { RouteObject } from 'react-router/dist/lib/context';
 
 import App from './App';
 import HomeView from './templates/Home.view';
-import TagsView from './templates/Tags.view';
-import OriginsView from './templates/Origins.view';
-import CharactersView from './templates/Characters.view';
+import TagsManager from './templates/Tags.manager';
+import OriginsManager from './templates/Origins.manager';
+import CharactersManager from './templates/Characters.manager';
 import NotFoundView from './templates/NotFound.view';
 import EmporiumView from './templates/Emporium.view';
+import CharactersView from './templates/Characters.view';
 
 const routerData: RouteObject[] = [
     //HOME
     {
         path: '',
         element: <HomeView />,
-        // children: [
-        //     {
-        //         path: "",
-        //         element: ,
-        //     },
-        // ]
     },
-    //TAGS
+
+    //EMPORIUM
     {
         path: 'emporium',
         element: <EmporiumView />,
     },
-    //CHARACTERS
+
+    //EMPORIUM
     {
-        path: 'characters',
-        element: <CharactersView />,
-    },
-    //ORIGINS
-    {
-        path: 'origins',
-        element: <OriginsView />,
-    },
-    //TAGS
-    {
-        path: 'tags',
-        element: <TagsView />,
+        path: 'emporium',
+        element: <EmporiumView />,
     },
 
-    //TAGS
+    //CHARACTER
+    {
+        path: 'characters',
+        element: <Outlet />,
+        children: [
+            {
+                path: 'manage',
+                element: <CharactersManager />,
+            },
+            {
+                path: ':id',
+                element: <CharactersView />,
+            },
+        ],
+    },
+
+    //ORIGIN
+    {
+        path: 'origins',
+        element: <Outlet />,
+        children: [
+            {
+                path: '',
+                element: <OriginsManager />,
+            },
+            {
+                path: 'manage',
+                element: <OriginsManager />,
+            },
+            // {
+            //     path: ':id',
+            //     element: <OriginsManager />,
+            // },
+        ],
+    },
+
+    //TAG
+    {
+        path: 'tags',
+        element: <Outlet />,
+        children: [
+            {
+                path: '',
+                element: <TagsManager />,
+            },
+            {
+                path: 'manage',
+                element: <TagsManager />,
+            },
+        ],
+    },
+
+    //NOT FOUND
     {
         path: '*',
         element: <NotFoundView />,

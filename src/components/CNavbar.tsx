@@ -24,15 +24,27 @@ export const CNavbar = ({}: INavbarProps) => {
                 <span>Emporium</span>
             </NavLink>
 
-            <NavLink to={'characters'} className={'nav-link'} draggable={false}>
+            <NavLink
+                to={'characters/manage'}
+                className={'nav-link'}
+                draggable={false}
+            >
                 <FontAwesomeIcon icon={faUserGear} fontSize={16} />
                 <span>Characters</span>
             </NavLink>
-            <NavLink to={'origins'} className={'nav-link'} draggable={false}>
+            <NavLink
+                to={'origins/manage'}
+                className={'nav-link'}
+                draggable={false}
+            >
                 <FontAwesomeIcon icon={faLocationDot} fontSize={16} />
                 <span>Origins</span>
             </NavLink>
-            <NavLink to={'tags'} className={'nav-link'} draggable={false}>
+            <NavLink
+                to={'tags/manage'}
+                className={'nav-link'}
+                draggable={false}
+            >
                 <FontAwesomeIcon icon={faTags} fontSize={16} />
                 <span>Tags</span>
             </NavLink>

@@ -31,7 +31,7 @@ const settings: ColumnSettings[] = [
     },
 ];
 
-const OriginsView = () => {
+const OriginsManager = () => {
     React.useEffect(() => {
         document.title = 'FAVO-Ram | Origins';
     }, []);
@@ -103,7 +103,8 @@ const OriginsView = () => {
             <CTableManager
                 editOrCreate={'an origin'}
                 table={{
-                    tableName: 'Origins',
+                    tableName: 'origins',
+                    caption: 'Origins',
                     settings,
                     objects: originState,
                     deleteCallback: onDelete,
@@ -132,4 +133,4 @@ const OriginsView = () => {
     );
 };
 
-export default OriginsView;
+export default OriginsManager;
