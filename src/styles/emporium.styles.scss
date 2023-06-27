@@ -1,65 +1,108 @@
 #emporium {
-    display: flex;
-    gap: 24px;
-    .character-card {
-        border-radius: 8px;
-        padding: 16px 8px 8px;
+    padding: 12px 16px;
+    display: inline-grid;
+    grid-auto-flow: column;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 16px;
+    justify-items: center; /* Center horizontally */
+    align-items: center;
+
+    .emporium-grid-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 300px;
+        width: 240px;
+    }
+}
+
+.character-card {
+    border-radius: 8px;
+    padding: 16px 12px 8px;
+    background-color: var(--tertiary);
+    box-shadow: 0 0 6px var(--secondary-light);
+    line-height: 1;
+    transition: background-color 0.25s ease-in-out;
+    border: 1px solid transparent;
+    position: relative;
+    height: 90%;
+    width: 90%;
+    font-size: 1rem;
+
+    &:hover {
+        cursor: pointer;
+        background-color: var(--tertiary-light);
+        .character-card-image .blur {
+            box-shadow: inset 0 -8px 10px 10px var(--tertiary-light);
+        }
+
+        .character-card-info {
+            background-color: var(--tertiary-light);
+            box-shadow: 0 -4px 6px var(--tertiary-light);
+        }
+    }
+
+    &:active {
+        border: 1px solid var(--secondary);
+        height: 85%;
+        width: 85%;
+        font-size: 0.9rem;
+    }
+
+    &-image {
+        position: relative;
+        height: 100%;
+        width: 100%;
+        .blur {
+            width: inherit;
+            position: absolute;
+            bottom: 0;
+            top: 0;
+            box-shadow: inset 0 -8px 10px 10px var(--tertiary);
+            transition: box-shadow 0.25s ease-in-out;
+        }
+        img {
+            display: block;
+            height: inherit;
+            width: inherit;
+            margin-bottom: 8px;
+            margin-left: auto;
+            margin-right: auto;
+
+            &.tall {
+                object-fit: scale-down;
+            }
+
+            &.wide {
+                object-fit: cover;
+            }
+        }
+    }
+
+    &-info {
+        position: absolute;
+        bottom: 0;
+        display: flex;
+        width: 90%;
+        height: 50px;
+        align-items: center;
         background-color: var(--tertiary);
-        box-shadow: 0 0 6px var(--secondary-light);
-        line-height: 1.1;
-        transition: background-color .25s ease-in-out;
+        box-shadow: 0 -4px 6px var(--tertiary);
+        transition-property: background-color, box-shadow;
+        transition-duration: 0.25s;
+        transition-timing-function: ease-in-out;
 
-        &:hover {
-            background-color:var(--tertiary-light);
-            .character-card__image .blur {
-                box-shadow: inset 0 0 10px 10px var(--tertiary-light);
-            }
-        }
-
-        &__image {
-            position: relative;
-            .blur {
-                width: 100%;
-                position: absolute;
-                bottom: 0;
-                top: 0;
-                box-shadow: inset 0 0 10px 10px var(--tertiary);
-                transition: box-shadow .25s ease-in-out;
-            }
-            img {
-                display: block;
-                height: 250px;
-                width: 225px;
-                margin-bottom: 8px;
-                margin-left: auto;
-                margin-right: auto;
-
-                &.tall {
-                    object-fit: scale-down;
-                }
-
-                &.wide {
-                    object-fit: cover;
-                }
-            }
-        }
-
-        &__info {
-            display: flex;
-            align-items: center;
-        }
-
-        &__name {
+        &-name {
+            letter-spacing: -0.5px;
             display: block;
             font-weight: 500;
         }
-        &__origin-name {
-            font-size: 0.9rem;
+        &-origin-name {
+            font-size: 0.75em;
             font-weight: 500;
             color: var(--secondary-darker);
         }
-        &__origin-image {
-            height: 50px;
+        &-origin-image {
             width: 50px;
             object-fit: scale-down;
             margin-left: auto;

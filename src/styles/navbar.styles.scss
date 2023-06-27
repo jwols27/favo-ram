@@ -6,12 +6,14 @@
     background-color: var(--primary-dark);
     padding: 0 12px;
 
-    .navbar-link {
+    .nav-link {
         padding: 16px;
         margin: 0 4px 0 4px;
         color: var(--primary-light);
         transition: background-color 0.5s ease, color 0.5s ease;
         border-radius: 30px;
+        user-select: none;
+        border: 1px solid transparent;
 
         > * {
             padding-right: 4px;
@@ -28,6 +30,7 @@
 
         &:active {
             opacity: 1 !important;
+            border-color: var(--quarternary-light);
         }
 
         &.active {
@@ -38,7 +41,7 @@
     }
 
     @media only screen and (min-width: 0) {
-        .navbar-link {
+        .nav-link {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -48,7 +51,7 @@
     }
 
     @media only screen and (min-width: 768px) {
-        .navbar-link {
+        .nav-link {
             display: initial;
             gap: 0;
             width: initial;

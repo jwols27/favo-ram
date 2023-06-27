@@ -9,7 +9,13 @@ export const CAnchor = ({
     ...props
 }: IAnchorProps & React.HTMLProps<HTMLAnchorElement>) => {
     return (
-        <a target="_blank" rel="noopener noreferrer" href={'#'} {...props}>
+        <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href={'#'}
+            draggable={false}
+            {...props}
+        >
             {children}
         </a>
     );

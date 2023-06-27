@@ -26,7 +26,7 @@ export const CTableManager = ({
             <div className={'center-box'}>
                 <CTable {...table} />
             </div>
-            <div className={'center-box responsive-align'}>
+            <div className={'center-box-col responsive-align'}>
                 <div className={'crud-title color-2-dark'}>
                     <h3>
                         {editID ? 'Edit' : 'Create'} {editOrCreate}

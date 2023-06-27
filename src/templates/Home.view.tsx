@@ -6,8 +6,8 @@ const HomeView = () => {
     }, []);
 
     return (
-        <div className={'center-box'}>
-            <h1 className={'color-2'}>FAVO-Ram</h1>
+        <div className={'center-box-fill'}>
+            <h1 className={'main-title color-2'}>FAVO-Ram</h1>
         </div>
     );
 };

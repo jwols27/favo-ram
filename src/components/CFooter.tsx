@@ -55,7 +55,7 @@ export const CFooter = () => {
     return (
         <footer>
             <div className={'footer-grid'}>
-                <div className={'footer-grid-item item-1'}>
+                <div className={'footer-grid-item footer-item-1'}>
                     <h3>About</h3>
                     <span>
                         This website was made purely for fun. It shows my
@@ -66,7 +66,7 @@ export const CFooter = () => {
                         <EmoticonJunoBop />
                     </CEmoticon>
                 </div>
-                <div className={'footer-grid-item item-2'}>
+                <div className={'footer-grid-item footer-item-2'}>
                     <h3>Hello world!</h3>
                     <span>You can find me in any of these places:</span>
                     <div className={'socials'}>
@@ -96,7 +96,7 @@ export const CFooter = () => {
                         </CAnchor>
                     </div>
                 </div>
-                <div className={'center-box item-3'}>
+                <div className={'center-box footer-item-3'}>
                     <img
                         className={'avatar'}
                         src={possibleAvatars[avatar]}

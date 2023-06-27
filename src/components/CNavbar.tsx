@@ -14,25 +14,25 @@ interface INavbarProps {}
 export const CNavbar = ({}: INavbarProps) => {
     return (
         <div className={'navbar'}>
-            <NavLink to={''} className={'navbar-link'}>
+            <NavLink to={''} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faHome} fontSize={16} />
                 <span>Home</span>
             </NavLink>
 
-            <NavLink to={'emporium'} className={'navbar-link'}>
+            <NavLink to={'emporium'} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faUserGroup} fontSize={16} />
                 <span>Emporium</span>
             </NavLink>
 
-            <NavLink to={'characters'} className={'navbar-link'}>
+            <NavLink to={'characters'} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faUserGear} fontSize={16} />
                 <span>Characters</span>
             </NavLink>
-            <NavLink to={'origins'} className={'navbar-link'}>
+            <NavLink to={'origins'} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faLocationDot} fontSize={16} />
                 <span>Origins</span>
             </NavLink>
-            <NavLink to={'tags'} className={'navbar-link'}>
+            <NavLink to={'tags'} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faTags} fontSize={16} />
                 <span>Tags</span>
             </NavLink>

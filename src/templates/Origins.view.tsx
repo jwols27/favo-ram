@@ -16,14 +16,14 @@ import { Origin, OriginSchema } from '../models';
 
 const settings: ColumnSettings[] = [
     {
-        header: 'id',
-        field: 'id',
-        width: '50px',
-    },
-    {
         header: '',
         field: 'image',
         width: '74px',
+    },
+    {
+        header: 'id',
+        field: 'id',
+        width: '50px',
     },
     {
         header: 'Name',

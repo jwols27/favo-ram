@@ -48,6 +48,11 @@
         color: var(--secondary-darker);
     }
 
+    #desc > span {
+        color: var(--quarternary);
+        opacity: 0.75;
+    }
+
     /* special padding and border radius at top and bottom */
 
     tbody > tr:last-child {

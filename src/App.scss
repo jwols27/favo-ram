@@ -1,0 +1,123 @@
+#content {
+    min-height: calc(100vh - 400px);
+    display: flex;
+    flex-direction: column;
+}
+
+#character-crud,
+#origin-crud,
+#tag-crud {
+    padding: 24px 36px 0;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    flex: 1;
+}
+
+.color {
+    &-1 {
+        color: var(--primary);
+    }
+    &-1-light {
+        color: var(--primary-light);
+    }
+    &-1-dark {
+        color: var(--primary-dark);
+    }
+
+    &-2 {
+        color: var(--secondary);
+    }
+    &-2-light {
+        color: var(--secondary-light);
+    }
+    &-2-lighter {
+        color: var(--secondary-lighter);
+    }
+    &-2-dark {
+        color: var(--secondary-dark);
+    }
+
+    &-3 {
+        color: var(--tertiary);
+    }
+    &-3-dark {
+        color: var(--tertiary-dark);
+    }
+    &-3-darker {
+        color: var(--tertiary-darker);
+    }
+
+    &-4 {
+        color: var(--quarternary);
+    }
+    &-4-light {
+        color: var(--quarternary-light);
+    }
+}
+
+.main-title {
+    letter-spacing: -6px;
+    font-size: 6rem;
+}
+
+.center-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-fill {
+        @extend .center-box;
+        flex: 1;
+    }
+
+    &-col {
+        @extend .center-box;
+        flex-direction: column;
+    }
+}
+
+.avatar {
+    border-radius: 50%;
+    object-fit: cover;
+    user-select: none;
+}
+
+.grid-crud-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 35px;
+}
+
+@media only screen and (min-width: 0) {
+    .grid-crud-container {
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        grid-auto-flow: row;
+    }
+
+    .grid-crud-container > div:first-child {
+        grid-column-start: 1;
+        grid-column-end: 1;
+    }
+
+    .responsive-align {
+        align-items: center;
+    }
+}
+
+@media only screen and (min-width: 768px) {
+    .grid-crud-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-auto-flow: row;
+    }
+
+    .grid-crud-container > div:first-child {
+        grid-column-start: 1;
+        grid-column-end: 3;
+    }
+
+    .responsive-align {
+        align-items: start;
+    }
+}

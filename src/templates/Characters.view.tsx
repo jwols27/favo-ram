@@ -18,15 +18,15 @@ import {
 
 const settings: ColumnSettings[] = [
     {
-        header: 'id',
-        field: 'id',
-        width: '50px',
-    },
-    {
         header: '',
         field: 'image',
         width: '74px',
         className: 'table-avatar',
+    },
+    {
+        header: 'id',
+        field: 'id',
+        width: '50px',
     },
     {
         header: 'Name',
