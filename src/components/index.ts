@@ -5,3 +5,4 @@ export * from './CSelect';
 export * from './CAnchor';
 export * from './CEmoticon';
 export * from './CTableManager';
+export * from './CCircularLoading.tsx';

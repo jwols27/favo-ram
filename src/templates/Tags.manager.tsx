@@ -7,7 +7,7 @@ import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import { TagService } from '../shared/services/TagService';
 import TagRequest from '../shared/requests/TagRequest';
-import { ColumnSettings, CTableManager } from '../components';
+import { CCircularLoading, ColumnSettings, CTableManager } from '../components';
 import { Tag, TagSchema } from '../models';
 
 const settings: ColumnSettings[] = [
@@ -34,11 +34,13 @@ const TagsManager = () => {
 
     const refreshTables = TagRequest;
 
-    React.useEffect(() => refreshTables(), []);
+    React.useEffect(() => {
+        refreshTables().catch((e) => console.log(e));
+    }, []);
 
     const [editID, setEditID] = React.useState<number | undefined>();
 
-    const tagState = useAppSelector((state) => state.tags.tags);
+    const tagState = useAppSelector((state) => state.tags);
     const dispatch = useDispatch();
 
     const resolver = useYupValidationResolver(TagSchema);
@@ -92,6 +94,14 @@ const TagsManager = () => {
         dispatch(removeTagById(id));
     };
 
+    if (tagState.loading) {
+        return (
+            <div id={'tag-crud'}>
+                <CCircularLoading additionalClasses={'color-1'} />
+            </div>
+        );
+    }
+
     return (
         <div id={'tag-crud'}>
             <CTableManager
@@ -100,7 +110,7 @@ const TagsManager = () => {
                     tableName: 'tags',
                     caption: 'Tags',
                     settings,
-                    objects: tagState,
+                    objects: tagState.tags,
                     deleteCallback: onDelete,
                     editCallback: onEdit,
                 }}

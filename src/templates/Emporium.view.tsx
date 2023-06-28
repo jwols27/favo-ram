@@ -2,11 +2,10 @@ import React from 'react';
 import { useAppSelector } from '../shared/hooks/store.hooks';
 
 import CharacterRequest from '../shared/requests/CharacterRequest';
-import OriginRequest from '../shared/requests/OriginRequest';
-import TagRequest from '../shared/requests/TagRequest';
 import '../styles/emporium.styles.scss';
 import { Link } from 'react-router-dom';
 import { Character } from '../models';
+import { CCircularLoading } from '../components';
 
 interface EmporiumContentProps {
     characterState: Character[];
@@ -75,16 +74,15 @@ const EmporiumView = () => {
         document.title = 'FAVO-Ram | Emporium';
     }, []);
 
-    const characterState = useAppSelector(
-        (state) => state.characters.characters,
-    );
-    const refreshTables = () => {
-        CharacterRequest();
-        OriginRequest();
-        TagRequest();
+    const characterState = useAppSelector((state) => state.characters);
+
+    const loadTables = async () => {
+        await CharacterRequest();
     };
 
-    React.useEffect(() => refreshTables(), []);
+    React.useEffect(() => {
+        loadTables().catch((e) => console.log(e));
+    }, []);
 
     // const originState = useAppSelector((state) => state.origins.origins);
     // const tagState = useAppSelector((state) => state.tags.tags);
@@ -93,9 +91,15 @@ const EmporiumView = () => {
         <div id={'emporium'}>
             <div className={'emporium-toolbar bg-color-2-light'}>Toolbar</div>
             <div className={'emporium-content shadow-box bg-color-2-subtle'}>
-                <div className={'emporium-grid'}>
-                    <EmporiumGrid characterState={characterState} />
-                </div>
+                {characterState.loading ? (
+                    <CCircularLoading additionalClasses={'color-2'} />
+                ) : (
+                    <div className={'emporium-grid'}>
+                        <EmporiumGrid
+                            characterState={characterState.characters}
+                        />
+                    </div>
+                )}
             </div>
         </div>
     );

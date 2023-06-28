@@ -1,16 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Tag } from '../../models';
 
-interface tagState {
+interface TagState {
     tags: Tag[];
+    loading: boolean;
 }
 
-const initialState: tagState = { tags: [] };
+const initialState: TagState = { tags: [], loading: false };
 
 export const tagSlice = createSlice({
-    name: 'data',
+    name: 'tag',
     initialState,
     reducers: {
+        setTagLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload;
+        },
         pushTag: (state, action: PayloadAction<Tag>) => {
             state.tags.push(action.payload);
         },
@@ -24,12 +28,10 @@ export const tagSlice = createSlice({
             state.tags = [];
         },
         setTagById: (state, action: PayloadAction<Tag>) => {
-            state.tags.find((tag, index) => {
-                if (tag.id === action.payload.id) {
-                    state.tags[index] = action.payload;
-                    return true;
-                }
-            });
+            const index = state.tags.findIndex(
+                (tag) => tag.id === action.payload.id,
+            );
+            state.tags[index] = action.payload;
         },
         removeTagById: (state, action: PayloadAction<number>) => {
             state.tags = state.tags.filter((tag) => tag.id !== action.payload);
@@ -38,6 +40,7 @@ export const tagSlice = createSlice({
 });
 
 export const {
+    setTagLoading,
     pushTag,
     setTags,
     combineTags,

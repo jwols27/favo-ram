@@ -1,12 +1,16 @@
 import { TagService } from '../services/TagService';
 import { store } from '../stores/store';
-import { setTags } from '../stores/tag.slice';
+import { setTagLoading, setTags } from '../stores/tag.slice';
 
-const TagRequest = () => {
-    TagService.getAll().then((res) => {
-        if (res instanceof Error) return console.log(res.message);
-        store.dispatch(setTags(res));
-    });
+const TagRequest = async () => {
+    store.dispatch(setTagLoading(true));
+
+    const res = await TagService.getAll();
+    res instanceof Error
+        ? console.log(res.message)
+        : store.dispatch(setTags(res));
+
+    store.dispatch(setTagLoading(false));
 };
 
 export default TagRequest;

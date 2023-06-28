@@ -5,7 +5,12 @@ import { useDispatch } from 'react-redux';
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import { Character, CharacterSchema } from '../models';
-import { ColumnSettings, CSelect, CTableManager } from '../components';
+import {
+    CCircularLoading,
+    ColumnSettings,
+    CSelect,
+    CTableManager,
+} from '../components';
 import { CharacterService } from '../shared/services/CharacterService';
 import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest';
@@ -45,21 +50,21 @@ const CharactersManager = () => {
         document.title = 'FAVO-Ram | Characters';
     }, []);
 
-    const refreshTables = () => {
-        CharacterRequest();
-        OriginRequest();
-        TagRequest();
+    const refreshTables = async () => {
+        await CharacterRequest();
+        await OriginRequest();
+        await TagRequest();
     };
 
-    React.useEffect(() => refreshTables(), []);
+    React.useEffect(() => {
+        refreshTables().catch((e) => console.log(e));
+    }, []);
 
     const [editID, setEditID] = React.useState<number | undefined>();
 
-    const characterState = useAppSelector(
-        (state) => state.characters.characters,
-    );
-    const originState = useAppSelector((state) => state.origins.origins);
-    const tagState = useAppSelector((state) => state.tags.tags);
+    const characterState = useAppSelector((state) => state.characters);
+    const originState = useAppSelector((state) => state.origins);
+    const tagState = useAppSelector((state) => state.tags);
     const dispatch = useDispatch();
 
     const resolver = useYupValidationResolver(CharacterSchema);
@@ -130,6 +135,14 @@ const CharactersManager = () => {
         dispatch(removeCharacterById(id));
     };
 
+    if (characterState.loading || originState.loading || tagState.loading) {
+        return (
+            <div id={'character-crud'}>
+                <CCircularLoading additionalClasses={'color-1'} />
+            </div>
+        );
+    }
+
     return (
         <div id={'character-crud'}>
             <CTableManager
@@ -138,7 +151,7 @@ const CharactersManager = () => {
                     tableName: 'characters',
                     caption: 'Characters',
                     settings,
-                    objects: characterState,
+                    objects: characterState.characters,
                     deleteCallback: onDelete,
                     editCallback: onEdit,
                 }}
@@ -168,7 +181,7 @@ const CharactersManager = () => {
                     name="origin"
                     render={({ field }) => (
                         <CSelect
-                            options={originState}
+                            options={originState.origins}
                             objectName={'Origin'}
                             field={field}
                             error={!!errors.origin}
@@ -193,7 +206,7 @@ const CharactersManager = () => {
                     name="tags"
                     render={({ field }) => (
                         <CSelect
-                            options={tagState}
+                            options={tagState.tags}
                             objectName={'Tag'}
                             field={field}
                             multi

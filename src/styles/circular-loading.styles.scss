@@ -1,0 +1,92 @@
+// https://loading.io/css/
+
+@keyframes spinner {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.circular-loading {
+    display: inline-block;
+    position: relative;
+    width: 76px; // must be 12px bigger than width/height of child div
+    height: 76px;
+
+    div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+
+        width: 64px; // size
+        height: 64px; // size
+        margin: 6px;
+
+        border-width: 8px; // thickness
+        border-style: solid;
+        border-top-color: inherit; // color
+        border-bottom-color: transparent;
+        border-left-color: transparent;
+        border-right-color: transparent;
+
+        border-radius: 50%;
+
+        animation: spinner 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+
+        &:nth-child(1) {
+            animation-delay: -0.45s;
+        }
+
+        &:nth-child(2) {
+            animation-delay: -0.3s;
+        }
+
+        &:nth-child(3) {
+            animation-delay: -0.15s;
+        }
+    }
+
+    &.color {
+        &-1 {
+            border-top-color: var(--primary);
+        }
+        &-1-light {
+            border-top-color: var(--primary-light);
+        }
+        &-1-dark {
+            border-top-color: var(--primary-dark);
+        }
+
+        &-2 {
+            border-top-color: var(--secondary);
+        }
+        &-2-light {
+            border-top-color: var(--secondary-light);
+        }
+        &-2-lighter {
+            border-top-color: var(--secondary-lighter);
+        }
+        &-2-dark {
+            border-top-color: var(--secondary-dark);
+        }
+
+        &-3 {
+            border-top-color: var(--tertiary);
+        }
+        &-3-dark {
+            border-top-color: var(--tertiary-dark);
+        }
+        &-3-darker {
+            border-top-color: var(--tertiary-darker);
+        }
+
+        &-4 {
+            border-top-color: var(--quarternary);
+        }
+        &-4-light {
+            border-top-color: var(--quarternary-light);
+        }
+    }
+}

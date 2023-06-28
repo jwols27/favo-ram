@@ -18,8 +18,8 @@ export interface ITableProps {
     caption: string;
     settings: ColumnSettings[];
     objects: GenericObject[];
-    editCallback?: (id: number) => void;
-    deleteCallback?: (id: number) => void;
+    editCallback?: (id: number) => Promise<void>;
+    deleteCallback?: (id: number) => Promise<void>;
 }
 
 export const CTable = ({

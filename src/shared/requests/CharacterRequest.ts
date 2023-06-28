@@ -1,14 +1,16 @@
 import { CharacterService } from '../services/CharacterService';
 import { store } from '../stores/store';
-import { setCharacters } from '../stores/character.slice';
+import { setCharacterLoading, setCharacters } from '../stores/character.slice';
 
-const CharacterRequest = () => {
-    CharacterService.getAll().then((res) => {
-        //const charStore = store.getState().characters
+const CharacterRequest = async () => {
+    store.dispatch(setCharacterLoading(true));
 
-        if (res instanceof Error) return console.log(res.message);
-        store.dispatch(setCharacters(res));
-    });
+    const res = await CharacterService.getAll();
+    res instanceof Error
+        ? console.log(res.message)
+        : store.dispatch(setCharacters(res));
+
+    store.dispatch(setCharacterLoading(false));
 };
 
 export default CharacterRequest;

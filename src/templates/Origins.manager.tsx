@@ -11,7 +11,7 @@ import { useAppSelector } from '../shared/hooks/store.hooks';
 import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
 import OriginRequest from '../shared/requests/OriginRequest';
 import { OriginService } from '../shared/services/OriginService';
-import { ColumnSettings, CTableManager } from '../components';
+import { CCircularLoading, ColumnSettings, CTableManager } from '../components';
 import { Origin, OriginSchema } from '../models';
 
 const settings: ColumnSettings[] = [
@@ -39,12 +39,12 @@ const OriginsManager = () => {
     const refreshTables = OriginRequest;
 
     React.useEffect(() => {
-        refreshTables();
+        refreshTables().catch((e) => console.log(e));
     }, []);
 
     const [editID, setEditID] = React.useState<number | undefined>();
 
-    const originState = useAppSelector((state) => state.origins.origins);
+    const originState = useAppSelector((state) => state.origins);
     const dispatch = useDispatch();
 
     const resolver = useYupValidationResolver(OriginSchema);
@@ -98,6 +98,14 @@ const OriginsManager = () => {
         dispatch(removeOriginById(id));
     };
 
+    if (originState.loading) {
+        return (
+            <div id={'origin-crud'}>
+                <CCircularLoading additionalClasses={'color-1'} />
+            </div>
+        );
+    }
+
     return (
         <div id={'origin-crud'}>
             <CTableManager
@@ -106,7 +114,7 @@ const OriginsManager = () => {
                     tableName: 'origins',
                     caption: 'Origins',
                     settings,
-                    objects: originState,
+                    objects: originState.origins,
                     deleteCallback: onDelete,
                     editCallback: onEdit,
                 }}

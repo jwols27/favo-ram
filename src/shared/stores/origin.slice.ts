@@ -1,16 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Origin } from '../../models';
 
-interface originState {
+interface OriginState {
     origins: Origin[];
+    loading: boolean;
 }
 
-const initialState: originState = { origins: [] };
+const initialState: OriginState = { origins: [], loading: false };
 
 export const originSlice = createSlice({
-    name: 'data',
+    name: 'origin',
     initialState,
     reducers: {
+        setOriginLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload;
+        },
         pushOrigin: (state, action: PayloadAction<Origin>) => {
             state.origins.push(action.payload);
         },
@@ -24,12 +28,10 @@ export const originSlice = createSlice({
             state.origins = [];
         },
         setOriginById: (state, action: PayloadAction<Origin>) => {
-            state.origins.find((ori, index) => {
-                if (ori.id === action.payload.id) {
-                    state.origins[index] = action.payload;
-                    return true;
-                }
-            });
+            const index = state.origins.findIndex(
+                (ori) => ori.id === action.payload.id,
+            );
+            state.origins[index] = action.payload;
         },
         removeOriginById: (state, action: PayloadAction<number>) => {
             state.origins = state.origins.filter(
@@ -40,6 +42,7 @@ export const originSlice = createSlice({
 });
 
 export const {
+    setOriginLoading,
     pushOrigin,
     setOrigins,
     combineOrigins,

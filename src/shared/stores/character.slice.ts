@@ -1,16 +1,20 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { Character } from '../../models';
 
-interface characterState {
+interface CharacterState {
     characters: Character[];
+    loading: boolean;
 }
 
-const initialState: characterState = { characters: [] };
+const initialState: CharacterState = { characters: [], loading: false };
 
 export const characterSlice = createSlice({
-    name: 'data',
+    name: 'character',
     initialState,
     reducers: {
+        setCharacterLoading: (state, action: PayloadAction<boolean>) => {
+            state.loading = action.payload;
+        },
         pushCharacter: (state, action: PayloadAction<Character>) => {
             state.characters.push(action.payload);
         },
@@ -24,12 +28,10 @@ export const characterSlice = createSlice({
             state.characters = [];
         },
         setCharacterById: (state, action: PayloadAction<Character>) => {
-            state.characters.find((char, index) => {
-                if (char.id === action.payload.id) {
-                    state.characters[index] = action.payload;
-                    return true;
-                }
-            });
+            const index = state.characters.findIndex(
+                (char) => char.id === action.payload.id,
+            );
+            state.characters[index] = action.payload;
         },
         removeCharacterById: (state, action: PayloadAction<number>) => {
             state.characters = state.characters.filter(
@@ -40,6 +42,7 @@ export const characterSlice = createSlice({
 });
 
 export const {
+    setCharacterLoading,
     pushCharacter,
     setCharacters,
     combineCharacters,
