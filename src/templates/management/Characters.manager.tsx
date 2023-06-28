@@ -2,24 +2,24 @@ import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { useAppSelector } from '../shared/hooks/store.hooks';
-import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
-import { Character, CharacterSchema } from '../models';
+import { useAppSelector } from '../../shared/hooks/store.hooks';
+import { useYupValidationResolver } from '../../shared/hooks/validation.hooks';
+import { Character, CharacterSchema } from '../../models';
 import {
     CCircularLoading,
     ColumnSettings,
     CSelect,
     CTableManager,
-} from '../components';
-import { CharacterService } from '../shared/services/CharacterService';
-import CharacterRequest from '../shared/requests/CharacterRequest';
-import OriginRequest from '../shared/requests/OriginRequest';
-import TagRequest from '../shared/requests/TagRequest';
+} from '../../components';
+import { CharacterService } from '../../shared/services/CharacterService';
+import CharacterRequest from '../../shared/requests/CharacterRequest';
+import OriginRequest from '../../shared/requests/OriginRequest';
+import TagRequest from '../../shared/requests/TagRequest';
 import {
     pushCharacter,
     removeCharacterById,
     setCharacterById,
-} from '../shared/stores/character.slice';
+} from '../../shared/stores/character.slice';
 
 const settings: ColumnSettings[] = [
     {
@@ -209,7 +209,7 @@ const CharactersManager = () => {
                             options={tagState.tags}
                             objectName={'Tag'}
                             field={field}
-                            multi
+                            isMulti
                         />
                     )}
                 />

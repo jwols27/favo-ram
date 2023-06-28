@@ -31,13 +31,19 @@
     }
 
     button {
-        &:hover {
+        transition: filter 0.1s ease-in-out;
+        &:hover,
+        &:active {
             filter: brightness(1.05);
             cursor: pointer;
         }
         &:active {
             transform: scale(0.95);
         }
+    }
+
+    .custom-select-container {
+        margin-top: 12px;
     }
 }
 
@@ -65,7 +71,7 @@
     }
 
     .submit-button {
-        color: var(--tertiary);
+        color: var(--tertiary-light);
         background-color: var(--secondary);
         border: 1px solid var(--secondary-dark);
         width: 100%;

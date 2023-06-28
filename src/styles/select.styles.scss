@@ -1,7 +1,3 @@
-.custom-select-container {
-    margin-top: 12px;
-}
-
 @keyframes fadeIn {
     0% {
         opacity: 0;
@@ -22,6 +18,29 @@
 /*    border: 1px solid var(--secondary-dark);*/
 /*}*/
 
+.select-color {
+    &-1 {
+        .custom-select__control {
+            background-color: var(--primary);
+            border-color: var(--primary-dark);
+        }
+
+        .custom-select__option:hover {
+            background-color: var(--primary-light);
+        }
+    }
+    &-alt {
+        .custom-select__control {
+            background-color: var(--secondary-lighter);
+            border-color: var(--secondary);
+        }
+
+        .custom-select__option:hover {
+            background-color: var(--secondary-light);
+        }
+    }
+}
+
 .custom-select {
     &__control {
         resize: vertical;
@@ -29,8 +48,8 @@
         padding: 0 12px;
         border: 1px solid var(--secondary-dark);
         color: var(--quarternary);
-        font-size: 0.9rem;
         background-color: var(--secondary-light);
+        font-size: 0.9rem;
         position: relative;
 
         &:hover {

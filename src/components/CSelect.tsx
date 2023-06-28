@@ -1,26 +1,28 @@
-import Select from 'react-select';
+import Select, { Props } from 'react-select';
 
 import GenericObject from '../models/GenericObject';
 
 interface ISelectProps {
+    additionalClasses?: string;
     options: GenericObject[];
     labelField?: string;
     objectName: string;
-    field: any;
-    multi?: boolean;
+    field?: any;
     error?: boolean;
 }
 
 export const CSelect = ({
+    additionalClasses = '',
     options,
     labelField = 'name',
     objectName,
     field,
-    multi,
     error,
-}: ISelectProps) => {
+    ...props
+}: ISelectProps & Props) => {
     const handleChange = (selectedOption: any) => {
-        if (multi) {
+        if (!field) return;
+        if (props.isMulti) {
             const selectedIds = selectedOption.map(
                 (option: GenericObject) => option.id,
             );
@@ -32,22 +34,27 @@ export const CSelect = ({
     };
 
     const handleValue = () => {
-        if (multi) return options.filter((c) => field.value.includes(c.id));
+        if (!field) return undefined;
+        if (props.isMulti)
+            return options.filter((c) => field.value.includes(c.id));
         return options.find((c) => c.id === field.value);
     };
 
     return (
         <Select
-            className={`custom-select-container ${error ? 'select-error' : ''}`}
+            ref={field?.ref}
+            className={`custom-select-container ${additionalClasses} ${
+                error ? 'select-error' : ''
+            }`}
             classNamePrefix={'custom-select'}
             placeholder={`${objectName}s`}
-            ref={field.ref}
-            getOptionValue={(option) => option.id.toString()}
-            getOptionLabel={(option) => option[labelField]}
+            options={options}
+            getOptionValue={(option) => (option as GenericObject).id.toString()}
+            getOptionLabel={(option) => (option as GenericObject)[labelField]}
             value={handleValue()}
             onChange={handleChange}
-            options={options}
-            isMulti={multi}
+            isClearable
+            isSearchable
             unstyled
             styles={{
                 noOptionsMessage: (base) => ({
@@ -62,6 +69,7 @@ export const CSelect = ({
                 }),
             }}
             noOptionsMessage={() => `No ${objectName.toLowerCase()}s available`}
+            {...props}
         />
     );
 };

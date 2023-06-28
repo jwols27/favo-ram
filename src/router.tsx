@@ -3,9 +3,9 @@ import { RouteObject } from 'react-router/dist/lib/context';
 
 import App from './App';
 import HomeView from './templates/Home.view';
-import TagsManager from './templates/Tags.manager';
-import OriginsManager from './templates/Origins.manager';
-import CharactersManager from './templates/Characters.manager';
+import TagsManager from './templates/management/Tags.manager';
+import OriginsManager from './templates/management/Origins.manager';
+import CharactersManager from './templates/management/Characters.manager';
 import NotFoundView from './templates/NotFound.view';
 import EmporiumView from './templates/Emporium.view';
 import CharactersView from './templates/Characters.view';

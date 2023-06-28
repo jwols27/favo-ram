@@ -69,6 +69,10 @@ caption, th, td {
     font-weight: normal;
 }
 
+input {
+    border: 0;
+}
+
 h1,
 h2,
 h3,

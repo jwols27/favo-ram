@@ -2,15 +2,28 @@ import React from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { pushTag, removeTagById, setTagById } from '../shared/stores/tag.slice';
-import { useAppSelector } from '../shared/hooks/store.hooks';
-import { useYupValidationResolver } from '../shared/hooks/validation.hooks';
-import { TagService } from '../shared/services/TagService';
-import TagRequest from '../shared/requests/TagRequest';
-import { CCircularLoading, ColumnSettings, CTableManager } from '../components';
-import { Tag, TagSchema } from '../models';
+import {
+    pushOrigin,
+    removeOriginById,
+    setOriginById,
+} from '../../shared/stores/origin.slice';
+import { useAppSelector } from '../../shared/hooks/store.hooks';
+import { useYupValidationResolver } from '../../shared/hooks/validation.hooks';
+import OriginRequest from '../../shared/requests/OriginRequest';
+import { OriginService } from '../../shared/services/OriginService';
+import {
+    CCircularLoading,
+    ColumnSettings,
+    CTableManager,
+} from '../../components';
+import { Origin, OriginSchema } from '../../models';
 
 const settings: ColumnSettings[] = [
+    {
+        header: '',
+        field: 'image',
+        width: '74px',
+    },
     {
         header: 'id',
         field: 'id',
@@ -19,20 +32,15 @@ const settings: ColumnSettings[] = [
     {
         header: 'Name',
         field: 'name',
-        width: '175px',
-    },
-    {
-        header: 'Description',
-        field: 'desc',
     },
 ];
 
-const TagsManager = () => {
+const OriginsManager = () => {
     React.useEffect(() => {
-        document.title = 'FAVO-Ram | Tags';
+        document.title = 'FAVO-Ram | Origins';
     }, []);
 
-    const refreshTables = TagRequest;
+    const refreshTables = OriginRequest;
 
     React.useEffect(() => {
         refreshTables().catch((e) => console.log(e));
@@ -40,10 +48,10 @@ const TagsManager = () => {
 
     const [editID, setEditID] = React.useState<number | undefined>();
 
-    const tagState = useAppSelector((state) => state.tags);
+    const originState = useAppSelector((state) => state.origins);
     const dispatch = useDispatch();
 
-    const resolver = useYupValidationResolver(TagSchema);
+    const resolver = useYupValidationResolver(OriginSchema);
     const {
         register,
         handleSubmit,
@@ -54,20 +62,20 @@ const TagsManager = () => {
     const clearForm = () => {
         setEditID(undefined);
         setValue('name', null);
-        setValue('desc', null);
+        setValue('image', null);
     };
 
-    const onSubmit: SubmitHandler<Omit<Tag, 'id'>> = async (data) => {
+    const onSubmit: SubmitHandler<Omit<Origin, 'id'>> = async (data) => {
         let res;
 
         if (editID) {
-            res = await TagService.updateById(editID, data);
+            res = await OriginService.updateById(editID, data);
             if (res instanceof Error) return console.log(res.message);
-            dispatch(setTagById(res));
+            dispatch(setOriginById(res));
         } else {
-            res = await TagService.create(data);
+            res = await OriginService.create(data);
             if (res instanceof Error) return console.log(res.message);
-            dispatch(pushTag(res));
+            dispatch(pushOrigin(res));
         }
 
         console.log(res);
@@ -76,47 +84,47 @@ const TagsManager = () => {
 
     const onEdit = async (id: number) => {
         setEditID(id);
-        const res = await TagService.getById(id);
+        const res = await OriginService.getById(id);
         if (res instanceof Error) return console.log(res.message);
 
-        const tag: Tag = res;
+        const origin: Origin = res;
 
-        console.log(tag);
+        console.log(origin);
 
-        setValue('name', tag.name);
-        setValue('desc', tag.desc);
+        setValue('name', origin.name);
+        setValue('image', origin.image);
     };
 
     const onDelete = async (id: number) => {
-        const res = await TagService.deleteById(id);
+        const res = await OriginService.deleteById(id);
         if (res instanceof Error) return console.log(res.message);
         console.log(res);
-        dispatch(removeTagById(id));
+        dispatch(removeOriginById(id));
     };
 
-    if (tagState.loading) {
+    if (originState.loading) {
         return (
-            <div id={'tag-crud'}>
+            <div id={'origin-crud'}>
                 <CCircularLoading additionalClasses={'color-1'} />
             </div>
         );
     }
 
     return (
-        <div id={'tag-crud'}>
+        <div id={'origin-crud'}>
             <CTableManager
-                editOrCreate={'a tag'}
+                editOrCreate={'an origin'}
                 table={{
-                    tableName: 'tags',
-                    caption: 'Tags',
+                    tableName: 'origins',
+                    caption: 'Origins',
                     settings,
-                    objects: tagState.tags,
+                    objects: originState.origins,
                     deleteCallback: onDelete,
                     editCallback: onEdit,
                 }}
+                onSubmit={handleSubmit(onSubmit)}
                 editID={editID}
                 onClear={clearForm}
-                onSubmit={handleSubmit(onSubmit)}
             >
                 <input
                     className={errors.name && 'crud-error'}
@@ -127,14 +135,14 @@ const TagsManager = () => {
                     <span>{errors.name.message.toString()}</span>
                 )}
 
-                <textarea
-                    cols={16}
-                    placeholder={'Description'}
-                    {...register('desc')}
+                <input
+                    placeholder={'Image URL'}
+                    type={'url'}
+                    {...register('image')}
                 />
             </CTableManager>
         </div>
     );
 };
 
-export default TagsManager;
+export default OriginsManager;
