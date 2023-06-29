@@ -114,16 +114,11 @@ const CharactersManager = () => {
         setValue('name', character.name);
         setValue('desc', character.desc);
         setValue('image', character.image);
-        setValue(
-            'origin',
-            typeof character.origin !== 'number'
-                ? character.origin.id
-                : character.origin,
-        );
+        setValue('origin', character.origin.id);
         setValue(
             'tags',
             character.tags?.map((tag) =>
-                typeof tag !== 'number' ? tag.id : tag,
+                typeof tag === 'number' ? tag : tag.id,
             ),
         );
     };
@@ -182,7 +177,7 @@ const CharactersManager = () => {
                     render={({ field }) => (
                         <CSelect
                             options={originState.origins}
-                            objectName={'Origin'}
+                            placeholder={'Origins'}
                             field={field}
                             error={!!errors.origin}
                         />
@@ -207,7 +202,7 @@ const CharactersManager = () => {
                     render={({ field }) => (
                         <CSelect
                             options={tagState.tags}
-                            objectName={'Tag'}
+                            placeholder={'Tags'}
                             field={field}
                             isMulti
                         />

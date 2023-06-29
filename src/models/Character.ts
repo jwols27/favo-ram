@@ -7,7 +7,7 @@ export type Character = {
     name: string;
     desc?: string;
     image?: string;
-    origin: number | Origin;
+    origin: Origin;
     tags?: number[] | Tag[];
 };
 

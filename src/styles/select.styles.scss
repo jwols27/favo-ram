@@ -34,18 +34,14 @@
             background-color: var(--secondary-lighter);
             border-color: var(--secondary);
         }
-
-        .custom-select__option:hover {
-            background-color: var(--secondary-light);
-        }
     }
 }
 
 .custom-select {
     &__control {
         resize: vertical;
-        border-radius: 12px;
-        padding: 0 12px;
+        border-radius: 8px;
+        padding: 6px 12px;
         border: 1px solid var(--secondary-dark);
         color: var(--quarternary);
         background-color: var(--secondary-light);
@@ -58,8 +54,14 @@
         }
     }
 
+    &__placeholder {
+        color: var(--quarternary);
+        font-size: 0.8rem;
+        opacity: 0.75;
+    }
+
     &__input-container {
-        padding: 16px 0;
+        padding: 10px 0;
     }
 
     &__indicators {
@@ -68,13 +70,14 @@
 
     &__multi-value {
         border: 1px solid var(--secondary-dark);
-        padding: 8px;
+        padding: 0 8px;
         border-radius: 20px;
         background-color: var(--secondary);
         margin: 2px;
 
         &__label {
             color: white;
+            padding: 8px 0;
         }
         &__remove {
             color: white;
@@ -83,12 +86,13 @@
 
     &__menu {
         margin-top: 2px;
-        background-color: var(--tertiary-dark);
+        background-color: var(--tertiary);
+        box-shadow: 0 2px 4px var(--tertiary-darker);
         position: absolute;
         top: 100%;
         left: 0;
         width: 100%;
-        border-radius: 12px;
+        border-radius: 8px;
         animation: fadeIn 0.25s ease-in-out;
     }
 
@@ -98,12 +102,12 @@
         border-bottom: 1px solid var(--tertiary-dark);
 
         &:first-child {
-            border-top-left-radius: 12px;
-            border-top-right-radius: 12px;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
         }
         &:last-child {
-            border-bottom-left-radius: 12px;
-            border-bottom-right-radius: 12px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
             border-bottom: 0;
         }
         &:hover {

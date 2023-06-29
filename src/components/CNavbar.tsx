@@ -10,8 +10,7 @@ import {
 
 import '../styles/navbar.styles.scss';
 
-interface INavbarProps {}
-export const CNavbar = ({}: INavbarProps) => {
+export const CNavbar = () => {
     return (
         <div className={'navbar'}>
             <NavLink to={''} className={'nav-link'} draggable={false}>
