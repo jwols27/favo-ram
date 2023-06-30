@@ -6,7 +6,8 @@
 
 #character-crud,
 #origin-crud,
-#tag-crud {
+#tag-crud,
+#character {
     padding: 24px 0;
     align-items: center;
     justify-content: center;
@@ -147,6 +148,30 @@
     &.tall,
     &.wide {
         display: block;
+    }
+}
+
+.emoticon-container {
+    height: 1.75rem;
+    width: 1.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 5px;
+
+    .emoticon {
+        img {
+            width: 100%;
+            vertical-align: middle;
+            transition: all 0.5s ease;
+            user-select: none;
+        }
+
+        &:hover img {
+            cursor: zoom-in;
+            transform: scale(5);
+            margin-top: -100px;
+            transition-duration: 0.75s;
+        }
     }
 }
 

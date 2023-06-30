@@ -1,6 +1,5 @@
 import React from 'react';
 
-import '../styles/emoticon.styles.scss';
 import junoBop from '../shared/assets/junoBop.png';
 
 interface IEmoticonProps {
