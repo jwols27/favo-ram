@@ -1,6 +1,6 @@
 import ReactDOM from 'react-dom/client';
 
-import './main.css';
+import './main.scss';
 import './styles/yupLocalization';
 import React from 'react';
 

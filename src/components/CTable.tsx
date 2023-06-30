@@ -5,6 +5,7 @@ import { faEdit, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 import GenericObject from '../models/GenericObject';
 import '../styles/table.styles.scss';
 import { useNavigate } from 'react-router-dom';
+import { CResolutionImage } from './CResolutionImage.tsx';
 
 export type ColumnSettings = {
     header: string;
@@ -81,16 +82,8 @@ export const CTable = ({
                                                 <div
                                                     className={`table-image ${className}`}
                                                 >
-                                                    <img
-                                                        className={
-                                                            img.width /
-                                                                img.height <
-                                                            0.9
-                                                                ? 'tall'
-                                                                : 'wide'
-                                                        }
+                                                    <CResolutionImage
                                                         src={object['image']}
-                                                        alt={''}
                                                     />
                                                 </div>
                                             </td>

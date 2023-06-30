@@ -1,7 +1,7 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-import './app.scss';
+import './styles/app.scss';
 import './styles/crud.styles.scss';
 import './styles/select.styles.scss';
 import { CNavbar, CFooter } from './components';

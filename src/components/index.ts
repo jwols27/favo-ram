@@ -6,3 +6,4 @@ export * from './CAnchor';
 export * from './CEmoticon';
 export * from './CTableManager';
 export * from './CCircularLoading.tsx';
+export * from './CResolutionImage.tsx';

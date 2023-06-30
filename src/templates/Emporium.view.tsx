@@ -8,7 +8,7 @@ import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest.ts';
 import TagRequest from '../shared/requests/TagRequest.ts';
 import { Character, Origin, Tag } from '../models';
-import { CCircularLoading, CSelect } from '../components';
+import { CCircularLoading, CResolutionImage, CSelect } from '../components';
 import '../styles/emporium.styles.scss';
 
 interface EmporiumContentProps {
@@ -17,10 +17,6 @@ interface EmporiumContentProps {
 
 const EmporiumGrid = ({ characters }: EmporiumContentProps) => {
     return characters.map((char) => {
-        const img = new Image();
-        img.src = char.image as string;
-        const resolution = img.width / img.height;
-
         return (
             <div className={'emporium-grid-item'} key={char.id}>
                 <Link
@@ -29,11 +25,7 @@ const EmporiumGrid = ({ characters }: EmporiumContentProps) => {
                     draggable={false}
                 >
                     <div className={'character-card-image'}>
-                        <img
-                            className={resolution < 0.9 ? 'tall' : 'wide'}
-                            src={char.image}
-                            alt={char.name}
-                        />
+                        <CResolutionImage src={char.image} alt={char.name} />
                         <div className={'blur'} />
                     </div>
 
@@ -144,7 +136,7 @@ const EmporiumView = () => {
                   )
                 : tagState.tags;
         return filtered.map((tag) => (
-            <label key={tag.id}>
+            <label className={'checkbox'} key={tag.id}>
                 <input
                     type={'checkbox'}
                     value={tag.id}
@@ -197,7 +189,7 @@ const EmporiumView = () => {
                             <CCircularLoading additionalClasses={'color-2'} />
                         </div>
                     ) : (
-                        <div style={{ flex: 1 }}>{RenderContent}</div>
+                        <div>{RenderContent}</div>
                     )}
                     <div className={'emporium-sidebar'}>
                         <h4>Tags</h4>
@@ -215,7 +207,7 @@ const EmporiumView = () => {
                             />
                         </div>
 
-                        {RenderTags}
+                        <div className={'emporium-tags'}>{RenderTags}</div>
                     </div>
                 </div>
             </div>

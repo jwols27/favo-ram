@@ -68,6 +68,11 @@
         border: 0 solid transparent;
     }
 
+    &__clear-indicator {
+        margin-right: 4px;
+        color: var(--secondary-darker);
+    }
+
     &__multi-value {
         border: 1px solid var(--secondary-dark);
         padding: 0 8px;

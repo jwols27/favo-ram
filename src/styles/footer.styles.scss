@@ -78,6 +78,12 @@ footer {
             padding-right: 0;
         }
 
+        .footer-item {
+            &-3 {
+                order: -1;
+            }
+        }
+
         .socials {
             justify-content: center;
         }
@@ -104,6 +110,9 @@ footer {
             &-2 {
                 grid-column-start: 3;
                 grid-column-end: 5;
+            }
+            &-3 {
+                order: initial;
             }
         }
 
