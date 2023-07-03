@@ -5,6 +5,7 @@
 .input {
     &-wrapper {
         width: 250px;
+        height: 51px;
         position: relative;
     }
 
@@ -55,7 +56,6 @@
     &-content {
         display: flex;
         flex-direction: row;
-        align-items: stretch;
 
         > :first-child {
             flex: 1;
@@ -69,12 +69,11 @@
         gap: 8px;
 
         .custom-select-container {
-            width: 300px;
+            width: 250px;
         }
     }
 
     &-sidebar {
-        width: 250px;
         background-color: var(--secondary);
         overflow: auto;
         padding: 12px;
@@ -91,12 +90,9 @@
 
     &-grid {
         padding: 24px 32px;
-        display: inline-grid;
-        grid-auto-flow: column;
-        grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 240px);
         gap: 16px;
-        justify-items: center;
-        align-items: center;
 
         &-item {
             display: flex;
@@ -104,6 +100,37 @@
             justify-content: center;
             height: 300px;
             width: 240px;
+            font-size: 1rem;
+            justify-self: center;
+        }
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .emporium {
+        &-content {
+            flex-direction: column-reverse;
+        }
+        &-toolbar {
+            padding: 8px 12px;
+            .custom-select-container,
+            .input-wrapper {
+                flex: 1;
+            }
+        }
+        &-sidebar {
+            .input-wrapper {
+                width: 100%;
+            }
+        }
+        &-grid {
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, 160px);
+            &-item {
+                width: 160px;
+                height: 200px;
+                font-size: 0.9rem;
+            }
         }
     }
 }
@@ -118,7 +145,6 @@
     height: 90%;
     width: 90%;
     line-height: 1;
-    font-size: 1rem;
     transition: background-color 0.25s ease-in-out;
 
     &:hover {
@@ -183,17 +209,18 @@
         transition-duration: 0.25s;
         transition-timing-function: ease-in-out;
 
-        &-name {
+        .character-card-name {
             letter-spacing: -0.5px;
             display: block;
             font-weight: 500;
+            font-variant: small-caps;
         }
-        &-origin-name {
+        .character-card-origin {
             font-size: 0.75em;
             font-weight: 500;
             color: var(--secondary-darker);
         }
-        &-origin-image {
+        > img {
             width: 50px;
             object-fit: scale-down;
             margin-left: auto;

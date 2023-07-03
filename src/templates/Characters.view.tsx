@@ -26,31 +26,35 @@ const CharactersView = () => {
 
     return (
         <div id={'character'}>
-            <div
-                className={'character-bg'}
-                style={{ backgroundImage: `url(${character.origin.image})` }}
-            />
-            <div className={'shadow-box bg-color-3'}>
-                <h3>{character.name}</h3>
-                <img height={400} src={character.image} alt={character.name} />
-                <br />
-                <span>{character.desc}</span>
-                <br />
-                <span>{character.origin.name}</span>
-                <br />
-                <div>
-                    {character.tags?.map((tag) => (
-                        <div
-                            className={'tag'}
-                            key={typeof tag === 'number' ? tag : tag.id}
-                        >
-                            <div className={'tag-label'}>
-                                {typeof tag === 'number' ? tag : tag.name}
+            <div className={'character shadow-box bg-color-3'}>
+                <div className={'char-info-wrapper'}>
+                    <div id={'char-info'}>
+                        <span id={'title'}>{character.name}</span>
+                        <p id={'desc'}>{character.desc}</p>
+                        <img src={character.origin.image} alt={''} />
+                    </div>
+                    <img
+                        height={400}
+                        src={character.image}
+                        alt={character.name}
+                    />
+                </div>
+                <div id={'char-tags'}>
+                    {character.tags?.map((tag) => {
+                        if (typeof tag === 'number') return undefined;
+
+                        return (
+                            <div className={'tag'} key={tag.id}>
+                                {tag.name}
                             </div>
-                        </div>
-                    ))}
+                        );
+                    })}
                 </div>
             </div>
+            <div
+                className={'background'}
+                style={{ backgroundImage: `url(${character.origin.image})` }}
+            />
         </div>
     );
 };

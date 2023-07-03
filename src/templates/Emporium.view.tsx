@@ -31,18 +31,14 @@ const EmporiumGrid = ({ characters }: EmporiumContentProps) => {
 
                     <div className={'character-card-info'}>
                         <div>
-                            <span className={'character-card-info-name'}>
+                            <span className={'character-card-name'}>
                                 {char.name}
                             </span>
-                            <span className={'character-card-info-origin-name'}>
+                            <span className={'character-card-origin'}>
                                 {char.origin.name}
                             </span>
                         </div>
-                        <img
-                            className={'character-card-info-origin-image'}
-                            src={char.origin.image}
-                            alt={''}
-                        />
+                        <img src={char.origin.image} alt={''} />
                     </div>
                 </Link>
             </div>
@@ -189,7 +185,7 @@ const EmporiumView = () => {
                             <CCircularLoading additionalClasses={'color-2'} />
                         </div>
                     ) : (
-                        <div>{RenderContent}</div>
+                        RenderContent
                     )}
                     <div className={'emporium-sidebar'}>
                         <h4>Tags</h4>
