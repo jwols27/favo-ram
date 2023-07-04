@@ -1,12 +1,38 @@
+.grid-crud-container {
+    display: grid;
+    width: 100%;
+    height: 100%;
+    gap: 36px;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+
+    @media only screen and (max-width: 768px) {
+        > div:nth-child(2) {
+            order: -1;
+        }
+    }
+
+    @media only screen and (min-width: 768px) {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        > div:first-child {
+            grid-column-start: 1;
+            grid-column-end: 3;
+        }
+    }
+}
+
 .crud-form {
     display: flex;
     flex-direction: column;
     width: 100%;
 
+    @media only screen and (max-width: 768px), (min-width: 1366px) {
+        width: 90%;
+    }
+
     input,
     textarea {
         resize: vertical;
-        margin-top: 12px;
+        margin-top: 8px;
         border-radius: 8px;
         padding: 16px 12px;
         border: 1px solid var(--tertiary-darker);
@@ -32,10 +58,10 @@
 
     button {
         transition: filter 0.1s ease-in-out;
+        cursor: pointer;
         &:hover,
         &:active {
             filter: brightness(1.05);
-            cursor: pointer;
         }
         &:active {
             transform: scale(0.95);
@@ -43,7 +69,7 @@
     }
 
     .custom-select-container {
-        margin-top: 12px;
+        margin-top: 8px;
     }
 }
 
@@ -53,14 +79,14 @@
     }
     > :first-child {
         display: inline;
-        margin-right: 4px;
+        margin-right: 8px;
     }
 }
 
 .crud-button-container {
     display: flex;
     margin-top: 24px;
-    gap: 6px;
+    gap: 8px;
 
     .submit-button,
     .cancel-button {
@@ -68,25 +94,26 @@
         border-radius: 50px;
         font-size: 1rem;
         font-weight: 500;
+        border: 1px solid transparent;
     }
 
     .submit-button {
         color: var(--tertiary-light);
         background-color: var(--secondary);
-        border: 1px solid var(--secondary-dark);
-        width: 100%;
+        border-color: var(--secondary-dark);
+        flex: 2;
     }
 
     .cancel-button {
         color: var(--quarternary-light);
         background-color: var(--tertiary);
-        border: 1px solid var(--quarternary-light);
-        width: 30%;
+        border-color: var(--quarternary-light);
+        flex: 1;
     }
 }
 
 .crud-error-message {
-    font-size: 0.75rem;
+    font-size: 0.75em;
     padding: 4px 8px;
     color: var(--quarternary-light);
 }
@@ -94,10 +121,4 @@
 .crud-error {
     border: 1px solid var(--error) !important;
     color: var(--error-dark) !important;
-}
-
-@media only screen and (max-width: 768px), (min-width: 1366px) {
-    .crud-form {
-        width: 90%;
-    }
 }

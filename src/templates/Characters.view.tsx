@@ -17,6 +17,11 @@ const CharactersView = () => {
         });
     }, []);
 
+    React.useEffect(() => {
+        if (!character) return;
+        document.title = `FAVO-Ram | ${character.name}`;
+    }, [character]);
+
     if (!character)
         return (
             <div className={'center-box'} style={{ flex: 1 }}>
@@ -33,11 +38,7 @@ const CharactersView = () => {
                         <p id={'desc'}>{character.desc}</p>
                         <img src={character.origin.image} alt={''} />
                     </div>
-                    <img
-                        height={400}
-                        src={character.image}
-                        alt={character.name}
-                    />
+                    <img src={character.image} alt={character.name} />
                 </div>
                 <div id={'char-tags'}>
                     {character.tags?.map((tag) => {

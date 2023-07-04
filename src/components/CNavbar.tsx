@@ -12,7 +12,7 @@ import '../styles/navbar.styles.scss';
 
 export const CNavbar = () => {
     return (
-        <div className={'navbar'}>
+        <>
             <NavLink to={''} className={'nav-link'} draggable={false}>
                 <FontAwesomeIcon icon={faHome} fontSize={16} />
                 <span>Home</span>
@@ -47,6 +47,6 @@ export const CNavbar = () => {
                 <FontAwesomeIcon icon={faTags} fontSize={16} />
                 <span>Tags</span>
             </NavLink>
-        </div>
+        </>
     );
 };

@@ -1,8 +1,8 @@
 import Select, { Props, components } from 'react-select';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import GenericObject from '../models/GenericObject';
-import { faFilter, faCaretDown } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 interface ISelectProps {
     additionalClasses?: string;

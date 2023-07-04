@@ -16,15 +16,13 @@ const App = ({ children }: IAppProps) => {
     React.useEffect(() => window.scrollTo(0, 0), [location]);
 
     return (
-        <div>
+        <>
             <div id={'navbar'}>
                 <CNavbar />
             </div>
             <div id={'content'}> {children} </div>
-            <div id={'footer'}>
-                <CFooter />
-            </div>
-        </div>
+            <CFooter />
+        </>
     );
 };
 

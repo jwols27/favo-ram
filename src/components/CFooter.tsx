@@ -41,72 +41,71 @@ const github: string = 'https://github.com/jwols27';
 const steam: string = 'https://steamcommunity.com/profiles/76561198087058358';
 const discord: string = 'https://discord.com/users/172660297788686336';
 const spotify: string = 'https://open.spotify.com/user/joaopedrow';
-const email: string = 'mailto:joaopedrowols@gmail.com?subject=Hello!"';
+const email: string = 'mailto:joaopedrowols@gmail.com?subject=Hello%21';
 
 export const CFooter = () => {
-    const [avatar, setAvatar] = React.useState<number>(
-        Math.floor(Math.random() * possibleAvatars.length),
-    );
+    const randomize = (max: number) => {
+        return Math.floor(Math.random() * max);
+    };
 
-    const handleAvatar = React.useCallback(() => {
-        setAvatar(Math.floor(Math.random() * possibleAvatars.length));
-    }, []);
+    const weighted: number =
+        randomize(5) === 4 ? 2 : randomize(possibleAvatars.length);
+
+    const [avatar, setAvatar] = React.useState<number>(weighted);
 
     return (
-        <footer>
-            <div className={'footer-grid'}>
-                <div className={'footer-grid-item footer-item-1'}>
-                    <h3>About</h3>
-                    <span>
-                        This website was made purely for fun. It shows my
-                        favorite characters from all sorts of cartoons, shows,
-                        movies, books, comics, anime, and manga.
-                    </span>
-                    <CEmoticon>
-                        <EmoticonJunoBop />
-                    </CEmoticon>
+        <footer className={'footer'}>
+            <div className={'footer-item-1'}>
+                <h3>About</h3>
+                <span>
+                    This website was made purely for fun. It shows my favorite
+                    characters from all sorts of cartoons, shows, movies, books,
+                    comics, anime, and manga.
+                </span>
+                <CEmoticon>
+                    <EmoticonJunoBop />
+                </CEmoticon>
+            </div>
+            <div className={'footer-item-2'}>
+                <h3>Hello world!</h3>
+                <span>You can find me in any of these places:</span>
+                <div className={'socials'}>
+                    <CAnchor href={github}>
+                        <FontAwesomeIcon icon={faGithub} fontSize={36} />
+                    </CAnchor>
+
+                    <CAnchor href={steam}>
+                        <FontAwesomeIcon icon={faSteam} fontSize={36} />
+                    </CAnchor>
+
+                    <CAnchor href={discord}>
+                        <FontAwesomeIcon icon={faDiscord} fontSize={36} />
+                    </CAnchor>
+
+                    <CAnchor href={spotify}>
+                        <FontAwesomeIcon icon={faSpotify} fontSize={36} />
+                    </CAnchor>
+
+                    <CAnchor
+                        onClick={(event) => {
+                            window.open(email, 'mail');
+                            event.preventDefault();
+                        }}
+                    >
+                        <FontAwesomeIcon icon={faEnvelope} fontSize={36} />
+                    </CAnchor>
                 </div>
-                <div className={'footer-grid-item footer-item-2'}>
-                    <h3>Hello world!</h3>
-                    <span>You can find me in any of these places:</span>
-                    <div className={'socials'}>
-                        <CAnchor href={github}>
-                            <FontAwesomeIcon icon={faGithub} fontSize={36} />
-                        </CAnchor>
-
-                        <CAnchor href={steam}>
-                            <FontAwesomeIcon icon={faSteam} fontSize={36} />
-                        </CAnchor>
-
-                        <CAnchor href={discord}>
-                            <FontAwesomeIcon icon={faDiscord} fontSize={36} />
-                        </CAnchor>
-
-                        <CAnchor href={spotify}>
-                            <FontAwesomeIcon icon={faSpotify} fontSize={36} />
-                        </CAnchor>
-
-                        <CAnchor
-                            onClick={(event) => {
-                                window.open(email, 'mail');
-                                event.preventDefault();
-                            }}
-                        >
-                            <FontAwesomeIcon icon={faEnvelope} fontSize={36} />
-                        </CAnchor>
-                    </div>
-                </div>
-                <div className={'center-box footer-item-3'}>
-                    <img
-                        className={'avatar'}
-                        src={possibleAvatars[avatar]}
-                        alt={''}
-                        onClick={handleAvatar}
-                        draggable={false}
-                        style={{ cursor: 'pointer' }}
-                    />
-                    <h5>Made by JP, aka 'Wols', for fun!</h5>
-                </div>
+            </div>
+            <div className={'footer-item-3'}>
+                <img
+                    className={'avatar'}
+                    src={possibleAvatars[avatar]}
+                    alt={''}
+                    onClick={() => setAvatar(randomize(possibleAvatars.length))}
+                    draggable={false}
+                    style={{ cursor: 'pointer' }}
+                />
+                <h5>Made by JP, aka 'Wols', for fun!</h5>
             </div>
         </footer>
     );

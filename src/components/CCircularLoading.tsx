@@ -1,4 +1,5 @@
 import React, { CSSProperties } from 'react';
+
 import '../styles/circular-loading.styles.scss';
 
 interface ICircularLoadingProps {

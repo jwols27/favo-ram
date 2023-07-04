@@ -18,30 +18,29 @@ interface EmporiumContentProps {
 const EmporiumGrid = ({ characters }: EmporiumContentProps) => {
     return characters.map((char) => {
         return (
-            <div className={'emporium-grid-item'} key={char.id}>
-                <Link
-                    to={`/characters/${char.id}`}
-                    className={'character-card'}
-                    draggable={false}
-                >
-                    <div className={'character-card-image'}>
-                        <CResolutionImage src={char.image} alt={char.name} />
-                        <div className={'blur'} />
-                    </div>
+            <Link
+                to={`/characters/${char.id}`}
+                className={'character-card'}
+                draggable={false}
+                key={char.id}
+            >
+                <div className={'character-card-image'}>
+                    <CResolutionImage src={char.image} alt={char.name} />
+                    <div className={'blur'} />
+                </div>
 
-                    <div className={'character-card-info'}>
-                        <div>
-                            <span className={'character-card-name'}>
-                                {char.name}
-                            </span>
-                            <span className={'character-card-origin'}>
-                                {char.origin.name}
-                            </span>
-                        </div>
-                        <img src={char.origin.image} alt={''} />
+                <div className={'character-card-info'}>
+                    <div>
+                        <span className={'character-card-name'}>
+                            {char.name}
+                        </span>
+                        <span className={'character-card-origin'}>
+                            {char.origin.name}
+                        </span>
                     </div>
-                </Link>
-            </div>
+                    <img src={char.origin.image} alt={''} />
+                </div>
+            </Link>
         );
     });
 };
@@ -103,7 +102,7 @@ const EmporiumView = () => {
             );
         } else {
             return (
-                <span className={'center-box'} style={{ height: '100%' }}>
+                <span className={'center-box-fill'}>
                     No characters found! Consider refreshing your browser or
                     changing your filters.
                 </span>

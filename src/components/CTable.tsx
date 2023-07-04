@@ -1,11 +1,11 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faMinusCircle } from '@fortawesome/free-solid-svg-icons';
 
 import GenericObject from '../models/GenericObject';
-import '../styles/table.styles.scss';
-import { useNavigate } from 'react-router-dom';
 import { CResolutionImage } from './CResolutionImage.tsx';
+import '../styles/table.styles.scss';
 
 export type ColumnSettings = {
     header: string;
