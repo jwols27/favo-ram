@@ -1,0 +1,51 @@
+.carousel {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    position: relative;
+
+    &.shadow-box {
+        padding: 4px 48px;
+    }
+
+    &-container {
+        display: flex;
+        gap: 8px;
+        overflow: hidden;
+        border: 1px solid black;
+        width: 100vw;
+        position: relative;
+        box-sizing: border-box;
+    }
+
+    &-slide {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-basis: 0;
+        flex-grow: 1;
+        height: 100%;
+        width: 100%;
+    }
+
+    &-arrow-r,
+    &-arrow-l {
+        position: absolute;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background-color: black;
+        top: 50%;
+        transform: translateY(-50%);
+        cursor: pointer;
+    }
+
+    &-arrow-l {
+        left: 4px;
+    }
+
+    &-arrow-r {
+        right: 4px;
+    }
+}

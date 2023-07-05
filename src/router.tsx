@@ -39,7 +39,7 @@ const routerData: RouteObject[] = [
                 element: <CharactersManager />,
             },
             {
-                path: ':id',
+                path: ':char_id',
                 element: <CharactersView />,
             },
         ],

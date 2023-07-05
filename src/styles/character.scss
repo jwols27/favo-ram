@@ -1,4 +1,6 @@
 #character {
+    flex-direction: column;
+    gap: 16px;
     .background {
         z-index: -1;
         position: absolute;
@@ -124,6 +126,17 @@
                     transform: scale(0.96);
                 }
             }
+        }
+    }
+
+    #related-characters {
+        &.shadow-box {
+            padding: 8px 16px;
+        }
+
+        &-title {
+            display: flex;
+            font-size: 1.25em;
         }
     }
 }
