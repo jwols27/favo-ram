@@ -1,64 +1,86 @@
 import React from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import '../styles/carousel.styles.scss';
+import {
+    faChevronLeft,
+    faChevronRight,
+} from '@fortawesome/free-solid-svg-icons';
 
-export const CCarousel = () => {
-    const items: React.ReactNode[] = [1, 2, 3, 4, 5];
+interface ICarouselProps {
+    children: React.ReactNode;
+    itemsOnScreen?: number;
+    slidesPerSwipe?: number;
+    slideHeight?: number;
+    gap?: number;
+}
 
-    const slideRefs = React.useRef<
-        Array<React.RefObject<HTMLDivElement> | null>
-    >([]);
+export const CCarousel = ({
+    itemsOnScreen = 1,
+    slidesPerSwipe = 1,
+    slideHeight,
+    gap = 1,
+    children,
+    ...props
+}: ICarouselProps & React.HTMLAttributes<HTMLDivElement>) => {
+    const percentage = 100 / itemsOnScreen;
+    const items = React.Children.toArray(children);
+    const formula = items.length - itemsOnScreen - (slidesPerSwipe - 1);
 
     const [currentSlide, setCurrentSlide] = React.useState<number>(0);
 
-    const onClickRight = () => {
-        setCurrentSlide(
-            currentSlide === items.length - 1 ? 0 : currentSlide + 1,
-        );
-    };
-
-    const onClickLeft = () => {
-        setCurrentSlide(
-            currentSlide === 0 ? items.length - 1 : currentSlide - 1,
-        );
-    };
+    const slideRefs = React.useMemo(
+        () =>
+            Array(items.length)
+                .fill(null)
+                .map(() => React.createRef<HTMLDivElement>()),
+        [items.length],
+    );
 
     React.useEffect(() => {
-        slideRefs.current.forEach((slide) => {
+        slideRefs.forEach((slide) => {
             if (!slide?.current) return;
             slide.current.style.transform = `translateX(${
-                -100 * currentSlide
+                -100 * currentSlide * slidesPerSwipe
             }%)`;
-            console.log(slide.current.style.transform);
         });
     }, [currentSlide]);
 
-    const RenderSlides = () => {
-        const slides: React.ReactNode[] = [];
+    const onClickRight = (): void =>
+        setCurrentSlide(currentSlide === formula ? 0 : currentSlide + 1);
+    const onClickLeft = (): void =>
+        setCurrentSlide(currentSlide < 1 ? formula : currentSlide - 1);
 
-        for (let i = 0; i < items.length; i++) {
-            const slide = React.useRef<HTMLDivElement | null>(null);
-            slideRefs.current[i] = slide;
-
-            slides.push(
-                <div
-                    key={i}
-                    ref={slide}
-                    className={'carousel-slide bg-color-1-light'}
-                    style={{ left: `${100 * i}%` }}
-                >
-                    {items[i]}
-                </div>,
-            );
-        }
-
-        return slides;
+    const RenderSlides = (): React.ReactNode => {
+        return items.map((item, i) => (
+            <div
+                key={i}
+                ref={slideRefs[i]}
+                className={`carousel-slide gap-${gap}`}
+                style={{
+                    left: `${percentage * i}%`,
+                    width: itemsOnScreen > 1 ? `${percentage}%` : undefined,
+                    height: slideHeight ? `${slideHeight}%` : undefined,
+                }}
+            >
+                {item}
+            </div>
+        ));
     };
 
     return (
-        <div className={'carousel shadow-box bg-color-1'}>
-            <div className={'carousel-arrow-l'} onClick={onClickLeft} />
+        <div {...props} className={`carousel ${props.className ?? ''}`}>
+            {items.length > itemsOnScreen && (
+                <div className={'carousel-arrow-l'} onClick={onClickLeft}>
+                    <FontAwesomeIcon icon={faChevronLeft} />
+                </div>
+            )}
             <div className={'carousel-container'}>{RenderSlides()}</div>
-            <div className={'carousel-arrow-r'} onClick={onClickRight} />
+            {items.length > itemsOnScreen && (
+                <div className={'carousel-arrow-r'} onClick={onClickRight}>
+                    <FontAwesomeIcon icon={faChevronRight} />
+                </div>
+            )}
         </div>
     );
 };
