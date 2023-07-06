@@ -10,9 +10,9 @@
         background-size: 150px;
         background-position: -50px -35px;
         filter: blur(4px);
-        @media only screen and (max-width: 768px) {
-            display: none;
-        }
+        //@media only screen and (max-width: 768px) {
+        //    display: none;
+        //}
     }
 
     > .shadow-box {
@@ -23,6 +23,7 @@
         display: flex;
         flex-direction: column;
         min-width: 300px;
+        box-sizing: border-box;
 
         @media only screen and (max-width: 768px) {
             min-width: 100%;
@@ -130,6 +131,11 @@
     }
 
     #related-characters {
+        display: flex;
+        width: 65%;
+        height: 200px;
+        flex-direction: column;
+        box-sizing: border-box;
         &.shadow-box {
             padding: 8px 16px;
         }
@@ -137,6 +143,75 @@
         &-title {
             display: flex;
             font-size: 1.25em;
+        }
+
+        @media only screen and (max-width: 768px) {
+            min-width: 100%;
+            font-size: 0.9rem;
+            height: 250px;
+        }
+
+        .related-character {
+            position: relative;
+            flex: 1;
+            height: 100%;
+            background-color: var(--tertiary-light);
+            padding: 4px;
+            border-radius: 4px;
+            box-sizing: border-box;
+            cursor: pointer;
+            transition: background-color 0.25s ease-in-out;
+            overflow: hidden;
+
+            &:hover {
+                background-color: var(--tertiary-lighter);
+
+                .related-character-name {
+                    background-color: var(--tertiary-lighter);
+                    box-shadow: 0 -10px 6px -4px var(--tertiary-lighter);
+                }
+            }
+
+            &:active {
+                border: 1px solid var(--secondary);
+                transform: scale(0.95);
+            }
+
+            img {
+                height: 100%;
+                object-fit: cover;
+                width: 100%;
+
+                &.tall {
+                    object-fit: scale-down;
+                }
+
+                &.wide {
+                    object-fit: cover;
+                }
+            }
+
+            &-name {
+                width: calc(100% - 8px);
+                position: absolute;
+                bottom: 0;
+                padding: 8px 4px;
+                background-color: inherit;
+                box-shadow: 0 -10px 6px -4px var(--tertiary-light);
+                box-sizing: border-box;
+
+                text-align: center;
+                font-size: 0.8em;
+                font-weight: 600;
+                font-variant: all-petite-caps;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+
+                transition-property: background-color, box-shadow;
+                transition-duration: 0.25s;
+                transition-timing-function: ease-in-out;
+            }
         }
     }
 }

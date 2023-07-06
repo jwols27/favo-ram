@@ -1,17 +1,23 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import { CharacterService } from '../shared/services/CharacterService';
 import { Character } from '../models';
-import { CCircularLoading } from '../components';
+import { CCarousel, CCircularLoading, CResolutionImage } from '../components';
 import '../styles/character.scss';
+import { useResolution } from '../shared/hooks/resolution.ts';
 
 const CharactersView = () => {
     const { char_id } = useParams<'char_id'>();
     const [character, setCharacter] = React.useState<Character>();
+    const [related, setRelated] = React.useState<Character[]>([]);
+    const {
+        maxWidth: { small },
+    } = useResolution();
 
     const getInfo = async () => {
         if (!char_id) return;
+        console.log('oi');
         const charRes = await CharacterService.getById(+char_id);
         if (charRes instanceof Error) return console.log(charRes.message);
         setCharacter(charRes);
@@ -26,14 +32,18 @@ const CharactersView = () => {
             typeof tag === 'number' ? tag : tag.id,
         );
 
-        const related = await CharacterService.getRelated(id, origin, tagIds);
-        if (related instanceof Error) return console.log(related.message);
-        console.log(related);
+        const relatedRes = await CharacterService.getRelated(
+            id,
+            origin,
+            tagIds,
+        );
+        if (relatedRes instanceof Error) return console.log(relatedRes.message);
+        setRelated(relatedRes);
     };
 
     React.useEffect(() => {
         getInfo().catch((e) => console.log(e));
-    }, []);
+    }, [char_id]);
 
     React.useEffect(() => {
         document.title = `FAVO-Ram ${
@@ -75,8 +85,25 @@ const CharactersView = () => {
                 className={'background'}
                 style={{ backgroundImage: `url(${character.origin.image})` }}
             />
-            <div id={'related-characters'} className={'shadow-box bg-color-3'}>
+            <div
+                id={'related-characters'}
+                className={'shadow-box bg-color-2-light'}
+            >
                 <span className={'shadow-box-title'}>Related characters</span>
+                <CCarousel itemsOnScreen={small ? 3 : 6}>
+                    {related.map((char) => (
+                        <Link
+                            to={`/characters/${char.id}`}
+                            key={char.id}
+                            className={'related-character'}
+                        >
+                            <span className={'related-character-name'}>
+                                {char.name}
+                            </span>
+                            <CResolutionImage src={char.image} />
+                        </Link>
+                    ))}
+                </CCarousel>
             </div>
         </div>
     );

@@ -189,7 +189,8 @@
             user-select: none;
         }
 
-        &:hover img {
+        &:hover img,
+        &:active img {
             cursor: zoom-in;
             transform: scale(5);
             margin-top: -100px;
