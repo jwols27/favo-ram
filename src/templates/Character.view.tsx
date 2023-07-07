@@ -4,10 +4,10 @@ import { Link, useParams } from 'react-router-dom';
 import { CharacterService } from '../shared/services/CharacterService';
 import { Character } from '../models';
 import { CCarousel, CCircularLoading, CResolutionImage } from '../components';
-import '../styles/character.scss';
+import '../styles/character.styles.scss';
 import { useResolution } from '../shared/hooks/resolution.ts';
 
-const CharactersView = () => {
+const CharacterView = () => {
     const { char_id } = useParams<'char_id'>();
     const [character, setCharacter] = React.useState<Character>();
     const [related, setRelated] = React.useState<Character[]>([]);
@@ -46,9 +46,8 @@ const CharactersView = () => {
     }, [char_id]);
 
     React.useEffect(() => {
-        document.title = `FAVO-Ram ${
-            character?.name ? `| ${character?.name}` : ''
-        }`;
+        if (character?.name) document.title = `FAVO-Ram | ${character.name}`;
+        else document.title = 'FAVO-Ram';
     }, [character]);
 
     if (!character)
@@ -65,7 +64,9 @@ const CharactersView = () => {
                     <div id={'char-info'}>
                         <span id={'title'}>{character.name}</span>
                         <p id={'desc'}>{character.desc}</p>
-                        <img src={character.origin.image} alt={''} />
+                        <Link to={`/origins/${character.origin.id}`}>
+                            <img src={character.origin.image} alt={''} />
+                        </Link>
                     </div>
                     <img src={character.image} alt={character.name} />
                 </div>
@@ -109,4 +110,4 @@ const CharactersView = () => {
     );
 };
 
-export default CharactersView;
+export default CharacterView;
