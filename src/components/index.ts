@@ -8,3 +8,4 @@ export * from './CTableManager';
 export * from './CCircularLoading.tsx';
 export * from './CResolutionImage.tsx';
 export * from './CCarousel.tsx';
+export * from './CCharacterCard.tsx';

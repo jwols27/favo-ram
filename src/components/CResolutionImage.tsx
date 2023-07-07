@@ -23,6 +23,7 @@ export const CResolutionImage = ({
             src={src}
             alt={alt}
             ref={imgRef}
+            draggable={false}
             onLoad={onLoad}
             {...props}
         />

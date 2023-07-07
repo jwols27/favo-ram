@@ -169,6 +169,7 @@
 
 .res-image {
     display: none;
+    user-select: none;
     &.tall,
     &.wide {
         display: block;

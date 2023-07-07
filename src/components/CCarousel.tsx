@@ -57,6 +57,7 @@ export const CCarousel = ({
                 key={i}
                 ref={slideRefs[i]}
                 className={`carousel-slide gap-${gap}`}
+                draggable={false}
                 style={{
                     left: `${percentage * i}%`,
                     width: itemsOnScreen > 1 ? `${percentage}%` : undefined,

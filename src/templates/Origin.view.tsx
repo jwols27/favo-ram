@@ -1,8 +1,13 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+
 import { Character, Origin } from '../models';
 import { OriginService } from '../shared/services/OriginService.ts';
-import { CCircularLoading } from '../components';
+import { CCharacterCard, CCircularLoading } from '../components';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import '../styles/character-card.styles.scss';
+import '../styles/origin-view.styles.scss';
 
 type TEnhancedOrigin = Origin & {
     characters: Character[];
@@ -11,6 +16,7 @@ type TEnhancedOrigin = Origin & {
 const OriginView = () => {
     const { origin_id } = useParams<'origin_id'>();
     const [origin, setOrigin] = React.useState<TEnhancedOrigin>();
+    const [filter, setFilter] = React.useState<string>('');
 
     React.useEffect(() => {
         if (origin?.name) document.title = `FAVO-Ram | ${origin.name}`;
@@ -29,6 +35,31 @@ const OriginView = () => {
         getInfo().catch((e) => console.log(e));
     }, [origin_id]);
 
+    const RenderInfoSize = React.useMemo((): string => {
+        if (!origin) return '';
+        const len = origin.characters.length;
+        if (len === 1) {
+            return '01 character';
+        } else {
+            return `${len < 10 && '0'}${len} characters`;
+        }
+    }, [origin?.characters.length]);
+
+    const RenderContent = React.useMemo(() => {
+        if (!origin?.characters) return;
+
+        const filtered =
+            filter.length > 0
+                ? origin.characters.filter((char) =>
+                      char.name.toLowerCase().includes(filter.toLowerCase()),
+                  )
+                : origin.characters;
+
+        return filtered.map((char) => (
+            <CCharacterCard key={char.id} character={char} />
+        ));
+    }, [filter, origin?.characters]);
+
     if (!origin)
         return (
             <div className={'center-box'} style={{ flex: 1 }}>
@@ -38,10 +69,30 @@ const OriginView = () => {
 
     return (
         <div id={'origin'}>
-            <div className={'shadow-box bg-color-3'}>
-                <div className={'origin-info'}>{origin.name}</div>
-                <div className={'origin-characters'}>
-                    {origin.characters.map((char) => char.name)}
+            <div className={'origin-container shadow-box bg-color-3'}>
+                <div className={'character-card-grid'}>{RenderContent}</div>
+                <div className={'origin-info shadow-box bg-color-2-light'}>
+                    <img
+                        className={'shadow-box bg-color-2-lighter'}
+                        src={origin.image}
+                        alt={''}
+                    />
+                    <span className={'origin-info-name'}>{origin.name}</span>
+                    <span className={'origin-info-size'}>{RenderInfoSize}</span>
+
+                    <div className={'input-wrapper'}>
+                        <FontAwesomeIcon
+                            className={'input-icon'}
+                            icon={faSearch}
+                        />
+                        <input
+                            name={'search'}
+                            className={'input-control search'}
+                            placeholder={'Search characters...'}
+                            value={filter}
+                            onChange={(e) => setFilter(e.target.value)}
+                        />
+                    </div>
                 </div>
             </div>
         </div>

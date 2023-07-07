@@ -1,49 +1,15 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTags } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
 
 import { useAppSelector } from '../shared/hooks/store.hooks';
 import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest.ts';
 import TagRequest from '../shared/requests/TagRequest.ts';
-import { Character, Origin, Tag } from '../models';
-import { CCircularLoading, CResolutionImage, CSelect } from '../components';
+import { Origin, Tag } from '../models';
+import { CCharacterCard, CCircularLoading, CSelect } from '../components';
+import '../styles/character-card.styles.scss';
 import '../styles/emporium.styles.scss';
-
-interface EmporiumContentProps {
-    characters: Character[];
-}
-
-const EmporiumGrid = ({ characters }: EmporiumContentProps) => {
-    return characters.map((char) => {
-        return (
-            <Link
-                to={`/characters/${char.id}`}
-                className={'character-card'}
-                draggable={false}
-                key={char.id}
-            >
-                <div className={'character-card-image'}>
-                    <CResolutionImage src={char.image} alt={char.name} />
-                    <div className={'blur'} />
-                </div>
-
-                <div className={'character-card-info'}>
-                    <div>
-                        <span className={'character-card-name'}>
-                            {char.name}
-                        </span>
-                        <span className={'character-card-origin'}>
-                            {char.origin.name}
-                        </span>
-                    </div>
-                    <img src={char.origin.image} alt={''} />
-                </div>
-            </Link>
-        );
-    });
-};
 
 const EmporiumView = () => {
     React.useEffect(() => {
@@ -96,8 +62,14 @@ const EmporiumView = () => {
 
         if (filtered.length > 0) {
             return (
-                <div className={'emporium-grid'}>
-                    <EmporiumGrid characters={filtered} />
+                <div className={'character-card-grid'}>
+                    {filtered.map((char) => (
+                        <CCharacterCard
+                            key={char.id}
+                            character={char}
+                            origin={char.origin}
+                        />
+                    ))}
                 </div>
             );
         } else {

@@ -151,35 +151,19 @@
             height: 250px;
         }
 
-        .related-character {
-            position: relative;
-            flex: 1;
+        .character-card {
             height: 100%;
-            background-color: var(--tertiary-light);
             padding: 4px;
-            border-radius: 4px;
-            box-sizing: border-box;
-            cursor: pointer;
-            transition: background-color 0.25s ease-in-out;
-            overflow: hidden;
 
             &:hover {
-                background-color: var(--tertiary-lighter);
-
-                .related-character-name {
+                .related-name {
                     background-color: var(--tertiary-lighter);
                     box-shadow: 0 -10px 6px -4px var(--tertiary-lighter);
                 }
             }
 
-            &:active {
-                border: 1px solid var(--secondary);
-                transform: scale(0.95);
-            }
-
-            img {
+            > img {
                 height: 100%;
-                object-fit: cover;
                 width: 100%;
 
                 &.tall {
@@ -191,7 +175,7 @@
                 }
             }
 
-            &-name {
+            .related-name {
                 width: calc(100% - 8px);
                 position: absolute;
                 bottom: 0;

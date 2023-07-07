@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 import './styles/app.scss';
 import './styles/crud.styles.scss';
+import './styles/input-wrapper.styles.scss';
 import './styles/select.styles.scss';
 import { CNavbar, CFooter } from './components';
 

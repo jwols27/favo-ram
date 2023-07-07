@@ -4,7 +4,8 @@ import { Link, useParams } from 'react-router-dom';
 import { CharacterService } from '../shared/services/CharacterService';
 import { Character } from '../models';
 import { CCarousel, CCircularLoading, CResolutionImage } from '../components';
-import '../styles/character.styles.scss';
+import '../styles/character-view.styles.scss';
+import '../styles/character-card.styles.scss';
 import { useResolution } from '../shared/hooks/resolution.ts';
 
 const CharacterView = () => {
@@ -96,11 +97,10 @@ const CharacterView = () => {
                         <Link
                             to={`/characters/${char.id}`}
                             key={char.id}
-                            className={'related-character'}
+                            className={'character-card'}
+                            draggable={false}
                         >
-                            <span className={'related-character-name'}>
-                                {char.name}
-                            </span>
+                            <span className={'related-name'}>{char.name}</span>
                             <CResolutionImage src={char.image} />
                         </Link>
                     ))}
