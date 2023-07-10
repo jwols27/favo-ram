@@ -28,7 +28,6 @@ const OriginView = () => {
         const originRes = await OriginService.getById(+origin_id);
         if (originRes instanceof Error) return console.log(originRes.message);
         setOrigin(originRes);
-        console.log(originRes);
     };
 
     React.useEffect(() => {
@@ -69,11 +68,11 @@ const OriginView = () => {
 
     return (
         <div id={'origin'}>
-            <div className={'origin-container shadow-box bg-color-3'}>
+            <div className={'origin-container shadow-box bg-color-2-light'}>
                 <div className={'character-card-grid'}>{RenderContent}</div>
-                <div className={'origin-info shadow-box bg-color-2-light'}>
+                <div className={'origin-info shadow-box bg-color-3'}>
                     <img
-                        className={'shadow-box bg-color-2-lighter'}
+                        className={'shadow-box bg-color-3'}
                         src={origin.image}
                         alt={''}
                     />

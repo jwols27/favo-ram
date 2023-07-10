@@ -18,7 +18,6 @@ const CharacterView = () => {
 
     const getInfo = async () => {
         if (!char_id) return;
-        console.log('oi');
         const charRes = await CharacterService.getById(+char_id);
         if (charRes instanceof Error) return console.log(charRes.message);
         setCharacter(charRes);
@@ -65,8 +64,15 @@ const CharacterView = () => {
                     <div id={'char-info'}>
                         <span id={'title'}>{character.name}</span>
                         <p id={'desc'}>{character.desc}</p>
-                        <Link to={`/origins/${character.origin.id}`}>
-                            <img src={character.origin.image} alt={''} />
+                        <Link
+                            to={`/origins/${character.origin.id}`}
+                            draggable={false}
+                        >
+                            <img
+                                src={character.origin.image}
+                                alt={''}
+                                draggable={false}
+                            />
                         </Link>
                     </div>
                     <img src={character.image} alt={character.name} />
@@ -76,9 +82,21 @@ const CharacterView = () => {
                         if (typeof tag === 'number') return undefined;
 
                         return (
-                            <div className={'tag'} key={tag.id}>
+                            <Link
+                                to={`/tags/${tag.id}`}
+                                className={`tag${
+                                    tag.desc ? ' tooltip-bottom' : ''
+                                }`}
+                                key={tag.id}
+                                draggable={false}
+                            >
                                 {tag.name}
-                            </div>
+                                {tag.desc && (
+                                    <span className={'tooltip-text'}>
+                                        {tag.desc}
+                                    </span>
+                                )}
+                            </Link>
                         );
                     })}
                 </div>
@@ -92,19 +110,27 @@ const CharacterView = () => {
                 className={'shadow-box bg-color-2-light'}
             >
                 <span className={'shadow-box-title'}>Related characters</span>
-                <CCarousel itemsOnScreen={small ? 3 : 6}>
-                    {related.map((char) => (
-                        <Link
-                            to={`/characters/${char.id}`}
-                            key={char.id}
-                            className={'character-card'}
-                            draggable={false}
-                        >
-                            <span className={'related-name'}>{char.name}</span>
-                            <CResolutionImage src={char.image} />
-                        </Link>
-                    ))}
-                </CCarousel>
+                {related.length > 0 ? (
+                    <CCarousel itemsOnScreen={small ? 3 : 6}>
+                        {related.map((char) => (
+                            <Link
+                                to={`/characters/${char.id}`}
+                                key={char.id}
+                                className={'character-card'}
+                                draggable={false}
+                            >
+                                <span className={'related-name'}>
+                                    {char.name}
+                                </span>
+                                <CResolutionImage src={char.image} />
+                            </Link>
+                        ))}
+                    </CCarousel>
+                ) : (
+                    <div className={'center-box'} style={{ flex: 1 }}>
+                        <CCircularLoading additionalClasses={'color-2'} />
+                    </div>
+                )}
             </div>
         </div>
     );

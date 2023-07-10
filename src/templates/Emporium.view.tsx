@@ -10,18 +10,17 @@ import { Origin, Tag } from '../models';
 import { CCharacterCard, CCircularLoading, CSelect } from '../components';
 import '../styles/character-card.styles.scss';
 import '../styles/emporium.styles.scss';
+import { useParams } from 'react-router-dom';
 
 const EmporiumView = () => {
+    const { tag_id } = useParams<'tag_id'>();
+
     React.useEffect(() => {
         document.title = 'FAVO-Ram | Emporium';
 
-        const loadTables = async () => {
-            await CharacterRequest();
-            await OriginRequest();
-            await TagRequest();
-        };
-
-        loadTables().catch((e) => console.log(e));
+        CharacterRequest().catch((e) => console.log(e));
+        OriginRequest().catch((e) => console.log(e));
+        TagRequest().catch((e) => console.log(e));
     }, []);
 
     const characterState = useAppSelector((state) => state.characters);
@@ -31,7 +30,7 @@ const EmporiumView = () => {
     const [name, setName] = React.useState<string>('');
     const [tagName, setTagName] = React.useState<string>('');
     const [origins, setOrigins] = React.useState<number[]>([]);
-    const [tags, setTags] = React.useState<number[]>([]);
+    const [tags, setTags] = React.useState<number[]>(tag_id ? [+tag_id] : []);
 
     const RenderContent = React.useMemo(() => {
         let filtered = characterState.characters;
@@ -108,11 +107,17 @@ const EmporiumView = () => {
                     type={'checkbox'}
                     value={tag.id}
                     onChange={handleCheckbox}
+                    checked={tags.includes(tag.id)}
                 />
-                <span>{tag.name}</span>
+                <span className={tag.desc && 'tooltip-bottom'}>
+                    {tag.name}
+                    {tag.desc && (
+                        <span className={'tooltip-text'}>{tag.desc}</span>
+                    )}
+                </span>
             </label>
         ));
-    }, [tagState.tags, tagName]);
+    }, [tags, tagState.tags, tagName]);
 
     return (
         <div id={'emporium'}>

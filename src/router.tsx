@@ -1,4 +1,4 @@
-import { createBrowserRouter, Outlet } from 'react-router-dom';
+import { createBrowserRouter, Outlet, redirect } from 'react-router-dom';
 import { RouteObject } from 'react-router/dist/lib/context';
 
 import App from './App';
@@ -21,13 +21,17 @@ const routerData: RouteObject[] = [
     //EMPORIUM
     {
         path: 'emporium',
-        element: <EmporiumView />,
-    },
-
-    //EMPORIUM
-    {
-        path: 'emporium',
-        element: <EmporiumView />,
+        element: <Outlet />,
+        children: [
+            {
+                path: '',
+                element: <EmporiumView />,
+            },
+            {
+                path: ':tag_id',
+                element: <EmporiumView />,
+            },
+        ],
     },
 
     //CHARACTER
@@ -68,12 +72,14 @@ const routerData: RouteObject[] = [
         element: <Outlet />,
         children: [
             {
-                path: '',
+                path: 'manage',
                 element: <TagsManager />,
             },
             {
-                path: 'manage',
-                element: <TagsManager />,
+                path: ':tag_id',
+                element: <></>,
+                loader: ({ params: { tag_id } }) =>
+                    redirect(`/emporium/${tag_id}`),
             },
         ],
     },
