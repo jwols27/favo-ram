@@ -1,11 +1,10 @@
 import React from 'react';
 
 export const breakpoints = {
-    mobile: 520,
-    tablet: 768,
-    small: 1024,
-    laptop: 1366,
-    highRes: 1920,
+    mobile: 600,
+    small: 900,
+    medium: 1200,
+    big: 1500,
 };
 
 export const useResolution = () => {
@@ -31,17 +30,15 @@ export const useResolution = () => {
         height: windowSize[1],
         maxWidth: {
             mobile: breakpoints.mobile >= windowSize[0],
-            tablet: breakpoints.tablet >= windowSize[0],
             small: breakpoints.small >= windowSize[0],
-            laptop: breakpoints.laptop >= windowSize[0],
-            highRes: breakpoints.highRes >= windowSize[0],
+            medium: breakpoints.medium >= windowSize[0],
+            big: breakpoints.big >= windowSize[0],
         },
         minWidth: {
             mobile: breakpoints.mobile <= windowSize[0],
-            tablet: breakpoints.tablet <= windowSize[0],
             small: breakpoints.small <= windowSize[0],
-            laptop: breakpoints.laptop <= windowSize[0],
-            highRes: breakpoints.highRes <= windowSize[0],
+            medium: breakpoints.medium <= windowSize[0],
+            big: breakpoints.big <= windowSize[0],
         },
     };
 };

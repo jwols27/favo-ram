@@ -7,7 +7,7 @@
     &.shadow-box {
         padding: 4px 48px;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             padding: 8px 16px;
         }
     }
@@ -18,7 +18,7 @@
         position: relative;
         overflow: hidden;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             overflow: auto;
         }
     }
@@ -76,7 +76,7 @@
             background-color: rgb(0, 0, 0, 0.15);
         }
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             display: none;
         }
     }

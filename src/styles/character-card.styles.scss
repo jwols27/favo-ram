@@ -70,7 +70,7 @@
         transition-duration: 0.25s;
         transition-timing-function: ease-in-out;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             height: calc(0.75 * 50px);
         }
 
@@ -87,7 +87,7 @@
             height: 25px;
             object-fit: scale-down;
             margin-left: auto;
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 900px) {
                 transform: scale(0.75);
             }
         }
@@ -100,11 +100,11 @@
     grid-template-columns: repeat(auto-fit, 240px);
     gap: 16px;
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 900px) {
         grid-template-columns: repeat(auto-fit, 180px);
     }
 
-    @media only screen and (max-width: 1024px) {
+    @media only screen and (max-width: 1200px) {
         justify-content: center;
     }
 
@@ -114,7 +114,7 @@
         height: 300px;
         width: 240px;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             height: 225px;
             width: 180px;
             font-size: calc(0.75 * 1rem);

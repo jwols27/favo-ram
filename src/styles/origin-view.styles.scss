@@ -8,15 +8,15 @@
 
         &.shadow-box {
             padding: 32px;
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 900px) {
                 padding: 16px;
             }
-            @media only screen and (max-width: 520px) {
+            @media only screen and (max-width: 600px) {
                 padding: 0;
             }
         }
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             flex-direction: column-reverse;
         }
 
@@ -24,12 +24,16 @@
             padding: 0;
             flex: 1;
 
-            @media only screen and (max-width: 768px) {
+            @media only screen and (max-width: 900px) {
                 padding: 32px 24px;
             }
 
-            @media only screen and (min-width: 769px) {
+            @media only screen and (min-width: 901px) {
                 margin-right: 32px;
+            }
+
+            .character-card {
+                box-shadow: 0 0 10px -4px var(--tertiary-darker);
             }
 
             .character-card-info {
@@ -47,8 +51,12 @@
         flex-direction: column;
         align-items: center;
 
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             width: 100%;
+        }
+
+        @media only screen and (max-width: 600px) {
+            border-bottom: 2px solid var(--secondary);
         }
 
         &.shadow-box {
@@ -72,6 +80,7 @@
             aspect-ratio: 1 / 1;
             object-fit: contain;
             box-sizing: border-box;
+            box-shadow: 0 0 10px -4px var(--quarternary-light);
         }
 
         &-name {

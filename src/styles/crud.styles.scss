@@ -5,13 +5,13 @@
     gap: 36px;
     grid-template-columns: repeat(1, minmax(0, 1fr));
 
-    @media only screen and (max-width: 768px) {
+    @media only screen and (max-width: 900px) {
         > div:nth-child(2) {
             order: -1;
         }
     }
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 901px) {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         > div:first-child {
             grid-column-start: 1;
@@ -25,7 +25,7 @@
     flex-direction: column;
     width: 100%;
 
-    @media only screen and (max-width: 768px), (min-width: 1366px) {
+    @media only screen and (max-width: 900px), (min-width: 1501px) {
         width: 90%;
     }
 
@@ -74,6 +74,7 @@
 }
 
 .crud-title {
+    margin-bottom: 8px;
     > * {
         vertical-align: middle;
     }
