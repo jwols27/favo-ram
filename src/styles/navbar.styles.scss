@@ -2,25 +2,64 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
+    height: var(--navbar-height);
     background-color: var(--primary-dark);
     padding: 0 12px;
+    gap: 8px;
 
-    .nav-link {
-        padding: 16px;
-        margin: 0 4px 0 4px;
-        color: var(--primary-light);
-        transition: background-color 0.5s ease, color 0.5s ease;
+    @media only screen and (max-width: 900px) {
+        padding-left: clamp(16px, 10%, 40px);
+        justify-content: start;
+    }
+
+    > #hamburger-btn {
+        display: none;
+        border: 0;
+        background-color: transparent;
+        font-size: 2rem;
+        color: var(--tertiary);
+        border-radius: 50%;
+        width: 50px;
+        aspect-ratio: 1/1;
+        cursor: pointer;
+
+        transition-property: color, background-color, filter, transform;
+        transition-duration: 0.125s;
+        transition-timing-function: ease-in-out;
+
+        @media only screen and (max-width: 900px) {
+            display: block;
+        }
+
+        &:hover {
+            color: var(--quarternary);
+            background-color: var(--primary);
+            > * {
+                transform: scale(1.05);
+            }
+        }
+
+        &:active {
+            filter: brightness(1.1);
+            color: var(--quarternary-light);
+            > * {
+                transform: scale(0.95);
+            }
+        }
+    }
+
+    > .nav-link {
         border-radius: 30px;
-        user-select: none;
         border: 1px solid transparent;
 
+        @media only screen and (max-width: 900px) {
+            display: none;
+        }
+
         > * {
-            padding-right: 4px;
-            padding-left: 4px;
             vertical-align: middle;
-            text-align: center;
             display: inline;
+            margin: 0 4px;
         }
 
         &:hover {
@@ -39,16 +78,122 @@
             font-weight: 500;
         }
     }
+}
 
-    @media only screen and (min-width: 0) {
-        .nav-link {
-            display: none;
-        }
+#hamburger-nav {
+    width: 300px;
+    height: 100%;
+    background-color: var(--quarternary);
+    box-sizing: border-box;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+    z-index: 999;
+    top: 0;
+    left: -100%;
+    transition: left 0.5s ease-in-out;
+
+    &.ham-open {
+        left: 0;
     }
 
     @media only screen and (min-width: 901px) {
-        .nav-link {
-            display: initial;
+        display: none;
+    }
+
+    > .logo-box {
+        height: 100px;
+        aspect-ratio: 1/1;
+        object-fit: scale-down;
+        color: var(--tertiary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        user-select: none;
+        background-color: var(--quarternary-light);
+    }
+
+    > .nav-link {
+        display: flex;
+        position: relative;
+        transition-property: color, background-color, filter;
+        transition-duration: 0.125s;
+        transition-timing-function: ease-in-out;
+
+        :first-child {
+            min-width: 30px;
+            margin-right: 8px;
         }
+
+        > span {
+            flex: 1;
+        }
+
+        &:after,
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            background-color: var(--quarternary-light);
+            transition-property: background-color, z-index;
+            transition-duration: 0.125s;
+            transition-timing-function: ease-in-out;
+            z-index: 1;
+        }
+
+        &:not(:nth-child(2)):after,
+        &:not(:last-child):before {
+            height: 1px;
+        }
+
+        &:after {
+            top: 0;
+        }
+
+        &:before {
+            bottom: -1px;
+        }
+
+        &:hover {
+            background-color: var(--primary);
+            color: var(--primary-dark) !important;
+
+            &.nav-link::after,
+            &.nav-link::before {
+                background-color: var(--primary-darker);
+                z-index: 3;
+            }
+        }
+
+        &:active {
+            filter: brightness(1.1);
+        }
+
+        &.active {
+            color: var(--secondary-dark);
+            background-color: var(--primary);
+            font-weight: 500;
+
+            &.nav-link::after,
+            &.nav-link::before {
+                background-color: var(--primary-light);
+                z-index: 4;
+            }
+        }
+    }
+}
+
+.nav-link {
+    padding: 16px;
+    color: var(--primary-light);
+    transition: background-color 0.5s ease, color 0.5s ease;
+    user-select: none;
+
+    > * {
+        vertical-align: middle;
+        display: inline;
     }
 }

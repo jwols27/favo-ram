@@ -7,8 +7,7 @@ import {
     removeTagById,
     setTagById,
 } from '../../shared/stores/tag.slice';
-import { useAppSelector } from '../../shared/hooks/store.hooks';
-import { useYupValidationResolver } from '../../shared/hooks/validation.hooks';
+import { useAppSelector, useYupValidationResolver } from '../../shared/hooks';
 import { TagService } from '../../shared/services/TagService';
 import TagRequest from '../../shared/requests/TagRequest';
 import {

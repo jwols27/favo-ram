@@ -23,6 +23,8 @@
     --error: #d32f2f;
     --error-dark: #b61919;
 
+    --navbar-height: 100px;
+
     scrollbar-color: var(--quarternary) var(--quarternary-light) !important;
 }
 
@@ -102,6 +104,12 @@ td,
 a {
     text-decoration: none;
     color: inherit;
+}
+
+html,
+body {
+    min-height: 100% !important;
+    height: 100%;
 }
 
 body {

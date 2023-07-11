@@ -2,8 +2,7 @@ import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
-import { useAppSelector } from '../../shared/hooks/store.hooks';
-import { useYupValidationResolver } from '../../shared/hooks/validation.hooks';
+import { useAppSelector, useYupValidationResolver } from '../../shared/hooks';
 import { Character, CharacterSchema } from '../../models';
 import {
     CCircularLoading,

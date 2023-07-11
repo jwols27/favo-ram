@@ -7,8 +7,7 @@ import {
     removeOriginById,
     setOriginById,
 } from '../../shared/stores/origin.slice';
-import { useAppSelector } from '../../shared/hooks/store.hooks';
-import { useYupValidationResolver } from '../../shared/hooks/validation.hooks';
+import { useAppSelector, useYupValidationResolver } from '../../shared/hooks';
 import OriginRequest from '../../shared/requests/OriginRequest';
 import { OriginService } from '../../shared/services/OriginService';
 import {

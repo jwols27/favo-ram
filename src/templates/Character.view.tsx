@@ -6,7 +6,7 @@ import { Character } from '../models';
 import { CCarousel, CCircularLoading, CResolutionImage } from '../components';
 import '../styles/character-view.styles.scss';
 import '../styles/character-card.styles.scss';
-import { useResolution } from '../shared/hooks/resolution.ts';
+import { useResolution } from '../shared/hooks';
 
 const CharacterView = () => {
     const { char_id } = useParams<'char_id'>();
@@ -111,7 +111,7 @@ const CharacterView = () => {
             >
                 <span className={'shadow-box-title'}>Related characters</span>
                 {related.length > 0 ? (
-                    <CCarousel itemsOnScreen={small ? 3 : 6}>
+                    <CCarousel itemsOnScreen={small ? 3 : 5}>
                         {related.map((char) => (
                             <Link
                                 to={`/characters/${char.id}`}

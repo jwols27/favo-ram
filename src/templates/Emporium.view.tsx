@@ -2,7 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTags } from '@fortawesome/free-solid-svg-icons';
 
-import { useAppSelector } from '../shared/hooks/store.hooks';
+import { useAppSelector } from '../shared/hooks';
 import CharacterRequest from '../shared/requests/CharacterRequest';
 import OriginRequest from '../shared/requests/OriginRequest.ts';
 import TagRequest from '../shared/requests/TagRequest.ts';

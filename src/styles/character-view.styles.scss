@@ -131,8 +131,8 @@
 
     #related-characters {
         display: flex;
-        width: 65%;
-        height: 200px;
+        width: clamp(350px, 100%, 1000px);
+        height: 250px;
         flex-direction: column;
         box-sizing: border-box;
         &.shadow-box {

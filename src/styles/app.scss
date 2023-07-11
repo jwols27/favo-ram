@@ -1,17 +1,29 @@
-#content {
-    min-height: calc(100vh - 404px);
+#root {
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 0 10%;
+    position: relative;
+}
 
-    @media only screen and (max-width: 1500px) {
-        padding: 0 36px;
-    }
-    @media only screen and (max-width: 900px) {
-        padding: 0 24px;
-    }
-    @media only screen and (max-width: 600px) {
-        padding: 0;
+#content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+
+    > :first-child {
+        flex: 1;
+        padding: 24px 10%;
+        min-height: 600px;
+
+        @media only screen and (max-width: 1500px) {
+            padding: 24px 36px;
+        }
+        @media only screen and (max-width: 900px) {
+            padding: 24px 24px;
+        }
+        @media only screen and (max-width: 600px) {
+            padding: 24px 0;
+        }
     }
 }
 
@@ -20,11 +32,9 @@
 #tag-crud,
 #character,
 #origin {
-    padding: 24px 0;
     align-items: center;
     justify-content: center;
     display: flex;
-    flex: 1;
 }
 
 .color {
@@ -120,6 +130,7 @@
 .main-title {
     letter-spacing: -6px;
     font-size: 6rem;
+    text-align: center;
 }
 
 .center-box {
@@ -305,4 +316,30 @@
         transform: translateY(-50%);
         border-left-color: var(--quarternary);
     }
+}
+
+@keyframes slideIn {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+.slide-in {
+    animation: slideIn 0.5s forwards;
+}
+
+.slide-out {
+    animation: slideOut 0.5s forwards;
 }

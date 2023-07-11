@@ -3,8 +3,6 @@
     color: var(--primary-light);
     margin-top: 50px;
     min-height: 250px;
-    left: 0;
-    bottom: 0;
     display: grid;
 
     box-sizing: border-box;
@@ -40,9 +38,12 @@
 
         > a {
             color: inherit;
-            transition: all 0.2s ease;
             &:hover {
-                transform: scale(1.125);
+                transform: scale(1.1);
+            }
+
+            &:active {
+                transform: scale(0.95);
             }
         }
     }
