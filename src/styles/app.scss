@@ -37,6 +37,14 @@
     display: flex;
 }
 
+#unauthorized {
+    gap: 16px;
+    flex-direction: column;
+    button {
+        min-width: 200px;
+    }
+}
+
 .color {
     &-1 {
         color: var(--primary);

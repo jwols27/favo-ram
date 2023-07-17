@@ -1,4 +1,5 @@
 import React from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTags } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,10 +11,14 @@ import { Origin, Tag } from '../models';
 import { CCharacterCard, CCircularLoading, CSelect } from '../components';
 import '../styles/character-card.styles.scss';
 import '../styles/emporium.styles.scss';
-import { useParams } from 'react-router-dom';
 
 const EmporiumView = () => {
-    const { tag_id } = useParams<'tag_id'>();
+    const [searchParams, setSearchParams] = useSearchParams();
+
+    const getTagQuery = React.useMemo((): number[] => {
+        const tags = searchParams.get('tags');
+        return tags ? tags.split(',').map(Number) : [];
+    }, [searchParams]);
 
     React.useEffect(() => {
         document.title = 'FAVO-Ram | Emporium';
@@ -30,7 +35,16 @@ const EmporiumView = () => {
     const [name, setName] = React.useState<string>('');
     const [tagName, setTagName] = React.useState<string>('');
     const [origins, setOrigins] = React.useState<number[]>([]);
-    const [tags, setTags] = React.useState<number[]>(tag_id ? [+tag_id] : []);
+    const [tags, setTags] = React.useState<number[]>(getTagQuery);
+
+    React.useEffect(() => {
+        if (tags.length > 0) {
+            setSearchParams({ tags: tags.join(',') });
+        } else {
+            searchParams.delete('tags');
+            setSearchParams(searchParams);
+        }
+    }, [tags]);
 
     const RenderContent = React.useMemo(() => {
         let filtered = characterState.characters;

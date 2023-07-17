@@ -6,10 +6,14 @@ import HomeView from './templates/Home.view';
 import TagsManager from './templates/management/Tags.manager';
 import OriginsManager from './templates/management/Origins.manager';
 import CharactersManager from './templates/management/Characters.manager';
-import NotFoundView from './templates/NotFound.view';
 import EmporiumView from './templates/Emporium.view';
 import CharacterView from './templates/Character.view.tsx';
 import OriginView from './templates/Origin.view.tsx';
+import {
+    NotFoundView,
+    ProtectedRoute,
+    UnauthorizedView,
+} from './templates/TemplateErrorHandler.tsx';
 
 const routerData: RouteObject[] = [
     //HOME
@@ -41,7 +45,11 @@ const routerData: RouteObject[] = [
         children: [
             {
                 path: 'manage',
-                element: <CharactersManager />,
+                element: (
+                    <ProtectedRoute>
+                        <CharactersManager />,
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: ':char_id',
@@ -57,7 +65,11 @@ const routerData: RouteObject[] = [
         children: [
             {
                 path: 'manage',
-                element: <OriginsManager />,
+                element: (
+                    <ProtectedRoute>
+                        <OriginsManager />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: ':origin_id',
@@ -73,21 +85,18 @@ const routerData: RouteObject[] = [
         children: [
             {
                 path: 'manage',
-                element: <TagsManager />,
+                element: (
+                    <ProtectedRoute>
+                        <TagsManager />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: ':tag_id',
-                element: <></>,
                 loader: ({ params: { tag_id } }) =>
-                    redirect(`/emporium/${tag_id}`),
+                    redirect(`/emporium?tags=${tag_id}`),
             },
         ],
-    },
-
-    //NOT FOUND
-    {
-        path: '*',
-        element: <NotFoundView />,
     },
 ];
 
@@ -100,6 +109,16 @@ const router = createBrowserRouter([
             </App>
         ),
         children: routerData,
+    },
+    //UNAUTHORIZED
+    {
+        path: 'unauthorized',
+        element: <UnauthorizedView />,
+    },
+    //NOT FOUND
+    {
+        path: '*',
+        element: <NotFoundView />,
     },
 ]);
 
