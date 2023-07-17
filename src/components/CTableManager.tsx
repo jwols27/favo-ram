@@ -41,12 +41,12 @@ export const CTableManager = ({
                     {children}
 
                     <div className={'crud-button-container'}>
-                        <button className={'submit-button'} type="submit">
+                        <button className={'btn fill-2'} type="submit">
                             <span>Submit</span>
                         </button>
                         {editID && (
                             <button
-                                className={'cancel-button'}
+                                className={'btn fill-3'}
                                 type="button"
                                 onClick={onClear}
                             >

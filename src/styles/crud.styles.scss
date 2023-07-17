@@ -56,18 +56,6 @@
         border-bottom-right-radius: 0;
     }
 
-    button {
-        transition: filter 0.1s ease-in-out;
-        cursor: pointer;
-        &:hover,
-        &:active {
-            filter: brightness(1.05);
-        }
-        &:active {
-            transform: scale(0.95);
-        }
-    }
-
     .custom-select-container {
         margin-top: 8px;
     }
@@ -89,26 +77,10 @@
     margin-top: 24px;
     gap: 8px;
 
-    .submit-button,
-    .cancel-button {
-        padding: 12px 0;
-        border-radius: 50px;
-        font-size: 1rem;
-        font-weight: 500;
-        border: 1px solid transparent;
-    }
-
-    .submit-button {
-        color: var(--tertiary-light);
-        background-color: var(--secondary);
-        border-color: var(--secondary-dark);
+    :first-child {
         flex: 2;
     }
-
-    .cancel-button {
-        color: var(--quarternary-light);
-        background-color: var(--tertiary);
-        border-color: var(--quarternary-light);
+    :nth-child(2) {
         flex: 1;
     }
 }
