@@ -6,6 +6,7 @@ import { useAppSelector, useYupValidationResolver } from '../../shared/hooks';
 import { Character, CharacterSchema } from '../../models';
 import {
     CCircularLoading,
+    CFormInput,
     ColumnSettings,
     CSelect,
     CTableManager,
@@ -153,18 +154,26 @@ const CharactersManager = () => {
                 editID={editID}
                 onClear={clearForm}
             >
-                <input
-                    className={errors.name && 'crud-error'}
+                {/*<input*/}
+                {/*    className={errors.name && 'crud-error'}*/}
+                {/*    placeholder={'Name'}*/}
+                {/*    {...register('name')}*/}
+                {/*/>*/}
+                {/*{errors.name?.message && (*/}
+                {/*    <span className={'crud-error-message'}>*/}
+                {/*        {errors.name.message.toString()}*/}
+                {/*    </span>*/}
+                {/*)}*/}
+
+                <CFormInput
+                    register={register}
+                    error={errors.name}
+                    field={'name'}
                     placeholder={'Name'}
-                    {...register('name')}
                 />
-                {errors.name?.message && (
-                    <span className={'crud-error-message'}>
-                        {errors.name.message.toString()}
-                    </span>
-                )}
 
                 <textarea
+                    className={'input'}
                     cols={16}
                     placeholder={'Description'}
                     {...register('desc')}
@@ -183,12 +192,13 @@ const CharactersManager = () => {
                     )}
                 />
                 {errors.origin?.message && (
-                    <span className={'crud-error-message'}>
+                    <span className={'form-error-message'}>
                         {errors.origin.message.toString()}
                     </span>
                 )}
 
                 <input
+                    className={'input'}
                     placeholder={'Image URL'}
                     type={'url'}
                     {...register('image')}

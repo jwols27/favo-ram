@@ -12,6 +12,7 @@ import { TagService } from '../../shared/services/TagService';
 import TagRequest from '../../shared/requests/TagRequest';
 import {
     CCircularLoading,
+    CFormInput,
     ColumnSettings,
     CTableManager,
 } from '../../components';
@@ -125,16 +126,15 @@ const TagsManager = () => {
                 onClear={clearForm}
                 onSubmit={handleSubmit(onSubmit)}
             >
-                <input
-                    className={errors.name && 'crud-error'}
+                <CFormInput
+                    register={register}
+                    field={'name'}
                     placeholder={'Name'}
-                    {...register('name')}
+                    error={errors.name}
                 />
-                {errors.name?.message && (
-                    <span>{errors.name.message.toString()}</span>
-                )}
 
                 <textarea
+                    className={'input'}
                     cols={16}
                     placeholder={'Description'}
                     {...register('desc')}

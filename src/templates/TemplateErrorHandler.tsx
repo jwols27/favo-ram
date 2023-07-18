@@ -35,7 +35,7 @@ export const UnauthorizedView = () => {
         <div id={'unauthorized'} className={'center-box-fill'}>
             <h3>You shouldn't be here!</h3>
             <button className={'btn fill-1'} onClick={() => navigate('/')}>
-                Go back
+                <span>Go back</span>
             </button>
         </div>
     );

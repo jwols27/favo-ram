@@ -120,6 +120,12 @@
     &-3 {
         background-color: var(--tertiary);
     }
+    &-3-lighter {
+        background-color: var(--tertiary-lighter);
+    }
+    &-3-light {
+        background-color: var(--tertiary-light);
+    }
     &-3-dark {
         background-color: var(--tertiary-dark);
     }
@@ -160,6 +166,10 @@
         @extend .center-box;
         align-items: start;
     }
+}
+
+.divider {
+    height: 1px;
 }
 
 .shadow-box {

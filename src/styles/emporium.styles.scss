@@ -54,12 +54,15 @@
             border-radius: 0 0 8px 0;
         }
 
-        > :first-child {
-            margin-bottom: 8px;
+        > span {
+            margin-bottom: 24px;
+            display: block;
+            font-size: 1.4em;
+            padding-left: 2px;
         }
 
         > .input-wrapper {
-            margin-bottom: 16px;
+            margin-bottom: 8px;
             @media only screen and (max-width: 900px) {
                 width: 100%;
             }

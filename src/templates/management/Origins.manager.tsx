@@ -12,6 +12,7 @@ import OriginRequest from '../../shared/requests/OriginRequest';
 import { OriginService } from '../../shared/services/OriginService';
 import {
     CCircularLoading,
+    CFormInput,
     ColumnSettings,
     CTableManager,
 } from '../../components';
@@ -125,16 +126,15 @@ const OriginsManager = () => {
                 editID={editID}
                 onClear={clearForm}
             >
-                <input
-                    className={errors.name && 'crud-error'}
+                <CFormInput
+                    register={register}
+                    field={'name'}
                     placeholder={'Name'}
-                    {...register('name')}
+                    error={errors.name}
                 />
-                {errors.name?.message && (
-                    <span>{errors.name.message.toString()}</span>
-                )}
 
                 <input
+                    className={'input'}
                     placeholder={'Image URL'}
                     type={'url'}
                     {...register('image')}

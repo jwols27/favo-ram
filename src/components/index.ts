@@ -9,3 +9,5 @@ export * from './CCircularLoading.tsx';
 export * from './CResolutionImage.tsx';
 export * from './CCarousel.tsx';
 export * from './CCharacterCard.tsx';
+export * from './CDivider.tsx';
+export * from './CFormInput.tsx';

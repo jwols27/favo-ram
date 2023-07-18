@@ -14,6 +14,7 @@ import {
     ProtectedRoute,
     UnauthorizedView,
 } from './templates/TemplateErrorHandler.tsx';
+import LoginView from './templates/Login.view.tsx';
 
 const routerData: RouteObject[] = [
     //HOME
@@ -109,6 +110,10 @@ const router = createBrowserRouter([
             </App>
         ),
         children: routerData,
+    },
+    {
+        path: 'login',
+        element: <LoginView />,
     },
     //UNAUTHORIZED
     {

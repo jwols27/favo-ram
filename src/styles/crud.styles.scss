@@ -29,35 +29,14 @@
         width: 90%;
     }
 
-    input,
-    textarea {
-        resize: vertical;
+    .custom-select-container {
         margin-top: 8px;
-        border-radius: 8px;
-        padding: 16px 12px;
-        border: 1px solid var(--tertiary-darker);
-
-        &:hover:not(:focus) {
-            border-color: var(--quarternary);
-        }
-
-        &:focus {
-            border-color: var(--quarternary-light);
-        }
     }
 
     ::placeholder {
         color: var(--quarternary);
         font-size: 0.9rem;
         opacity: 0.75;
-    }
-
-    textarea {
-        border-bottom-right-radius: 0;
-    }
-
-    .custom-select-container {
-        margin-top: 8px;
     }
 }
 
@@ -83,15 +62,4 @@
     :nth-child(2) {
         flex: 1;
     }
-}
-
-.crud-error-message {
-    font-size: 0.75em;
-    padding: 4px 8px;
-    color: var(--quarternary-light);
-}
-
-.crud-error {
-    border: 1px solid var(--error) !important;
-    color: var(--error-dark) !important;
 }

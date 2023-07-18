@@ -178,7 +178,7 @@ const EmporiumView = () => {
                         RenderContent
                     )}
                     <div className={'emporium-sidebar'}>
-                        <h4>Tags</h4>
+                        <span>Tags</span>
                         <div className={'input-wrapper'}>
                             <FontAwesomeIcon
                                 className={'input-icon'}

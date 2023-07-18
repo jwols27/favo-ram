@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faHome,
@@ -6,12 +6,14 @@ import {
     faUserGear,
     faLocationDot,
     faTags,
+    faRightToBracket,
 } from '@fortawesome/free-solid-svg-icons';
 
 import { store } from '../shared/stores/store.ts';
 import '../styles/navbar.styles.scss';
 
 export const CNavbar = () => {
+    const location = useLocation();
     const loggedIn = store.getState().user.loggedIn;
     return (
         <>
@@ -25,7 +27,7 @@ export const CNavbar = () => {
                 <span>Emporium</span>
             </NavLink>
 
-            {loggedIn && (
+            {loggedIn ? (
                 <>
                     <NavLink
                         to={'characters/manage'}
@@ -52,6 +54,18 @@ export const CNavbar = () => {
                         <span>Tags</span>
                     </NavLink>
                 </>
+            ) : (
+                <NavLink
+                    to={'login'}
+                    className={'nav-link'}
+                    draggable={false}
+                    onClick={() =>
+                        localStorage.setItem('lastVisited', location.pathname)
+                    }
+                >
+                    <FontAwesomeIcon icon={faRightToBracket} fontSize={18} />
+                    <span>Login</span>
+                </NavLink>
             )}
         </>
     );

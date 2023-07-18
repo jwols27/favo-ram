@@ -1,0 +1,133 @@
+.btn {
+    padding: 12px 0;
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: 500;
+    border: 1px solid transparent;
+    color: var(--quarternary);
+    background-color: transparent;
+
+    transition: filter 0.1s ease-in-out;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+        filter: brightness(1.05);
+    }
+    &:active {
+        transform: scale(0.99);
+    }
+
+    &.fill-1 {
+        color: var(--tertiary-light);
+        background-color: var(--primary);
+        border-color: var(--primary-dark);
+    }
+
+    &.fill-2 {
+        color: var(--tertiary-light);
+        background-color: var(--secondary);
+        border-color: var(--secondary-dark);
+    }
+
+    &.fill-3 {
+        background-color: var(--tertiary-lighter);
+        border-color: var(--quarternary-light);
+    }
+
+    &.fill-4 {
+        color: var(--tertiary-light);
+        background-color: var(--quarternary-light);
+        border-color: var(--quarternary);
+    }
+
+    > :nth-child(2) {
+        margin-left: 4px;
+    }
+}
+
+.form-error-message {
+    font-size: 0.75em;
+    padding: 4px 8px;
+    color: var(--quarternary-light);
+}
+
+.form-error {
+    border: 1px solid var(--error) !important;
+    color: var(--error-dark) !important;
+}
+
+input,
+textarea {
+    &.input {
+        resize: vertical;
+        margin-top: 8px;
+        border-radius: 8px;
+        padding: 16px 12px;
+        border: 1px solid var(--tertiary-darker);
+        box-sizing: border-box;
+        font-size: inherit;
+
+        &:hover:not(:focus) {
+            border-color: var(--quarternary);
+        }
+
+        &:focus {
+            border-color: var(--quarternary-light);
+        }
+    }
+}
+
+textarea.input {
+    border-bottom-right-radius: 0;
+}
+
+.form-input {
+    width: 100%;
+    > input {
+        width: 100%;
+    }
+}
+
+.input-wrapper {
+    width: 250px;
+    height: 51px;
+    position: relative;
+
+    ::placeholder {
+        color: var(--quarternary);
+        font-size: 0.9rem;
+        opacity: 0.75;
+    }
+
+    .input-icon {
+        position: absolute;
+        box-sizing: border-box;
+        color: var(--secondary);
+        top: 50%;
+        left: 12px;
+        transform: translateY(-50%);
+    }
+
+    .input-control {
+        padding: 12px;
+        width: 100%;
+        height: 100%;
+        box-sizing: border-box;
+        border-radius: 8px;
+
+        border: 1px solid var(--tertiary-darker);
+
+        &.search {
+            padding-left: 36px;
+        }
+
+        &:hover {
+            border-color: var(--quarternary);
+        }
+
+        &:focus {
+            border-color: var(--secondary-light);
+        }
+    }
+}
